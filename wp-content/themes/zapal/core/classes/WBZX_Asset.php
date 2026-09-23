@@ -28,7 +28,7 @@ class WBZX_Asset
         }
     }
 
-    static public function js(string $handle, $paths, array $deps = [], bool | string $ver = false, array $args = []):void
+    static public function js(string $handle, $paths, array $deps = [], bool | string $ver = false, array $args = []): void
     {
         if(self::check_asset($paths)) {
             wp_enqueue_script('zapal-'.$handle, $paths, $deps, $ver, $args);
