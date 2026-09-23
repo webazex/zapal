@@ -1,10 +1,12 @@
 <?php
 
 function zapal_get_sources() {
+    $jsPath = ASSET_DIR . 'js' . DIRECTORY_SEPARATOR . 'main.js';
+    $jsUri  = ASSET_DIR_URI . 'js/main.js';
     wp_enqueue_style( 'zapal-css', get_stylesheet_uri() );
-    wp_enqueue_script( 'zapal-js', get_template_directory_uri() . '/assets/js/main.js',
+    wp_enqueue_script( 'zapal-js', $jsUri,
         ['jquery'],
-        filemtime( get_template_directory() . '/assets/js/main.js'),
+        filemtime( $jsPath),
         ['in_footer' => true] );
 }
 add_action('wp_enqueue_scripts', 'zapal_get_sources');
