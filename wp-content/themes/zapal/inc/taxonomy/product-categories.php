@@ -1,5 +1,5 @@
 <?php
-    register_taxonomy( 'cproducts', [ 'post' ], [
+    register_taxonomy( 'cproducts', [ 'products' ], [
         'label'                 => '', // определяется параметром $labels->name
         'labels'                => [
             'name'              => __('Категорії', 'zapal'),
