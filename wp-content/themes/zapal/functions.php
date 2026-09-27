@@ -13,3 +13,11 @@ require_once INC_DIR.'sources.php';
 
 //register menus
 require_once INC_DIR.'menu.php';
+
+//register taxonomies & cpt
+
+add_action('init', function (){
+    require_once INC_DIR.'taxonomy'.DIRECTORY_SEPARATOR.'product-categories.php';
+    require_once INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'products.php';
+    require_once INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'receipes.php';
+});
