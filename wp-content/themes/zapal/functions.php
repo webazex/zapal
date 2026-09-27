@@ -19,5 +19,5 @@ require_once INC_DIR.'menu.php';
 add_action('init', function (){
     require_once INC_DIR.'taxonomy'.DIRECTORY_SEPARATOR.'product-categories.php';
     require_once INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'products.php';
-    require_once INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'receipes.php';
+    require_once INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'recipes.php';
 });
