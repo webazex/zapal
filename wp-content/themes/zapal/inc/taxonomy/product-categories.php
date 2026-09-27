@@ -6,7 +6,7 @@
             'singular_name'     => __('Категорія', 'zapal'),
             'search_items'      =>__('Знайти категорію', 'zapal'),
             'all_items'         => __('Всі категорії', 'zapal'),
-            'view_item '        =>__('Перегляд категорій', 'zapal'),
+            'view_item'        =>__('Перегляд категорій', 'zapal'),
             'parent_item'       => __('Батьківька категорія', 'zapal'),
             'parent_item_colon' => __('Батьківька категорія', 'zapal'),
             'edit_item'         => __('Редагувати категорію', 'zapal'),
