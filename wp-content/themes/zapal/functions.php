@@ -10,3 +10,6 @@ require_once INC_DIR.'security.php';
 
 //add css&js
 require_once INC_DIR.'sources.php';
+
+//register menus
+require_once INC_DIR.'menu.php';
