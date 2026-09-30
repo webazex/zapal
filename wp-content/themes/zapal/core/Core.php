@@ -1,7 +1,7 @@
 <?php
 
 namespace WBZX\Zapal\core;
-
+use WBZX\zapal\core\services\translate\Translate;
 final class Core
 {
     private static object $translate;
@@ -9,7 +9,7 @@ final class Core
     private static object $customfields;
 
     public static function init(){
-        //inited private property
+       Translate::init();
     }
 
     public static function langApp(){

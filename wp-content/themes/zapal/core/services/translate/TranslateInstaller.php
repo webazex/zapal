@@ -2,7 +2,7 @@
 
 namespace WBZX\Zapal\core\services\translate;
 
-class TranslateCore
+class TranslateInstaller
 {
     static private $db = null;
     static private bool $inited = false;
