@@ -6,7 +6,6 @@ class App
 {
     private static object $core;
     public static function init(){
-        self::$core = Core::class;
-        self::$core::init();
+        Core::init();
     }
 }
