@@ -9,8 +9,7 @@ spl_autoload_register(static function (string $class): void {
     }
 
     $relativeClass = substr($class, strlen($prefix));
-    $cleanStr = str_replace('WBZX\\', '', $relativeClass);
-    $file = $baseDir.'/'.str_replace('\\', '/', $cleanStr).'.php';
+    $file = $baseDir.'/'.str_replace('\\', '/', $relativeClass).'.php';
     if (is_file($file)) {
         require_once $file;
     }
