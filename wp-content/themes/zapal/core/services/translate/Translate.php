@@ -9,12 +9,13 @@ class Translate
     public static function init():void {
         self::$currentLanguage = self::getMainLanguage();
 
-        if(file_exists(get_template_directory() . 'lang.php')){
-            self::$languages = require get_template_directory() . '/lang.php';
-        }else{
-            wp_die();
+        $langFile = get_template_directory() . '/lang.php';
+
+        if (!is_file($langFile)) {
+            wp_die('Language config not found');
         }
-        TranslateWPAdapter::register();
+
+        self::$languages = require $langFile;
     }
     public static function getMainLanguage():string {
         return get_option('zapal_main_lang', 'ua');
@@ -29,7 +30,12 @@ class Translate
         return self::$currentLanguage;
     }
 
-    public static function setCurrentLanguages(array $languages):void{
-        //temp
+    public static function setCurrentLanguage(string $language): void
+    {
+        if (!array_key_exists($language, self::$languages)) {
+            return;
+        }
+
+        self::$currentLanguage = $language;
     }
 }

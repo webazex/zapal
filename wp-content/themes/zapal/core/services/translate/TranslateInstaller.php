@@ -4,11 +4,8 @@ namespace WBZX\Zapal\core\services\translate;
 
 class TranslateInstaller
 {
-    static private $db = null;
     static function run(){
-        if(!is_null(self::$wpdb)){
             global $wpdb;
-            self::$db = $wpdb;
             $table = self::$db->prefix . 'zapal_translations';
             $charset_collate = self::$db->get_charset_collate();
             $sql = "
@@ -23,6 +20,6 @@ class TranslateInstaller
         ";
             $wpdb->query($sql);
             self::$inited = true;
-        }
+
     }
 }

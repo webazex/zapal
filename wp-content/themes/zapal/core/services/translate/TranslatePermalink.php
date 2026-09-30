@@ -1,5 +1,6 @@
 <?php
-use WBZX\zapal\core\services\translate\Translate;
+namespace WBZX\Zapal\core\services\translate;
+use WBZX\Zapal\core\services\translate\Translate;
 final class TranslatePermalink {
 
     private static function registerTag():void {
