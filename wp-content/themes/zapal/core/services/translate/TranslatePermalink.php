@@ -1,10 +1,16 @@
 <?php
 namespace WBZX\Zapal\core\services\translate;
-use WBZX\Zapal\core\services\translate\Translate;
 final class TranslatePermalink {
 
-    private static function registerTag():void {
+    public static function registerTag(): void
+    {
         add_rewrite_tag('%lang%', '([a-z]{2})');
+    }
+
+    public static function rewriteRules(array $rules): array
+    {
+        // позже логика
+        return $rules;
     }
     public static function registerRules(): void {
         $languages = array_keys(Translate::getLanguages());

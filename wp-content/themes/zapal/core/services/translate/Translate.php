@@ -16,6 +16,7 @@ class Translate
         }
 
         self::$languages = require $langFile;
+        TranslateWPAdapter::register();
     }
     public static function getMainLanguage():string {
         return get_option('zapal_main_lang', 'ua');
