@@ -20,4 +20,8 @@ final class TranslatePermalink {
         }
         return $queryVars;
     }
+
+    public static function detectCurrentLanguage(): string {
+        return ''; //temporary
+    }
 }

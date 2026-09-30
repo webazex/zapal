@@ -1,6 +1,7 @@
 <?php
 
-namespace WBZX\zapal\core\services\translate;
+namespace WBZX\Zapal\core\services\translate;
+use TranslatePermalink;
 class TranslateWPAdapter
 {
     public static function register():void{

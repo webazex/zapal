@@ -1,6 +1,6 @@
 <?php
 
-namespace WBZX\zapal\core\services\translate;
+namespace WBZX\Zapal\core\services\translate;
 
 class Translate
 {
@@ -10,7 +10,7 @@ class Translate
         self::$currentLanguage = self::getMainLanguage();
 
         if(file_exists(get_template_directory() . 'lang.php')){
-            self::$languages = require get_template_directory() . 'lang.php';
+            self::$languages = require get_template_directory() . '/lang.php';
         }else{
             wp_die();
         }
@@ -23,5 +23,9 @@ class Translate
     public static function getLanguages():array
     {
         return self::$languages;
+    }
+
+    public static function getCurrentLanguage():string{
+        return self::$currentLanguage;
     }
 }
