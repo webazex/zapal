@@ -28,4 +28,8 @@ class Translate
     public static function getCurrentLanguage():string{
         return self::$currentLanguage;
     }
+
+    public static function setCurrentLanguages(array $languages):void{
+        //temp
+    }
 }
