@@ -49,3 +49,18 @@ function zapal_cleanup_wp(): void {
 }
 
 add_action('after_setup_theme', 'zapal_cleanup_wp');
+
+//remove gutenberg
+// all ctp&pages
+add_filter('use_block_editor_for_post', '__return_false', 100);
+
+// remove gutem for widgets
+add_filter('use_widgets_block_editor', '__return_false');
+
+// remove guten css&js
+add_action('wp_enqueue_scripts', function() {
+    wp_dequeue_style('wp-block-library');          // main
+    wp_dequeue_style('wp-block-library-theme');    // blocks css
+    wp_dequeue_style('wc-blocks-style');           // Woo heresy blocks
+    wp_dequeue_style('global-styles');             // inline global stiles (theme.json)
+}, 100);
