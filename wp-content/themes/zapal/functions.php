@@ -5,6 +5,9 @@ require_once get_template_directory().DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARA
 //cleaned wp trash css&js
 require_once INC_DIR.'cleanup.php';
 
+//helpers
+require_once INC_DIR.'helpers.php';
+
 //security
 require_once INC_DIR.'security.php';
 
