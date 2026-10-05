@@ -63,4 +63,5 @@ add_action('wp_enqueue_scripts', function() {
     wp_dequeue_style('wp-block-library-theme');    // blocks css
     wp_dequeue_style('wc-blocks-style');           // Woo heresy blocks
     wp_dequeue_style('global-styles');             // inline global stiles (theme.json)
+    wp_dequeue_style('classic-theme-styles');      // remove guten css in front
 }, 100);
