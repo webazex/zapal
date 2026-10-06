@@ -1,13 +1,13 @@
 <?php
 get_header();
-$data = (!empty(get_field('page'))) ?? false;
+$data = get_field('page');
 ?>
 <pre>
     <?php //print_r($data); ?>
 </pre>
 <main>
     <?php
-        if(is_array( $data )) {
+        if(is_array( $data ) && $data) {
             WBZX_Zapal_render_section($data);
         }else{
             WBZX_Zapal_get_section('no-content');
