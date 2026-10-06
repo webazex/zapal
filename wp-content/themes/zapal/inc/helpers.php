@@ -17,6 +17,6 @@ function WBZX_Zapal_render_section(array $data): void{
         if(!$layoutKey){
             continue;
         }
-        WBZX_Zapal_get_section($item['acf_fc_layout'], $item);
+        WBZX_Zapal_get_section($layoutKey, $item);
     }
 }
