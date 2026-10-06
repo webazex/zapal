@@ -1,4 +1,10 @@
-<?php get_header();?>
+<?php
+get_header();
+$data = get_field('page');
+?>
+<pre>
+    <?php print_r($data); ?>
+</pre>
 <main>
     <?php
         WBZX_Zapal_get_section('hero-frontpage');
