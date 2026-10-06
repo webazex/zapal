@@ -1,20 +1,17 @@
 <?php
 get_header();
-$data = get_field('page');
+$data = (!empty(get_field('page'))) ?? false;
 ?>
 <pre>
-    <?php print_r($data); ?>
+    <?php //print_r($data); ?>
 </pre>
 <main>
     <?php
-        WBZX_Zapal_get_section('hero-frontpage');
-        WBZX_Zapal_get_section('manifesto');
-        WBZX_Zapal_get_section('products');
-        WBZX_Zapal_get_section('use-section');
-        WBZX_Zapal_get_section('package-b2b');
-        WBZX_Zapal_get_section('delivery');
-        WBZX_Zapal_get_section('about');
-        WBZX_Zapal_get_section('contact');
+        if(is_array( $data )) {
+            WBZX_Zapal_render_section($data);
+        }else{
+            WBZX_Zapal_get_section('no-content');
+        }
     ?>
 </main>
 <?php get_footer();?>
