@@ -419,7 +419,8 @@ img {
 
 .manifesto-title {
     font-size: clamp(58px, 9vw, 152px);
-    line-height: .82;
+    /*line-height: .82;*/
+    line-height: 1;
     letter-spacing: -.075em;
     text-transform: uppercase;
     font-weight: 900;
