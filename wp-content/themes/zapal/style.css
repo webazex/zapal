@@ -2515,6 +2515,203 @@ body {
     color: var(--white)
 }
 
+.no-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: min(760px, 82svh);
+    overflow: hidden;
+    padding: 132px 0 96px;
+    background: var(--ink, #11100f);
+    color: var(--white, #fffdf8);
+}
+
+.no-content::before {
+    content: "00";
+    position: absolute;
+    top: 50%;
+    right: -0.05em;
+    transform: translateY(-52%);
+    font-size: clamp(220px, 34vw, 620px);
+    line-height: .72;
+    letter-spacing: -.11em;
+    font-weight: 900;
+    color: rgba(255, 255, 255, .025);
+    pointer-events: none;
+    user-select: none;
+}
+
+.no-content__inner {
+    position: relative;
+    z-index: 1;
+    width: min(1380px, calc(100% - 56px));
+    margin-inline: auto;
+}
+
+.no-content__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-dark, rgba(255, 255, 255, .18));
+    font-size: 9px;
+    line-height: 1.2;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, .46);
+}
+
+.no-content__content {
+    display: grid;
+    grid-template-columns: minmax(180px, .38fr) minmax(0, 1fr);
+    column-gap: clamp(40px, 8vw, 140px);
+    row-gap: 36px;
+    align-items: start;
+    padding: clamp(64px, 9vw, 126px) 0 clamp(70px, 10vw, 138px);
+}
+
+.no-content__kicker {
+    padding-top: 11px;
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 750;
+    color: rgba(255, 253, 248, .58);
+}
+
+.no-content__title {
+    margin: 0;
+    max-width: 980px;
+    font-size: clamp(64px, 10vw, 154px);
+    line-height: .82;
+    letter-spacing: -.075em;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.no-content__title span {
+    display: inline-block;
+    font-family: var(--serif, Georgia, "Times New Roman", serif);
+    font-size: .66em;
+    line-height: .9;
+    letter-spacing: -.04em;
+    text-transform: none;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--yellow, #f4c52b);
+}
+
+.no-content__text {
+    grid-column: 2;
+    width: min(100%, 520px);
+    margin: -8px 0 0;
+    font-size: 15px;
+    line-height: 1.72;
+    color: rgba(255, 253, 248, .64);
+}
+
+.no-content__footer {
+    display: grid;
+    grid-template-columns: auto minmax(40px, 1fr) auto;
+    align-items: center;
+    gap: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line-dark, rgba(255, 255, 255, .18));
+    font-size: 9px;
+    line-height: 1.2;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, .4);
+}
+
+.no-content__footer i {
+    height: 1px;
+    background: currentColor;
+    opacity: .5;
+}
+
+@media (max-width: 1050px) {
+    .no-content {
+        min-height: 680px;
+    }
+
+    .no-content__content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .no-content__text {
+        grid-column: 1;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 760px) {
+    .no-content {
+        min-height: calc(100svh - 70px);
+        padding: 104px 0 54px;
+    }
+
+    .no-content::before {
+        top: auto;
+        right: -.06em;
+        bottom: 72px;
+        transform: none;
+        font-size: clamp(190px, 72vw, 360px);
+    }
+
+    .no-content__inner {
+        width: min(100% - 32px, 1380px);
+    }
+
+    .no-content__meta {
+        padding-bottom: 14px;
+        font-size: 8px;
+    }
+
+    .no-content__content {
+        padding: 54px 0 72px;
+    }
+
+    .no-content__kicker {
+        max-width: 270px;
+        padding-top: 0;
+        font-size: 9px;
+    }
+
+    .no-content__title {
+        font-size: clamp(52px, 17vw, 92px);
+        line-height: .84;
+    }
+
+    .no-content__text {
+        width: min(100%, 420px);
+        font-size: 14px;
+    }
+
+    .no-content__footer {
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        font-size: 8px;
+    }
+
+    .no-content__footer span:last-child {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .no-content__meta span:last-child {
+        display: none;
+    }
+
+    .no-content__title {
+        font-size: clamp(48px, 18vw, 74px);
+    }
+}
+
 @media (max-width: 980px) {
     .packaging-head, .logistics-grid, .product-logistics-grid {
         grid-template-columns:1fr;
