@@ -2,9 +2,6 @@
 get_header();
 $data = get_field('page');
 ?>
-<pre>
-    <?php //print_r($data); ?>
-</pre>
 <main>
     <?php
         if(is_array( $data ) && $data) {
