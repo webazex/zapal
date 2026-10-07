@@ -1,19 +1,31 @@
-<?php ?>
+<?php
+$titleSetting = (!empty($args['h2-content'])) ? $args['h2-content'] : false;
+$isColored = $titleSetting !== false && boolval($titleSetting['color-status']);
+?>
 <section class="manifesto" data-header="dark">
     <div class="shell manifesto-grid">
         <aside class="aside" data-reveal="">
-            <div class="kicker">Професійна лінійка</div>
-            <p>Не полиця з випадковими баночками. Лінійка смаків, створена для стабільної роботи на кухні.</p>
+            <div class="kicker"><?php echo $args['left-small-title']; ?></div>
+            <p><?php echo $args['description']; ?></p>
         </aside>
         <div>
-            <h2 class="manifesto-title" data-reveal="">Соуси,<br/>які працюють<br/><span
-                    class="serif">на кухні.</span></h2>
+            <?php if($titleSetting !== false): ?>
+            <h2 class="manifesto-title" data-reveal="">
+                <?php echo $titleSetting['h2-title']; ?>
+                <?php if($isColored): ?>
+                    <span class="serif" style="color: <?php echo $titleSetting['color']; ?>">
+                        <?php echo $titleSetting['colored-text']; ?>
+                    </span>
+                <?php endif; ?>
+            </h2>
+            <?php endif; ?>
             <div class="manifesto-foot" data-reveal="">
-                <p>Універсальні, азійські та американські соуси, барні premix, надгостра лінійка та напівфабрикати
-                    для професійної кухні. Кожна група має власний характер, але залишається частиною однієї системи
-                    ZAPAL.</p>
-                <p>В основі ZAPAL — продукт, смак і робота професійної кухні. Виразна подача, зрозуміле застосування
-                    та стабільний результат у кожній страві.</p>
+                <p>
+                    <?php echo $args['left-bottom-text']; ?>
+                </p>
+                <p>
+                    <?php echo $args['right-bottom-text']; ?>
+                </p>
             </div>
         </div>
     </div>
