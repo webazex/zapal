@@ -1,5 +1,5 @@
 <?php
-$products = WBZX_Zapal_get_products();
+//$products = WBZX_Zapal_get_products();
 ?>
 <section class="menu-section" id="products">
     <div class="shell section-head" data-reveal="">
