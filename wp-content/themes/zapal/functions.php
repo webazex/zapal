@@ -3,24 +3,24 @@
 require_once get_template_directory().DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARATOR.'constants.php';
 
 //cleaned wp trash css&js
-require_once INC_DIR.'cleanup.php';
+require_once THEME_PREFIX.'INC_DIR'.'cleanup.php';
 
 //helpers
-require_once INC_DIR.'helpers.php';
+require_once THEME_PREFIX.'INC_DIR'.'helpers.php';
 
 //security
-require_once INC_DIR.'security.php';
+require_once THEME_PREFIX.'INC_DIR'.'security.php';
 
 //add css&js
-require_once INC_DIR.'sources.php';
+require_once THEME_PREFIX.'INC_DIR'.'sources.php';
 
 //register menus
-require_once INC_DIR.'menu.php';
+require_once THEME_PREFIX.'INC_DIR'.'menu.php';
 
 //register taxonomies & cpt
 
 add_action('init', function (){
-    require_once INC_DIR.'taxonomy'.DIRECTORY_SEPARATOR.'product-categories.php';
-    require_once INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'products.php';
-    require_once INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'recipes.php';
+    require_once THEME_PREFIX.'INC_DIR'.'taxonomy'.DIRECTORY_SEPARATOR.'product-categories.php';
+    require_once THEME_PREFIX.'INC_DIR'.'cpt'.DIRECTORY_SEPARATOR.'products.php';
+    require_once THEME_PREFIX.'INC_DIR'.'cpt'.DIRECTORY_SEPARATOR.'recipes.php';
 });

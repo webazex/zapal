@@ -1,13 +1,17 @@
 <?php
-define('ASSET_DIR', get_template_directory() . DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR);
-define('ASSET_DIR_URI', get_template_directory_uri().'/assets/');
+const THEME_PREFIX = 'WBZX_ZAPAL_';
+define(THEME_PREFIX.'ASSET_DIR', get_template_directory() . DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR);
 
-define('INC_DIR', get_template_directory() . DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARATOR);
+define(THEME_PREFIX.'ASSET_DIR_URI', get_template_directory_uri().'/assets/');
 
-define('VIEWS_DIR', get_template_directory() . DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
+define(THEME_PREFIX.'INC_DIR', get_template_directory() . DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARATOR);
 
-define('SECTIONS_DIR', VIEWS_DIR . 'sections'.DIRECTORY_SEPARATOR);
+define(THEME_PREFIX.'VIEWS_DIR', get_template_directory() . DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 
-define('BLOCKS_DIR', VIEWS_DIR . 'blocks'.DIRECTORY_SEPARATOR);
+define(THEME_PREFIX.'SECTIONS_DIR', THEME_PREFIX.'VIEWS_DIR' . 'sections'.DIRECTORY_SEPARATOR);
 
-define('TEMPLATES_DIR', VIEWS_DIR . 'templates'.DIRECTORY_SEPARATOR);
+define(THEME_PREFIX.'BLOCKS_DIR', THEME_PREFIX.'VIEWS_DIR' . 'blocks'.DIRECTORY_SEPARATOR);
+
+define(THEME_PREFIX.'TEMPLATES_DIR', THEME_PREFIX.'ASSET_DIR' . 'templates'.DIRECTORY_SEPARATOR);
+
+define(THEME_PREFIX.'BACK', THEME_PREFIX.'INC_DIR'.'backend'.DIRECTORY_SEPARATOR);
