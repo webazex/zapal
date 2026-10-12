@@ -34,9 +34,6 @@ function WBZX_Zapal_get_data_products(array $args = []): array {
 }
 
 function WBZX_Zapal_get_selected_products() {
-    echo '<pre>';
-    print_r(get_field('sauge-data-status'));
-    echo '</pre>';
     $ret = [];
 }
 
