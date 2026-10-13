@@ -1,7 +1,7 @@
 <?php
 function WBZX_Zapal_mapping_product(array $product): array {
     return [
-        'id' => $product['ID'],
+        'id' => $product['id'],
         'name' => $product['name'],
         'content' => $product['content'],
         'image' => $product['thumbnail'],

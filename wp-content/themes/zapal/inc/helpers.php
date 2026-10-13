@@ -42,15 +42,24 @@ function WBZX_Zapal_products(){
     $products = WBZX_Zapal_get_products();
     if(!empty($products)){
         foreach($products as $product){
+            $acfData = get_field('data-product', $product->ID);
+            $category = get_the_terms($product, 'product_cat');
+            if(is_wp_error($category) OR !$category){
+                $category = [];
+            }
+            $tags = get_the_terms($product, 'product_tag');
+            if(is_wp_error($tags) OR !$tags){
+                $tags = [];
+            }
             $dataProduct = [
                 'id' => $product->ID,
-                'name' => $product->name,
+                'name' => $product->post_title,
                 'content' => $product->post_content,
-                'thumbnail' => (!is_null(get_the_post_thumbnail( $product->ID,'large', ['class' => 'some'])))?
+                'thumbnail' => (!empty(get_the_post_thumbnail( $product->ID,'large', ['class' => 'some'])))?
                     get_the_post_thumbnail( $product->ID,'large', ['class' => 'some']): false,
-                'meta' => (!empty(get_field('data-product', $product->ID)))? get_field('data-product', $product->ID) : false,
-                'category' => get_the_terms($product, 'cproducts'),
-                'tags' => get_the_terms($product, 'ctags')
+                'meta' => (!empty($acfData))? $acfData : false,
+                'category' => $category,
+                'tags' => $tags
 
             ];
             $ret[$product->ID] = WBZX_Zapal_mapping_product($dataProduct);
