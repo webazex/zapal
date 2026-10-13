@@ -21,26 +21,36 @@ function WBZX_Zapal_render_section(array $data): void{
     }
 }
 
-function WBZX_Zapal_get_data_products(array $args = []): array {
-    $ret = [];
+function WBZX_Zapal_get_query(array $args = []):object {
     $defaultArgs['posts_per_page'] = get_option('posts_per_page');
     $args = wp_parse_args($args, $defaultArgs);
-    $args['post_type'] = 'products'; //нам надо только соусы
-    $obj = new WP_Query( $args );
+    return new WP_Query( $args );
+}
+function WBZX_Zapal_get_products(array $args = []): array {
+    $ret = [];
+    $defaultArgs['post_type'] = 'products';
+    $args = wp_parse_args($args, $defaultArgs);
+    $obj = WBZX_Zapal_get_query($args);
     if($obj->have_posts()){
         $ret = $obj->posts;
     }
     return $ret;
 }
 
-function WBZX_Zapal_get_selected_products() {
+function WBZX_Zapal_products(){
     $ret = [];
-}
+    $products = WBZX_Zapal_get_products();
+    if(!empty($products)){
+        foreach($products as $product){
+            $dataProduct = [
+                'id' => $product->ID,
+                'content' => $product->post_content,
+                'thumbnail' => get_the_post_thumbnail( $product->ID,'large', ['class' => 'some']),
+                'meta' => get_field('data-product', $product->ID),
 
-function WBZX_Zapal_mapping_products(array $data):array {
-    $ret = [];
-    foreach ($data as $item) {
-        var_dump($item);
+            ];
+            $ret[$product->ID] = WBZX_Zapal_mapping_product($dataProduct);
+        }
     }
     return $ret;
 }
