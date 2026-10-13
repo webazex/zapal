@@ -1,7 +1,14 @@
 <?php
 function WBZX_Zapal_mapping_product(array $product): array {
-    print_r($product);
-    return $product;
+    return [
+        'id' => $product['ID'],
+        'name' => $product['name'],
+        'content' => $product['content'],
+        'image' => $product['thumbnail'],
+        'category' => $product['category'],
+        'tags' => $product['tags'],
+        'data' => $product['meta']
+    ];
 }
 
 function WBZX_Zapal_mapping_recipe(array $recipe): array {

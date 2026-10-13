@@ -44,9 +44,13 @@ function WBZX_Zapal_products(){
         foreach($products as $product){
             $dataProduct = [
                 'id' => $product->ID,
+                'name' => $product->name,
                 'content' => $product->post_content,
-                'thumbnail' => get_the_post_thumbnail( $product->ID,'large', ['class' => 'some']),
-                'meta' => get_field('data-product', $product->ID),
+                'thumbnail' => (!is_null(get_the_post_thumbnail( $product->ID,'large', ['class' => 'some'])))?
+                    get_the_post_thumbnail( $product->ID,'large', ['class' => 'some']): false,
+                'meta' => (!empty(get_field('data-product', $product->ID)))? get_field('data-product', $product->ID) : false,
+                'category' => get_the_terms($product, 'cproducts'),
+                'tags' => get_the_terms($product, 'ctags')
 
             ];
             $ret[$product->ID] = WBZX_Zapal_mapping_product($dataProduct);
