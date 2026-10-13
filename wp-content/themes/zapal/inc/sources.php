@@ -15,8 +15,8 @@ add_action('wp_default_scripts', function ($scripts) {
     $scripts->add_data('jquery-core', 'group', 1);
 });
 function zapal_enqueue_sources() {
-    $jsPath = THEME_PREFIX.'ASSET_DIR' . 'js' . DIRECTORY_SEPARATOR . 'main.js';
-    $jsUri  = THEME_PREFIX.'ASSET_DIR_URI' . 'js/main.js';
+    $jsPath = WBZX_ZAPAL_ASSET_DIR . 'js' . DIRECTORY_SEPARATOR . 'main.js';
+    $jsUri  = WBZX_ZAPAL_ASSET_DIR_URI . 'js/main.js';
     wp_enqueue_style( 'zapal-css', get_stylesheet_uri() );
     wp_enqueue_script( 'zapal-js', $jsUri,
         ['jquery'],
