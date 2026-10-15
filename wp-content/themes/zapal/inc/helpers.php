@@ -68,3 +68,33 @@ function WBZX_Zapal_products(){
     return $ret;
 }
 
+/**
+ * Sanitizes ACF WYSIWYG content intended to be rendered inside H1/H2.
+ *
+ * Allowed final markup:
+ * - <br>
+ * - <em>
+ * - <strong>
+ *
+ * ACF/TinyMCE may wrap text in <p>. Paragraph wrappers are accepted only
+ * during sanitization and then normalized to <br>, because <p> inside a
+ * heading is invalid HTML.
+ */
+function WBZX_Zapal_heading_content($content): string
+{
+    if (!is_string($content) || trim($content) === '') {
+        return '';
+    }
+
+    $content = wp_kses($content, [
+        'p' => [],
+        'br' => [],
+        'em' => [],
+        'strong' => [],
+    ]);
+
+    $content = preg_replace('/<\/p>\s*<p>/i', '<br>', $content);
+    $content = str_replace(['<p>', '</p>'], '', $content);
+
+    return trim($content);
+}

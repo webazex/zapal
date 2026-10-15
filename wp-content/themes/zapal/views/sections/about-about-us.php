@@ -1,6 +1,6 @@
 <?php
 $kicker = $args['kicker'] ?? '';
-$title = $args['title-h2'] ?? '';
+$title = $args['h2-content'] ?? '';
 $description = $args['description'] ?? '';
 $advantages = $args['our-advantages'] ?? [];
 
@@ -13,7 +13,7 @@ $advantages = $args['our-advantages'] ?? [];
             <?php endif; ?>
 
             <?php if ($title): ?>
-                <h2><?= esc_html($title) ?></h2>
+                <h2><?= WBZX_Zapal_heading_content($title) ?></h2>
             <?php endif; ?>
         </div>
 
