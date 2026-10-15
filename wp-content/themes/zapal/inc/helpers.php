@@ -71,7 +71,7 @@ function WBZX_Zapal_products(){
 /**
  * Sanitizes ACF WYSIWYG content intended to be rendered inside H1/H2.
  *
- * Allowed final markup:
+ * Allowed editor markup:
  * - <br>
  * - <em>
  * - <strong>
@@ -79,6 +79,10 @@ function WBZX_Zapal_products(){
  * ACF/TinyMCE may wrap text in <p>. Paragraph wrappers are accepted only
  * during sanitization and then normalized to <br>, because <p> inside a
  * heading is invalid HTML.
+ *
+ * After sanitization <em> receives the controlled .serif class used by the
+ * existing ZAPAL heading styles. Attributes supplied by the editor itself
+ * are still stripped by wp_kses().
  */
 function WBZX_Zapal_heading_content($content): string
 {
@@ -95,6 +99,7 @@ function WBZX_Zapal_heading_content($content): string
 
     $content = preg_replace('/<\/p>\s*<p>/i', '<br>', $content);
     $content = str_replace(['<p>', '</p>'], '', $content);
+    $content = str_replace('<em>', '<em class="serif">', $content);
 
     return trim($content);
 }

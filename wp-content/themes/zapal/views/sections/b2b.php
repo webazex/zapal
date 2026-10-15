@@ -1,9 +1,11 @@
-<?php ?>
+<?php
+$title = $args['h2-content'] ?? '';
+?>
 <section class="packaging packaging-v6" id="b2b">
     <div class="shell packaging-head" data-reveal="">
         <div>
             <div class="kicker">B2B · умови замовлення</div>
-            <h2>Один блок.<br/><span class="serif">Усі умови.</span></h2>
+            <?php WBZX_Zapal_get_blocks('h2', ['content' => $title]); ?>
         </div>
         <p>Формат тари та мінімальна партія залежать від групи продукту. Усі базові умови зібрані в одному місці для
             швидкої роботи закупівельника.</p>

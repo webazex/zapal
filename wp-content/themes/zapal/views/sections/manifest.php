@@ -1,6 +1,5 @@
 <?php
-$titleSetting = (!empty($args['h2-content'])) ? $args['h2-content'] : false;
-$isColored = $titleSetting !== false && boolval($titleSetting['color-status']);
+$title = $args['h2-content'] ?? '';
 ?>
 <section class="manifesto" data-header="dark">
     <div class="shell manifesto-grid">
@@ -9,16 +8,13 @@ $isColored = $titleSetting !== false && boolval($titleSetting['color-status']);
             <p><?php echo $args['description']; ?></p>
         </aside>
         <div>
-            <?php if($titleSetting !== false): ?>
-            <h2 class="manifesto-title" data-reveal="">
-                <?php echo $titleSetting['h2-title']; ?>
-                <?php if($isColored): ?>
-                    <span class="serif" style="color: <?php echo $titleSetting['color']; ?>">
-                        <?php echo $titleSetting['colored-text']; ?>
-                    </span>
-                <?php endif; ?>
-            </h2>
-            <?php endif; ?>
+            <?php
+            WBZX_Zapal_get_blocks('h2', [
+                'content' => $title,
+                'class' => 'manifesto-title',
+                'reveal' => true,
+            ]);
+            ?>
             <div class="manifesto-foot" data-reveal="">
                 <p>
                     <?php echo $args['left-bottom-text']; ?>

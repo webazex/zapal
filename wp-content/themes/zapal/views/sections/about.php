@@ -1,7 +1,15 @@
-<?php ?>
+<?php
+$title = $args['h2-content'] ?? '';
+?>
 <section class="story" id="about">
     <div class="shell story-grid">
-        <h2 class="story-title" data-reveal="">Не просто<br/>соус.<span class="serif">Система смаку.</span></h2>
+        <?php
+        WBZX_Zapal_get_blocks('h2', [
+            'content' => $title,
+            'class' => 'story-title',
+            'reveal' => true,
+        ]);
+        ?>
         <div class="story-copy" data-reveal="">
             <p>ZAPAL — українська food-компанія з фокусом на B2B, HoReCa та професійні кухні. Понад 8 років роботи з
                 продуктом, професійні формати постачання та міжнародний обмін досвідом.</p>

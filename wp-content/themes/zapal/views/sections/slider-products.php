@@ -1,12 +1,13 @@
 <?php
 //$products = WBZX_Zapal_get_products();
 WBZX_Zapal_get_selected_products();
+$title = $args['h2-content'] ?? '';
 ?>
 <section class="menu-section" id="products">
     <div class="shell section-head" data-reveal="">
         <div>
             <div class="kicker">Асортимент</div>
-            <h2>Tasting<br/>menu</h2>
+            <?php WBZX_Zapal_get_blocks('h2', ['content' => $title]); ?>
         </div>
         <p>
             Основна лінійка: Worcester, Carolina Gold, Pan Asian (Корейський Пан), TEXAS BBQ і SRIRACHA.

@@ -12,9 +12,7 @@ $advantages = $args['our-advantages'] ?? [];
                 <div class="kicker"><?= esc_html($kicker) ?></div>
             <?php endif; ?>
 
-            <?php if ($title): ?>
-                <h2><?= WBZX_Zapal_heading_content($title) ?></h2>
-            <?php endif; ?>
+            <?php WBZX_Zapal_get_blocks('h2', ['content' => $title]); ?>
         </div>
 
         <div class="about-intro-body">

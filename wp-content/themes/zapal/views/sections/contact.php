@@ -1,9 +1,11 @@
-<?php ?>
+<?php
+$title = $args['h2-content'] ?? '';
+?>
 <section class="contact" data-header="dark" id="contact">
     <div class="shell contact-grid">
         <div data-reveal="">
             <div class="kicker">Придбання та співпраця</div>
-            <h2>Є питання?<span class="serif">Напишіть нам.</span></h2>
+            <?php WBZX_Zapal_get_blocks('h2', ['content' => $title]); ?>
             <p class="contact-note">Усі питання щодо придбання, зразків і співпраці приймаємо через форму зворотного
                 зв’язку. Оберіть продукт і залиште повідомлення.</p></div>
         <form class="form" data-recipient="zapalsauce@gmail.com" data-reveal="" method="post"
