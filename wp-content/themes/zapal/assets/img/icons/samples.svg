@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" role="img" aria-labelledby="t">
+  <title id="t">Зразки продукції</title>
+  <g fill="none" stroke="#11100f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 18 39 7l29 11-29 12z"/>
+    <path d="M10 18v28l29 11 29-11V18M39 30v27"/>
+    <path d="m27 17 29 11" stroke="#d1181f"/>
+  </g>
+  <text x="92" y="30" fill="#11100f" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="850" letter-spacing=".8">ЗРАЗКИ</text>
+  <text x="92" y="47" fill="#7d1d18" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="750" letter-spacing="1.15">PRODUCT SAMPLES</text>
+</svg>
