@@ -1,5 +1,12 @@
+<?php
+$darkmodeEnabled = function_exists('get_field')
+    ? (bool)get_field('darkmode', 'option')
+    : false;
+?>
 <!DOCTYPE html>
-<html data-theme="light" lang="<?= esc_attr(get_bloginfo('language')) ?>">
+<html data-theme="light"
+      data-darkmode="<?= $darkmodeEnabled ? '1' : '0' ?>"
+      lang="<?= esc_attr(get_bloginfo('language')) ?>">
 <head>
     <meta charset="<?= esc_attr(get_bloginfo('charset')) ?>"/>
     <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -77,14 +84,16 @@
             </a>
         </nav>
 
-        <button aria-label="<?= esc_attr__('Увімкнути темну тему', 'zapal') ?>"
-                aria-pressed="false"
-                class="theme-toggle"
-                data-theme-toggle=""
-                title="<?= esc_attr__('Темна тема', 'zapal') ?>"
-                type="button">
-            <span aria-hidden="true" class="theme-toggle-icon"></span>
-        </button>
+        <?php if ($darkmodeEnabled): ?>
+            <button aria-label="<?= esc_attr__('Увімкнути темну тему', 'zapal') ?>"
+                    aria-pressed="false"
+                    class="theme-toggle"
+                    data-theme-toggle=""
+                    title="<?= esc_attr__('Темна тема', 'zapal') ?>"
+                    type="button">
+                <span aria-hidden="true" class="theme-toggle-icon"></span>
+            </button>
+        <?php endif; ?>
 
         <button aria-label="<?= esc_attr__('Меню', 'zapal') ?>" class="menu-toggle">
             <i></i>

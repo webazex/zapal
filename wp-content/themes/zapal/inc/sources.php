@@ -1,4 +1,5 @@
 <?php
+
 add_action('wp_default_scripts', function ($scripts) {
     if (is_admin()) {
         return;
@@ -14,13 +15,33 @@ add_action('wp_default_scripts', function ($scripts) {
     $scripts->add_data('jquery', 'group', 1);
     $scripts->add_data('jquery-core', 'group', 1);
 });
-function zapal_enqueue_sources() {
+
+function zapal_enqueue_sources()
+{
     $jsPath = WBZX_ZAPAL_ASSET_DIR . 'js' . DIRECTORY_SEPARATOR . 'main.js';
-    $jsUri  = WBZX_ZAPAL_ASSET_DIR_URI . 'js/main.js';
-    wp_enqueue_style( 'zapal-css', get_stylesheet_uri() );
-    wp_enqueue_script( 'zapal-js', $jsUri,
+    $jsUri = WBZX_ZAPAL_ASSET_DIR_URI . 'js/main.js';
+
+    wp_enqueue_style('zapal-css', get_stylesheet_uri());
+
+    wp_enqueue_script(
+        'zapal-js',
+        $jsUri,
         ['jquery'],
-        filemtime( $jsPath),
-        ['in_footer' => true] );
+        filemtime($jsPath),
+        ['in_footer' => true]
+    );
+
+    $darkmodeEnabled = function_exists('get_field')
+        ? (bool)get_field('darkmode', 'option')
+        : false;
+
+    if (!$darkmodeEnabled) {
+        wp_add_inline_script(
+            'zapal-js',
+            "try{window.localStorage.removeItem('zapal-theme');}catch(e){}",
+            'before'
+        );
+    }
 }
+
 add_action('wp_enqueue_scripts', 'zapal_enqueue_sources');

@@ -16,6 +16,8 @@ function WBZX_Zapal_mapping_product(array $product): array
         'recipe_image_url' => $product['recipe_image_url'] ?? '',
         'category' => $product['category'],
         'tags' => $product['tags'],
+        'deliveries' => $product['deliveries'] ?? [],
+        'uses_global_deliveries' => !empty($product['uses_global_deliveries']),
         'data' => $product['meta'],
     ];
 }

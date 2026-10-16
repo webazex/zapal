@@ -5,13 +5,12 @@ $subtitle = $args['subtitle'] ?? '';
 $description = $args['descr'] ?? '';
 $sliderText = $args['slider-text'] ?? '';
 $showSelected = !empty($args['sauge-data-status']);
-$selectedSauces = is_array($args['selected_sauges'] ?? null) ? $args['selected_sauges'] : [];
 
-$queryArgs = [
-    'posts_per_page' => 10,
-];
+if ($showSelected) {
+    $selectedSauces = is_array($args['selected_sauges'] ?? null)
+        ? $args['selected_sauges']
+        : [];
 
-if ($showSelected && $selectedSauces) {
     $selectedIds = array_values(array_filter(array_map(
         static function ($item): int {
             if ($item instanceof WP_Post) {
@@ -23,16 +22,20 @@ if ($showSelected && $selectedSauces) {
         $selectedSauces
     )));
 
-    if ($selectedIds) {
-        $queryArgs = [
+    $products = $selectedIds
+        ? WBZX_Zapal_products([
             'posts_per_page' => count($selectedIds),
             'post__in' => $selectedIds,
             'orderby' => 'post__in',
-        ];
-    }
+        ])
+        : [];
+} else {
+    $products = WBZX_Zapal_products([
+        'posts_per_page' => 10,
+        'orderby' => 'date',
+        'order' => 'DESC',
+    ]);
 }
-
-$products = WBZX_Zapal_products($queryArgs);
 
 ?>
 <section class="menu-section" id="products">

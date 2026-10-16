@@ -50,6 +50,30 @@ function WBZX_Zapal_get_products(array $args = []): array
     return $query->have_posts() ? $query->posts : [];
 }
 
+/**
+ * Resolve product delivery settings according to the ACF toggle:
+ * status = 1 -> use global deliveries from Site Settings;
+ * status = 0 -> use deliveries stored in the product.
+ */
+function WBZX_Zapal_get_product_deliveries(array $acfData): array
+{
+    $deliveryGroup = $acfData['delivers-group'] ?? [];
+
+    if (!is_array($deliveryGroup)) {
+        return [];
+    }
+
+    if (!empty($deliveryGroup['status'])) {
+        $globalDeliveries = get_field('deliveries', 'option');
+
+        return is_array($globalDeliveries) ? $globalDeliveries : [];
+    }
+
+    $productDeliveries = $deliveryGroup['deliveries'] ?? [];
+
+    return is_array($productDeliveries) ? $productDeliveries : [];
+}
+
 function WBZX_Zapal_products(array $args = []): array
 {
     $result = [];
@@ -57,6 +81,7 @@ function WBZX_Zapal_products(array $args = []): array
 
     foreach ($products as $product) {
         $acfData = get_field('data-product', $product->ID);
+        $acfData = is_array($acfData) ? $acfData : [];
 
         $categories = get_the_terms($product->ID, 'cproducts');
         if (is_wp_error($categories) || !$categories) {
@@ -69,13 +94,17 @@ function WBZX_Zapal_products(array $args = []): array
         }
 
         $recipeImage = '';
-        $recipe = is_array($acfData) ? ($acfData['receipes'] ?? null) : null;
+        $recipe = $acfData['receipes'] ?? null;
 
         if ($recipe instanceof WP_Post) {
             $recipeImage = get_the_post_thumbnail_url($recipe->ID, 'large') ?: '';
         } elseif (is_numeric($recipe)) {
             $recipeImage = get_the_post_thumbnail_url((int)$recipe, 'large') ?: '';
         }
+
+        $deliveryGroup = is_array($acfData['delivers-group'] ?? null)
+            ? $acfData['delivers-group']
+            : [];
 
         $productData = [
             'id' => $product->ID,
@@ -88,6 +117,8 @@ function WBZX_Zapal_products(array $args = []): array
             'meta' => !empty($acfData) ? $acfData : false,
             'category' => $categories,
             'tags' => $tags,
+            'deliveries' => WBZX_Zapal_get_product_deliveries($acfData),
+            'uses_global_deliveries' => !empty($deliveryGroup['status']),
         ];
 
         $result[$product->ID] = WBZX_Zapal_mapping_product($productData);
