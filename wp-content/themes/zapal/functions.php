@@ -7,8 +7,12 @@ require_once WBZX_ZAPAL_INC_DIR.'cleanup.php';
 
 //mappers
 require_once WBZX_ZAPAL_BACK_DIR.'mappers.php';
+
 //helpers
 require_once WBZX_ZAPAL_INC_DIR.'helpers.php';
+
+//ACF UI/config
+require_once WBZX_ZAPAL_INC_DIR.'acf.php';
 
 //security
 require_once WBZX_ZAPAL_INC_DIR.'security.php';
@@ -20,7 +24,6 @@ require_once WBZX_ZAPAL_INC_DIR.'sources.php';
 require_once WBZX_ZAPAL_INC_DIR.'menu.php';
 
 //register taxonomies & cpt
-
 add_action('init', function (){
     require_once WBZX_ZAPAL_INC_DIR.'taxonomy'.DIRECTORY_SEPARATOR.'product-categories.php';
     require_once WBZX_ZAPAL_INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'products.php';

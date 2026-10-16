@@ -100,16 +100,12 @@ function WBZX_Zapal_products(array $args = []): array
  * Sanitizes ACF WYSIWYG content intended to be rendered inside H1/H2.
  *
  * Allowed editor markup:
- * - <br>
- * - <em>
- * - <strong>
+ * - line breaks
+ * - bold
+ * - italic / serif accent
+ * - text color
  *
- * TinyMCE may wrap text in <p>. Paragraph wrappers are accepted during
- * sanitization and then normalized to <br>, because <p> inside a heading
- * is invalid HTML.
- *
- * The editor's <em> is converted after sanitization to the theme-controlled
- * <span class="serif"> markup used by the existing ZAPAL CSS.
+ * Only the CSS "color" property is allowed on spans.
  */
 function WBZX_Zapal_heading_content($content): string
 {
@@ -117,18 +113,34 @@ function WBZX_Zapal_heading_content($content): string
         return '';
     }
 
-    $content = wp_kses($content, [
-        'p' => [],
-        'br' => [],
-        'em' => [],
-        'strong' => [],
-    ]);
+    $headingSafeCss = static function (array $styles): array {
+        return ['color'];
+    };
+
+    add_filter('safe_style_css', $headingSafeCss);
+
+    try {
+        $content = wp_kses($content, [
+            'p' => [],
+            'br' => [],
+            'em' => [],
+            'i' => [],
+            'strong' => [],
+            'b' => [],
+            'span' => [
+                'style' => true,
+            ],
+        ]);
+    } finally {
+        remove_filter('safe_style_css', $headingSafeCss);
+    }
 
     $content = preg_replace('/<\/p>\s*<p>/i', '<br>', $content);
     $content = str_replace(['<p>', '</p>'], '', $content);
+
     $content = str_replace(
-        ['<em>', '</em>'],
-        ['<span class="serif">', '</span>'],
+        ['<em>', '</em>', '<i>', '</i>'],
+        ['<span class="serif">', '</span>', '<span class="serif">', '</span>'],
         $content
     );
 
