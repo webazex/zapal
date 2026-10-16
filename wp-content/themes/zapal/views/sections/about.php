@@ -1,5 +1,10 @@
 <?php
+
 $title = $args['h2-content'] ?? '';
+$description = $args['descr'] ?? '';
+$link = $args['link'] ?? '';
+$advantages = is_array($args['advantages'] ?? null) ? $args['advantages'] : [];
+
 ?>
 <section class="story" id="about">
     <div class="shell story-grid">
@@ -10,18 +15,29 @@ $title = $args['h2-content'] ?? '';
             'reveal' => true,
         ]);
         ?>
+
         <div class="story-copy" data-reveal="">
-            <p>ZAPAL — українська food-компанія з фокусом на B2B, HoReCa та професійні кухні. Понад 8 років роботи з
-                продуктом, професійні формати постачання та міжнародний обмін досвідом.</p>
-            <p>Співпрацюємо з шеф-кухарями з Європи та Азії. <strong>Обмінюємося технологіями, рецептами та
-                    практичним досвідом.</strong></p><a class="text-link story-link" href="about.html">Про компанію
-                <span>↗</span></a>
-            <div class="story-stats">
-                <div class="story-stat"><strong>8 років</strong><span>досвіду</span></div>
-                <div class="story-stat"><strong>Україна</strong><span>основне виробництво</span></div>
-                <div class="story-stat"><strong>B2B</strong><span>основний фокус</span></div>
-                <div class="story-stat"><strong>HoReCa</strong><span>професійні кухні</span></div>
-            </div>
+            <?php if ($description): ?>
+                <?= wp_kses_post($description) ?>
+            <?php endif; ?>
+
+            <?php if ($link): ?>
+                <a class="text-link story-link" href="<?= esc_url($link) ?>">
+                    <?= esc_html__('Про компанію', 'zapal') ?>
+                    <span>↗</span>
+                </a>
+            <?php endif; ?>
+
+            <?php if ($advantages): ?>
+                <div class="story-stats">
+                    <?php foreach ($advantages as $advantage): ?>
+                        <div class="story-stat">
+                            <strong><?= esc_html($advantage['title'] ?? '') ?></strong>
+                            <span><?= esc_html($advantage['subtitle'] ?? '') ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>

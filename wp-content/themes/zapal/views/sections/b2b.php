@@ -1,33 +1,71 @@
 <?php
+
 $title = $args['h2-content'] ?? '';
+$kicker = $args['kicker'] ?? '';
+$description = $args['descr'] ?? '';
+$image = is_array($args['img'] ?? null) ? $args['img'] : null;
+$packagingTitle = $args['packaging-title'] ?? '';
+$packaging = is_array($args['packaging'] ?? null) ? $args['packaging'] : [];
+$link = is_array($args['link'] ?? null) ? $args['link'] : null;
+
 ?>
 <section class="packaging packaging-v6" id="b2b">
     <div class="shell packaging-head" data-reveal="">
         <div>
-            <div class="kicker">B2B · умови замовлення</div>
+            <?php if ($kicker): ?>
+                <div class="kicker"><?= esc_html($kicker) ?></div>
+            <?php endif; ?>
+
             <?php WBZX_Zapal_get_blocks('h2', ['content' => $title]); ?>
         </div>
-        <p>Формат тари та мінімальна партія залежать від групи продукту. Усі базові умови зібрані в одному місці для
-            швидкої роботи закупівельника.</p>
+
+        <?php if ($description): ?>
+            <p><?= esc_html($description) ?></p>
+        <?php endif; ?>
     </div>
+
     <div class="shell packaging-stage order-stage">
-        <figure class="packaging-visual"><img alt="Професійне фасування соусів ZAPAL" loading="lazy"
-                                              src="assets/img/final/packaging-bag-in-box.webp"/></figure>
+        <?php if ($image && !empty($image['url'])): ?>
+            <figure class="packaging-visual">
+                <img alt="<?= esc_attr($image['alt'] ?? '') ?>"
+                     loading="lazy"
+                     src="<?= esc_url($image['url']) ?>"/>
+            </figure>
+        <?php endif; ?>
+
         <div class="order-table-wrap">
-            <div class="kicker">Тара · мінімальна партія</div>
-            <div aria-label="Умови B2B замовлення" class="order-table" role="table">
-                <div class="order-row order-head" role="row"><span role="columnheader">Група</span><span
-                            role="columnheader">Тара</span><span role="columnheader">Мін. замовлення</span></div>
-                <div class="order-row" role="row"><strong role="cell">Вустерський соус</strong><span role="cell">Bag-in-Box / каністри</span><span
-                            role="cell">від X кг</span></div>
-                <div class="order-row" role="row"><strong role="cell">Універсальні соуси</strong><span role="cell">Bag-in-Box 5 кг</span><span
-                            role="cell">100 кг</span></div>
-                <div class="order-row" role="row"><strong role="cell">Паста Халапеньо</strong><span role="cell">відро / кетлі</span><span
-                            role="cell">X кг</span></div>
-                <div class="order-row" role="row"><strong role="cell">Надгостра лінійка</strong><span role="cell">ящик 12 пляшок / масовий об’єм</span><span
-                            role="cell">12 пляшок</span></div>
-            </div>
-            <a class="text-link" href="#contact">Уточнити умови <span>↗</span></a>
+            <?php if ($packagingTitle): ?>
+                <div class="kicker"><?= esc_html($packagingTitle) ?></div>
+            <?php endif; ?>
+
+            <?php if ($packaging): ?>
+                <div aria-label="<?= esc_attr__('Умови B2B замовлення', 'zapal') ?>"
+                     class="order-table"
+                     role="table">
+                    <div class="order-row order-head" role="row">
+                        <span role="columnheader"><?= esc_html__('Група', 'zapal') ?></span>
+                        <span role="columnheader"><?= esc_html__('Тара', 'zapal') ?></span>
+                        <span role="columnheader"><?= esc_html__('Мін. замовлення', 'zapal') ?></span>
+                    </div>
+
+                    <?php foreach ($packaging as $row): ?>
+                        <div class="order-row" role="row">
+                            <strong role="cell"><?= esc_html($row['groupe'] ?? '') ?></strong>
+                            <span role="cell"><?= esc_html($row['package'] ?? '') ?></span>
+                            <span role="cell"><?= esc_html($row['val'] ?? '') ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($link && !empty($link['url'])): ?>
+                <a class="text-link"
+                   href="<?= esc_url($link['url']) ?>"
+                   <?php if (!empty($link['target'])): ?>target="<?= esc_attr($link['target']) ?>"<?php endif; ?>>
+                    <?= esc_html($link['title'] ?? __('Уточнити умови', 'zapal')) ?>
+                    <span>↗</span>
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </section>
