@@ -1,8 +1,20 @@
-<?php get_header(); ?>
+<?php
+
+get_header();
+
+$data = get_field('page');
+
+?>
 <main>
-    <pre>
-        <?php WBZX_Zapal_products(); ?>
-    </pre>
-    <?php the_content(); ?>
+    <?php
+    if (is_array($data) && $data) {
+        WBZX_Zapal_render_section($data);
+    } elseif (have_posts()) {
+        while (have_posts()) {
+            the_post();
+            the_content();
+        }
+    }
+    ?>
 </main>
 <?php get_footer(); ?>
