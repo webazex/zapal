@@ -6,14 +6,33 @@ $properties = is_array($productData['properties'] ?? null)
     ? $productData['properties']
     : [];
 
-$title = $info['h1-title'] ?? ($args['name'] ?? '');
+$productName = $args['name'] ?? '';
+$title = $info['h1-title'] ?? $productName;
 $kicker = $info['kicker'] ?? '';
 $subtitle = $info['subtitle'] ?? '';
-
 $imageUrl = $args['image_url'] ?? '';
 
 ?>
 <section class="product-hero">
+    <?php
+    WBZX_Zapal_get_templates('breadcrumbs', [
+        'items' => [
+            [
+                'title' => __('Головна', 'zapal'),
+                'url' => home_url('/'),
+            ],
+            [
+                'title' => __('Продукція', 'zapal'),
+                'url' => home_url('/catalog/'),
+            ],
+            [
+                'title' => $productName ?: $title,
+            ],
+        ],
+        'class' => 'product-breadcrumbs shell',
+    ]);
+    ?>
+
     <div class="shell product-hero-inner">
         <div class="product-name">
             <?php if ($kicker): ?>
@@ -29,11 +48,10 @@ $imageUrl = $args['image_url'] ?? '';
             <?php endif; ?>
         </div>
 
-        <div class="product-stage">
+        <div class="product-stage" data-tilt-product="">
             <?php if ($imageUrl): ?>
                 <img
-                    alt="<?= esc_attr($title ?: ($args['name'] ?? '')) ?>"
-                    data-tilt-product=""
+                    alt="<?= esc_attr($title ?: $productName) ?>"
                     fetchpriority="high"
                     src="<?= esc_url($imageUrl) ?>"
                 />
