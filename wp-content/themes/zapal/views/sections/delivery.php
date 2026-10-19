@@ -4,8 +4,14 @@ $title = $args['h2-content'] ?? '';
 $kicker = $args['kicker'] ?? '';
 $color = sanitize_hex_color($args['color'] ?? '') ?: '';
 
-$deliveries = get_field('deliveries', 'option');
-$deliveries = is_array($deliveries) ? $deliveries : [];
+// A product can provide its own deliveries or explicitly provide an empty list.
+// Pages without a delivery override continue to use the site-wide settings.
+if (array_key_exists('deliveries', $args)) {
+    $deliveries = is_array($args['deliveries']) ? $args['deliveries'] : [];
+} else {
+    $deliveries = get_field('deliveries', 'option');
+    $deliveries = is_array($deliveries) ? $deliveries : [];
+}
 
 ?>
 <section class="logistics" id="delivery">
