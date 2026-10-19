@@ -8,4 +8,6 @@ if ($content === '') {
     return;
 }
 ?>
-<h2<?php if ($class): ?> class="<?= esc_attr($class) ?>"<?php endif; ?><?php if ($reveal): ?> data-reveal=""<?php endif; ?>><?= $content ?></h2>
+<h2<?php if ($class): ?> class="<?= esc_attr($class) ?>"<?php endif; ?><?php if ($reveal): ?> data-reveal=""<?php endif; ?>>
+    <?= $content ?>
+</h2>
