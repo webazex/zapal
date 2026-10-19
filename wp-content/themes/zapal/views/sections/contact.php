@@ -5,6 +5,7 @@ $kicker = $args['kicker'] ?? '';
 $description = $args['descr'] ?? '';
 $textUnderForm = $args['text-under-form'] ?? '';
 $submitText = $args['btn-submit-txt'] ?? '';
+$selectedProductId = absint($args['selected_product_id'] ?? 0);
 $products = WBZX_Zapal_get_products([
     'posts_per_page' => -1,
     'orderby' => [
@@ -37,7 +38,8 @@ $products = WBZX_Zapal_get_products([
                 <label for="product"><?= esc_html__('Продукт', 'zapal') ?></label>
                 <select id="product" name="product">
                     <?php foreach ($products as $product): ?>
-                        <option value="<?= esc_attr($product->ID) ?>">
+                        <option value="<?= esc_attr($product->ID) ?>"
+                            <?= selected($selectedProductId, (int)$product->ID, false) ?>>
                             <?= esc_html($product->post_title) ?>
                         </option>
                     <?php endforeach; ?>
