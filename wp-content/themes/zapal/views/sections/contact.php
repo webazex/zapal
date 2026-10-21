@@ -30,13 +30,21 @@ $products = WBZX_Zapal_get_products([
         </div>
 
         <form class="form"
-              data-recipient="zapalsauce@gmail.com"
+              action="<?= esc_url(admin_url('admin-ajax.php')) ?>"
               data-reveal=""
               method="post"
               novalidate="novalidate">
+            <input type="hidden" name="action" value="zapal-form"/>
+            <input type="hidden" name="nonce" value="<?= esc_attr(wp_create_nonce('zapal-ajax-nonce')) ?>"/>
+
+            <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+                <label for="company_site">Website</label>
+                <input id="company_site" name="company_site" type="text" autocomplete="off" tabindex="-1"/>
+            </div>
+
             <div class="field">
                 <label for="product"><?= esc_html__('Продукт', 'zapal') ?></label>
-                <select id="product" name="product">
+                <select id="product" name="product" required="">
                     <?php foreach ($products as $product): ?>
                         <option value="<?= esc_attr($product->ID) ?>"
                             <?= selected($selectedProductId, (int)$product->ID, false) ?>>
@@ -51,6 +59,7 @@ $products = WBZX_Zapal_get_products([
                 <input autocomplete="name"
                        id="name"
                        name="name"
+                       maxlength="120"
                        placeholder="<?= esc_attr__('Ваше ім’я', 'zapal') ?>"
                        required=""/>
             </div>
@@ -60,6 +69,8 @@ $products = WBZX_Zapal_get_products([
                 <input autocomplete="tel"
                        id="phone"
                        name="phone"
+                       type="tel"
+                       maxlength="32"
                        placeholder="+380"
                        required=""/>
             </div>
@@ -69,6 +80,7 @@ $products = WBZX_Zapal_get_products([
                 <input autocomplete="email"
                        id="email"
                        name="email"
+                       maxlength="254"
                        placeholder="<?= esc_attr__('Необов’язково', 'zapal') ?>"
                        type="email"/>
             </div>
@@ -77,6 +89,7 @@ $products = WBZX_Zapal_get_products([
                 <label for="message"><?= esc_html__('Питання', 'zapal') ?></label>
                 <textarea id="message"
                           name="message"
+                          maxlength="2000"
                           placeholder="<?= esc_attr__('Розкажіть, що вас цікавить', 'zapal') ?>"
                           required=""></textarea>
             </div>
