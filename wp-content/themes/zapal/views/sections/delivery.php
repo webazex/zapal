@@ -4,13 +4,12 @@ $title = $args['h2-content'] ?? '';
 $kicker = $args['kicker'] ?? '';
 $color = sanitize_hex_color($args['color'] ?? '') ?: '';
 
-// A product can provide its own deliveries or explicitly provide an empty list.
-// Pages without a delivery override continue to use the site-wide settings.
+// A product can provide its own deliveries, localized with its translated post.
+// Pages without an override use the shared UA/RU/EN site settings.
 if (array_key_exists('deliveries', $args)) {
     $deliveries = is_array($args['deliveries']) ? $args['deliveries'] : [];
 } else {
-    $deliveries = get_field('deliveries', 'option');
-    $deliveries = is_array($deliveries) ? $deliveries : [];
+    $deliveries = WBZX_Zapal_get_global_deliveries();
 }
 
 ?>

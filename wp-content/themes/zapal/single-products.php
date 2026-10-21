@@ -13,6 +13,9 @@ get_header();
             $products = WBZX_Zapal_products([
                 'p' => $productId,
                 'posts_per_page' => 1,
+                'post_status' => current_user_can('edit_post', $productId)
+                    ? get_post_status($productId)
+                    : 'publish',
             ]);
             $product = $products[$productId] ?? null;
 

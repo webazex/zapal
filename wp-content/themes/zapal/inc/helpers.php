@@ -51,6 +51,51 @@ function WBZX_Zapal_get_products(array $args = []): array
 }
 
 /**
+ * Site-wide delivery options share images and store UA/RU/EN text in one row.
+ * Existing delivery-text values remain the Ukrainian source text.
+ * The frontend view always receives the same delivery-text key.
+ */
+function WBZX_Zapal_get_global_deliveries(): array
+{
+    if (!function_exists('get_field')) {
+        return [];
+    }
+
+    $deliveries = get_field('deliveries', 'option');
+    if (!is_array($deliveries)) {
+        return [];
+    }
+
+    $language = function_exists('pll_current_language')
+        ? (string)pll_current_language('slug')
+        : (string)get_locale();
+
+    $language = strtolower(substr($language, 0, 2));
+    $textField = match ($language) {
+        'ru' => 'delivery-text-ru',
+        'en' => 'delivery-text-en',
+        default => 'delivery-text',
+    };
+
+    $result = [];
+    foreach ($deliveries as $delivery) {
+        if (!is_array($delivery)) {
+            continue;
+        }
+
+        $localizedText = trim((string)($delivery[$textField] ?? ''));
+        if ($localizedText === '' && $textField !== 'delivery-text') {
+            $localizedText = trim((string)($delivery['delivery-text'] ?? ''));
+        }
+
+        $delivery['delivery-text'] = $localizedText;
+        $result[] = $delivery;
+    }
+
+    return $result;
+}
+
+/**
  * Resolve product delivery settings according to the ACF toggle:
  * status = 1 -> use global deliveries from Site Settings;
  * status = 0 -> use deliveries stored in the product.
@@ -64,9 +109,7 @@ function WBZX_Zapal_get_product_deliveries(array $acfData): array
     }
 
     if (!empty($deliveryGroup['status'])) {
-        $globalDeliveries = get_field('deliveries', 'option');
-
-        return is_array($globalDeliveries) ? $globalDeliveries : [];
+        return WBZX_Zapal_get_global_deliveries();
     }
 
     $productDeliveries = $deliveryGroup['deliveries'] ?? [];
