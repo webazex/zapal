@@ -781,24 +781,41 @@ jQuery(document).ready(function ($) {
      * Product name comes from the form itself rather than a page-specific constant.
      */
     function initSpecificationRequests() {
-        $(document).on('click.zapalSpecification', '[data-spec-request]', function () {
-            var target = $(this).attr('href') || '#ask';
-            var $form = $(target).find('form').first();
+        $(document).on('click.zapalSpecification', '[data-spec-request]', function (event) {
+            var href = $.trim($(this).attr('href') || '');
+            var target;
 
-            if (!$form.length) {
-                $form = $('#ask form').first();
+            // Do not hijack downloads, external links or links to other pages.
+            try {
+                target = new URL(href, window.location.href);
+            } catch (error) {
+                return;
             }
+
+            if (!href || target.origin !== window.location.origin ||
+                target.pathname !== window.location.pathname ||
+                target.search !== window.location.search ||
+                (target.hash !== '#contact' && target.hash !== '#ask')) {
+                return;
+            }
+
+            var $contact = $('#contact').first();
+            var $form = $contact.find('form').first();
 
             if (!$form.length) {
                 return;
             }
 
-            var product = $.trim($form.find('[name="product"]').val() || '') || 'продукт';
+            var product = $.trim($form.find('[name="product"] option:selected').text()) || 'продукт';
             var $message = $form.find('[name="message"]').first();
 
             if ($message.length && !$.trim($message.val() || '')) {
-                $message.val('Хочу отримати технічну специфікацію для ' + product + '.');
+                $message.val('Хочу отримати технічну специфікацію для ' + product + '.').trigger('input');
             }
+
+            // #ask remains a supported legacy anchor for ACF links.
+            event.preventDefault();
+            $('html, body').stop(true).animate({ scrollTop: $contact.offset().top }, 420);
         });
     }
 
@@ -1138,7 +1155,7 @@ jQuery(document).ready(function ($) {
     function normalizeBackendResponse(payload) {
         var root = payload && typeof payload === 'object' ? payload : {};
         var data = root.data && typeof root.data === 'object' ? root.data : {};
-        var success = root.success !== false && data.success !== false;
+        var success = root.success === true || (root.success === undefined && data.success === true);
 
         return {
             success: success,
@@ -1184,9 +1201,7 @@ jQuery(document).ready(function ($) {
 
     /**
      * Submits a valid form to the endpoint supplied by markup.
-     * The static prototype has no backend endpoint; in that case it keeps the approved
-     * success demo so visual review remains possible. Once action/data-ajax-url exists,
-     * this function automatically switches to real AJAX.
+     * Missing endpoints and invalid server responses must never look successful.
      *
      * @param {jQuery} $form
      */
@@ -1195,15 +1210,13 @@ jQuery(document).ready(function ($) {
         var method = String($form.attr('method') || 'POST').toUpperCase();
 
         hideResponseError();
-        setFormSending($form, true);
 
         if (!endpoint || endpoint === '#') {
-            window.setTimeout(function () {
-                setFormSending($form, false);
-                showFormSuccess(config.defaultSuccessTitle, config.defaultSuccessMessage);
-            }, 420);
+            showResponseError(config.defaultErrorMessage);
             return;
         }
+
+        setFormSending($form, true);
 
         $.ajax({
             url: endpoint,
