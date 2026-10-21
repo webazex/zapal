@@ -1,4 +1,17 @@
 <?php
+$homeUrl = WBZX_Zapal_home_url();
+$catalogUrl = WBZX_Zapal_catalog_url();
+$navLabels = WBZX_Zapal_nav_labels();
+$hasMenu = has_nav_menu('main');
+$languages = function_exists('pll_the_languages')
+    ? pll_the_languages([
+        'raw' => 1,
+        'hide_if_empty' => 0,
+        'hide_if_no_translation' => 0,
+    ])
+    : [];
+$languages = is_array($languages) ? $languages : [];
+
 $darkmodeEnabled = function_exists('get_field')
     ? (bool)get_field('darkmode', 'option')
     : false;
@@ -6,7 +19,7 @@ $darkmodeEnabled = function_exists('get_field')
 <!DOCTYPE html>
 <html data-theme="light"
       data-darkmode="<?= $darkmodeEnabled ? '1' : '0' ?>"
-      lang="<?= esc_attr(get_bloginfo('language')) ?>">
+      <?php language_attributes(); ?>>
 <head>
     <meta charset="<?= esc_attr(get_bloginfo('charset')) ?>"/>
     <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -68,21 +81,53 @@ $darkmodeEnabled = function_exists('get_field')
     <div class="shell header-inner">
         <a aria-label="<?= esc_attr__('ZAPAL — головна', 'zapal') ?>"
            class="logo-lockup"
-           href="<?= esc_url(home_url('/')) ?>">
+           href="<?= esc_url($homeUrl) ?>">
             <img alt=""
                  class="logo-mark"
                  src="<?= esc_url(WBZX_ZAPAL_ASSET_DIR_URI . 'img/logo.svg') ?>"/>
             <span>ZAPAL</span>
         </a>
 
-        <nav aria-label="<?= esc_attr__('Головна навігація', 'zapal') ?>" class="nav">
-            <a href="<?= esc_url(home_url('/catalog/')) ?>"><?= esc_html__('Продукція', 'zapal') ?></a>
-            <a href="<?= esc_url(home_url('/#b2b')) ?>">B2B</a>
-            <a href="<?= esc_url(home_url('/about/')) ?>"><?= esc_html__('Про нас', 'zapal') ?></a>
-            <a class="header-cta" href="<?= esc_url(home_url('/#contact')) ?>">
-                <?= esc_html__('Задати питання', 'zapal') ?>
-            </a>
-        </nav>
+        <?php if ($hasMenu): ?>
+            <nav aria-label="<?= esc_attr($navLabels['navigation']) ?>"
+                 class="nav"
+                 id="zapal-primary-nav">
+                <?php
+                wp_nav_menu([
+                    'theme_location' => 'main',
+                    'container' => false,
+                    'menu_class' => 'zapal-menu',
+                    'fallback_cb' => false,
+                    'depth' => 1,
+                    'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+                ]);
+                ?>
+            </nav>
+        <?php endif; ?>
+
+        <?php if (count($languages) > 1): ?>
+            <div class="zapal-languages"
+                 role="group"
+                 aria-label="<?= esc_attr($navLabels['language']) ?>">
+                <?php foreach ($languages as $language): ?>
+                    <?php
+                    $slug = strtolower((string)($language['slug'] ?? ''));
+                    $url = (string)($language['url'] ?? '');
+                    if ($slug === '' || $url === '') {
+                        continue;
+                    }
+                    $isCurrent = !empty($language['current_lang']);
+                    ?>
+                    <a href="<?= esc_url($url) ?>"
+                       lang="<?= esc_attr($slug) ?>"
+                       hreflang="<?= esc_attr($slug) ?>"
+                       aria-label="<?= esc_attr((string)($language['name'] ?? strtoupper($slug))) ?>"
+                       <?= $isCurrent ? 'aria-current="page"' : '' ?>>
+                        <?= esc_html(strtoupper($slug === 'uk' ? 'UA' : $slug)) ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
         <?php if ($darkmodeEnabled): ?>
             <button aria-label="<?= esc_attr__('Увімкнути темну тему', 'zapal') ?>"
@@ -95,8 +140,14 @@ $darkmodeEnabled = function_exists('get_field')
             </button>
         <?php endif; ?>
 
-        <button aria-label="<?= esc_attr__('Меню', 'zapal') ?>" class="menu-toggle">
-            <i></i>
-        </button>
+        <?php if ($hasMenu): ?>
+            <button aria-label="<?= esc_attr__('Меню', 'zapal') ?>"
+                    aria-controls="zapal-primary-nav"
+                    aria-expanded="false"
+                    class="menu-toggle"
+                    type="button">
+                <i></i>
+            </button>
+        <?php endif; ?>
     </div>
 </header>

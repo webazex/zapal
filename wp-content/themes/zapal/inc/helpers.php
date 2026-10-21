@@ -220,3 +220,114 @@ function WBZX_Zapal_heading_content($content): string
 
     return trim($content);
 }
+
+
+/** Homepage of the currently selected language, with no Polylang dependency. */
+function WBZX_Zapal_home_url(): string
+{
+    if (function_exists('pll_home_url')) {
+        $url = pll_home_url();
+        if (is_string($url) && $url !== '') {
+            return $url;
+        }
+    }
+
+    return home_url('/');
+}
+
+/** The published catalogue page assigned to this language. */
+function WBZX_Zapal_catalog_page(): ?WP_Post
+{
+    static $cache = [];
+
+    $language = function_exists('pll_current_language')
+        ? (string)pll_current_language('slug')
+        : '';
+
+    if (array_key_exists($language, $cache)) {
+        return $cache[$language];
+    }
+
+    $query = [
+        'post_type' => 'page',
+        'post_status' => 'publish',
+        'posts_per_page' => 1,
+        'meta_key' => '_wp_page_template',
+        'meta_value' => 'template-catalog.php',
+        'suppress_filters' => false,
+    ];
+
+    if ($language !== '') {
+        $query['lang'] = $language;
+    }
+
+    $pages = get_posts($query);
+    $page = $pages[0] ?? null;
+
+    // Compatibility with existing installations using /catalog/ as the source page.
+    if (!$page instanceof WP_Post) {
+        $source = get_page_by_path('catalog');
+        if ($source instanceof WP_Post) {
+            $id = $source->ID;
+            if ($language !== '' && function_exists('pll_get_post')) {
+                $id = (int)pll_get_post($id, $language);
+            }
+            $page = $id && get_post_status($id) === 'publish' ? get_post($id) : null;
+        }
+    }
+
+    return $cache[$language] = $page instanceof WP_Post ? $page : null;
+}
+
+function WBZX_Zapal_catalog_url(): string
+{
+    $page = WBZX_Zapal_catalog_page();
+    return $page ? get_permalink($page->ID) : WBZX_Zapal_home_url();
+}
+
+/** Resolve a source page slug to its current-language translation, if published. */
+function WBZX_Zapal_localized_page_url(string $sourceSlug): string
+{
+    $source = get_page_by_path($sourceSlug);
+    if (!$source instanceof WP_Post) {
+        return WBZX_Zapal_home_url();
+    }
+
+    $id = (int)$source->ID;
+    if (function_exists('pll_current_language') && function_exists('pll_get_post')) {
+        $language = pll_current_language('slug');
+        if (is_string($language) && $language !== '') {
+            $id = (int)pll_get_post($id, $language);
+        }
+    }
+
+    return $id && get_post_status($id) === 'publish'
+        ? get_permalink($id)
+        : WBZX_Zapal_home_url();
+}
+
+
+/** Text used by the custom header and product breadcrumbs. */
+function WBZX_Zapal_nav_labels(): array
+{
+    $language = function_exists('pll_current_language')
+        ? (string)pll_current_language('slug')
+        : strtolower(substr((string)get_locale(), 0, 2));
+
+    $labels = [
+        'uk' => [
+            'home' => 'Головна', 'catalog' => 'Продукція', 'about' => 'Про нас',
+            'contact' => 'Задати питання', 'navigation' => 'Головна навігація', 'language' => 'Мова сайту',
+        ],
+        'ru' => [
+            'home' => 'Главная', 'catalog' => 'Продукция', 'about' => 'О нас',
+            'contact' => 'Задать вопрос', 'navigation' => 'Главная навигация', 'language' => 'Язык сайта',
+        ],
+        'en' => [
+            'home' => 'Home', 'catalog' => 'Products', 'about' => 'About us',
+            'contact' => 'Contact us', 'navigation' => 'Main navigation', 'language' => 'Site language',
+        ],
+    ];
+
+    return $labels[$language] ?? $labels['uk'];
+}

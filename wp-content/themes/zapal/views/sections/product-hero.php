@@ -11,6 +11,7 @@ $title = $info['h1-title'] ?? $productName;
 $kicker = $info['kicker'] ?? '';
 $subtitle = $info['subtitle'] ?? '';
 $imageUrl = $args['image_url'] ?? '';
+$navigationLabels = WBZX_Zapal_nav_labels();
 
 ?>
 <section class="product-hero">
@@ -18,12 +19,12 @@ $imageUrl = $args['image_url'] ?? '';
     WBZX_Zapal_get_templates('breadcrumbs', [
         'items' => [
             [
-                'title' => __('Головна', 'zapal'),
-                'url' => home_url('/'),
+                'title' => $navigationLabels['home'],
+                'url' => WBZX_Zapal_home_url(),
             ],
             [
-                'title' => __('Продукція', 'zapal'),
-                'url' => home_url('/catalog/'),
+                'title' => $navigationLabels['catalog'],
+                'url' => WBZX_Zapal_catalog_url(),
             ],
             [
                 'title' => $productName ?: $title,
