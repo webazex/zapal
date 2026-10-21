@@ -47,3 +47,5 @@ wp-config.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+/wp-content/themes/zapal/patches/main-js-fix_2026-10-21_10-43-31.patch
+/wp-content/themes/zapal/patches/README.txt
