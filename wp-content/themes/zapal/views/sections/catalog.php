@@ -7,6 +7,7 @@
 $term = $args['term'] ?? null;
 $isTerm = $term instanceof WP_Term;
 $kicker = trim((string)($args['kicker'] ?? ''));
+$bottomRight = trim((string)($args['bottom_right'] ?? ''));
 $title = $isTerm ? $term->name : ($args['title'] ?? __('Продукція', 'zapal'));
 $description = $isTerm
     ? wp_strip_all_tags(term_description($term->term_id, $term->taxonomy))
@@ -86,10 +87,17 @@ if (!$catalogUrl) {
             <?php if ($description): ?>
                 <p><?= esc_html($description) ?></p>
             <?php endif; ?>
-            <?php if ($isTerm): ?>
-                <a class="text-link" href="<?= esc_url($catalogUrl) ?>">
-                    ← <?= esc_html__('Уся продукція', 'zapal') ?>
-                </a>
+            <?php if ($bottomRight !== '' || $isTerm): ?>
+                <div class="subhero-side">
+                    <?php if ($bottomRight !== ''): ?>
+                        <div class="kicker"><?= esc_html($bottomRight) ?></div>
+                    <?php endif; ?>
+                    <?php if ($isTerm): ?>
+                        <a class="text-link" href="<?= esc_url($catalogUrl) ?>">
+                            ← <?= esc_html__('Уся продукція', 'zapal') ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
             <?php endif; ?>
         </div>
     </div>

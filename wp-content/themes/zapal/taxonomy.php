@@ -24,6 +24,9 @@ $catalogId = $catalogPage instanceof WP_Post ? $catalogPage->ID : 0;
 $catalogKicker = ($catalogId && function_exists('get_field'))
     ? get_field('catalog-kicker', $catalogId)
     : '';
+$catalogBottomRight = ($catalogId && function_exists('get_field'))
+    ? get_field('catalog-bottom-right', $catalogId)
+    : '';
 $catalogUrl = $catalogId ? get_permalink($catalogId) : home_url('/catalog/');
 ?>
 <main>
@@ -32,6 +35,7 @@ $catalogUrl = $catalogId ? get_permalink($catalogId) : home_url('/catalog/');
         WBZX_Zapal_get_section('catalog', [
             'term' => $term,
             'kicker' => is_string($catalogKicker) ? $catalogKicker : '',
+            'bottom_right' => is_string($catalogBottomRight) ? $catalogBottomRight : '',
             'catalog_url' => $catalogUrl,
         ]);
     } else {
