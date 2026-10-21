@@ -5,6 +5,9 @@ require_once get_template_directory().DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARA
 //cleaned wp trash css&js
 require_once WBZX_ZAPAL_INC_DIR.'cleanup.php';
 
+//add supports
+require_once WBZX_ZAPAL_INC_DIR.'supports.php';
+
 //mappers
 require_once WBZX_ZAPAL_BACK_DIR.'mappers.php';
 
