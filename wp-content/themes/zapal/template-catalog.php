@@ -2,20 +2,24 @@
 /**
  * Template Name: Каталог продукції
  *
- * The /catalog/ page is resolved automatically by this filename. Translated
- * pages can use the same template via the WordPress page template selector.
+ * Assign this template to each localized catalog page in WordPress.
  */
 
 get_header();
 
-$pageTitle = get_the_title(get_queried_object_id());
-$pageExcerpt = get_the_excerpt(get_queried_object_id());
+$pageId = get_queried_object_id();
+$pageTitle = get_the_title($pageId);
+$pageExcerpt = get_the_excerpt($pageId);
+$kicker = function_exists('get_field') ? get_field('catalog-kicker', $pageId) : '';
+$customTitle = function_exists('get_field') ? get_field('catalog-title', $pageId) : '';
+$customDescription = function_exists('get_field') ? get_field('catalog-description', $pageId) : '';
 ?>
 <main>
     <?php
     WBZX_Zapal_get_section('catalog', [
-        'title' => $pageTitle ?: __('Продукція', 'zapal'),
-        'description' => $pageExcerpt ?: __('Соуси та професійні рішення для HoReCa.', 'zapal'),
+        'kicker' => is_string($kicker) ? $kicker : '',
+        'title' => $customTitle ?: ($pageTitle ?: __('Продукція', 'zapal')),
+        'description' => $customDescription ?: $pageExcerpt,
     ]);
     ?>
 </main>

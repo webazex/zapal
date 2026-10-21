@@ -6,6 +6,7 @@
 
 $term = $args['term'] ?? null;
 $isTerm = $term instanceof WP_Term;
+$kicker = trim((string)($args['kicker'] ?? ''));
 $title = $isTerm ? $term->name : ($args['title'] ?? __('Продукція', 'zapal'));
 $description = $isTerm
     ? wp_strip_all_tags(term_description($term->term_id, $term->taxonomy))
@@ -69,12 +70,17 @@ if ($isTerm) {
     }
 }
 
-$catalogUrl = get_page_by_path('catalog');
-$catalogUrl = $catalogUrl instanceof WP_Post ? get_permalink($catalogUrl->ID) : home_url('/catalog/');
+$catalogUrl = $args['catalog_url'] ?? '';
+if (!$catalogUrl) {
+    $catalogPage = get_page_by_path('catalog');
+    $catalogUrl = $catalogPage instanceof WP_Post ? get_permalink($catalogPage->ID) : home_url('/catalog/');
+}
 ?>
 <section class="subhero" data-header="dark">
     <div class="shell">
-        <div class="kicker">ZAPAL · Professional Solutions for HoReCa</div>
+        <?php if ($kicker !== ''): ?>
+            <div class="kicker"><?= esc_html($kicker) ?></div>
+        <?php endif; ?>
         <h1><?= esc_html($title) ?></h1>
         <div class="subhero-bottom">
             <?php if ($description): ?>
