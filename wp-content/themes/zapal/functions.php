@@ -29,3 +29,6 @@ add_action('init', function (){
     require_once WBZX_ZAPAL_INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'products.php';
     require_once WBZX_ZAPAL_INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'recipes.php';
 });
+
+//add ajax handlers
+require_once WBZX_ZAPAL_BACK_DIR. 'ajax.php';
