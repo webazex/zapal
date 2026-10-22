@@ -6435,158 +6435,67 @@ html[data-theme="dark"] .recipe-grid figcaption {
         row-gap: 18px;
     }
 }
-/* ZAPAL: WP menu + independent language switch.
-   Append after the existing theme CSS (including the previous language rules). */
-.site-header .nav {
-    min-width: 0;
-    margin-left: auto;
+/* ZAPAL: dedicated one-item Header CTA location.
+   Append to the end of your existing style.css. */
+.site-header .nav .zapal-header-cta {
+    flex: 0 0 auto;
 }
 
-.site-header .zapal-menu {
+.site-header .nav .zapal-cta-menu {
     display: flex;
     align-items: center;
-    gap: 28px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.site-header .zapal-menu > li {
-    position: relative;
+.site-header .nav .zapal-cta-menu > li {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.site-header .zapal-menu > li > a {
+.site-header .nav .zapal-cta-menu > li > a {
     display: flex;
     align-items: center;
+    justify-content: center;
     white-space: nowrap;
-}
-
-.site-header .zapal-menu > li.current-menu-item > a::after,
-.site-header .zapal-menu > li.current-menu-ancestor > a::after {
-    right: 0;
-}
-
-/* Add the CSS class `header-cta` to a MENU ITEM in WordPress, not to its link. */
-.site-header .nav .zapal-menu > li.header-cta {
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    padding: 0 !important;
-}
-
-.site-header .nav .zapal-menu > li.header-cta > a {
     border: 1px solid currentColor;
     border-radius: 999px;
     padding: 12px 18px !important;
 }
 
-.site-header .nav .zapal-menu > li.header-cta > a::after {
-    display: none;
-}
-
-/* This control is a sibling of .nav, never part of wp_nav_menu(). */
-.site-header .header-inner > .zapal-languages {
-    display: flex;
-    align-items: center;
-    flex: 0 0 auto;
-    gap: 10px;
-    padding-left: 16px;
-    border-left: 1px solid currentColor;
-    font-size: 11px;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: .08em;
-}
-
-.site-header .header-inner > .zapal-languages a {
-    display: inline-block;
-    padding: 8px 0;
-    color: inherit;
-    opacity: .58;
-    text-decoration: none;
-    transition: opacity .2s ease;
-}
-
-.site-header .header-inner > .zapal-languages a:hover,
-.site-header .header-inner > .zapal-languages a:focus-visible,
-.site-header .header-inner > .zapal-languages a[aria-current="page"] {
-    opacity: 1;
-}
-
-.site-header .header-inner > .zapal-languages a[aria-current="page"] {
-    text-decoration: underline;
-    text-underline-offset: 5px;
+.site-header .nav .zapal-cta-menu > li > a::after {
+    display: none !important;
 }
 
 @media (max-width: 1160px) and (min-width: 761px) {
-    .site-header .header-inner { gap: 13px; }
-    .site-header .zapal-menu { gap: 13px; }
-    .site-header .header-inner > .zapal-languages {
-        gap: 7px;
-        padding-left: 10px;
-    }
+    .site-header .nav { gap: 13px; }
 }
 
 @media (max-width: 760px) {
-    /* Existing JS still toggles .nav.is-open as before. */
-    .site-header .nav { margin-left: 0; }
-    .site-header .zapal-menu {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: center;
-        gap: 0;
+    .site-header .nav .zapal-header-cta {
         width: 100%;
-    }
-    .site-header .zapal-menu > li { width: 100%; }
-    .site-header .nav .zapal-menu > li > a { width: 100%; }
-
-    /* Old :first-child selector would put a top border on every li's link. */
-    .site-header .nav .zapal-menu a:first-child {
-        border-top: 0 !important;
-    }
-    .site-header .nav .zapal-menu > li:first-child > a {
-        border-top: 1px solid rgba(255,255,255,.16) !important;
-    }
-
-    .site-header .nav .zapal-menu > li.header-cta {
         margin-top: 28px;
     }
-    .site-header .nav .zapal-menu > li.header-cta > a {
+
+    .site-header .nav .zapal-cta-menu,
+    .site-header .nav .zapal-cta-menu > li {
+        display: block;
+        width: 100%;
+    }
+
+    .site-header .nav .zapal-cta-menu > li > a {
+        width: 100%;
         min-height: 54px !important;
         padding: 16px 20px !important;
-        font-size: 12px !important;
-        justify-content: center;
-        border: 1px solid rgba(255,255,255,.72) !important;
+        border: 1px solid rgba(255, 255, 255, .72) !important;
         border-radius: 999px !important;
+        font-size: 12px !important;
+        justify-content: center !important;
     }
 
-    .site-header .header-inner { gap: 10px; }
-    .site-header .header-inner > .zapal-languages {
-        margin-left: auto;
-        gap: 8px;
-        padding-left: 0;
-        border: 0;
-        font-size: 10px;
-        white-space: nowrap;
+    .site-header .nav .zapal-cta-menu > li > a:first-child {
+        border-top: 1px solid rgba(255, 255, 255, .72) !important;
     }
-    .site-header .theme-toggle { margin-left: 0; }
-
-    /* Language switch stays in the header above the mobile-menu overlay. */
-    body.menu-open .site-header .header-inner > .zapal-languages {
-        position: relative;
-        z-index: 1002;
-        color: #f4f0e7;
-    }
-}
-
-@media (max-width: 390px) {
-    .site-header .logo-lockup span { display: none; }
-    .site-header .header-inner { gap: 8px; }
-    .site-header .theme-toggle,
-    .site-header .menu-toggle { width: 38px; height: 38px; }
-    .site-header .header-inner > .zapal-languages { gap: 7px; }
 }

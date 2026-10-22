@@ -3,6 +3,7 @@ $homeUrl = WBZX_Zapal_home_url();
 $catalogUrl = WBZX_Zapal_catalog_url();
 $navLabels = WBZX_Zapal_nav_labels();
 $hasMenu = has_nav_menu('main');
+$hasCta = has_nav_menu('header_cta');
 $languages = function_exists('pll_the_languages')
     ? pll_the_languages([
         'raw' => 1,
@@ -88,20 +89,37 @@ $darkmodeEnabled = function_exists('get_field')
             <span>ZAPAL</span>
         </a>
 
-        <?php if ($hasMenu): ?>
+        <?php if ($hasMenu || $hasCta): ?>
             <nav aria-label="<?= esc_attr($navLabels['navigation']) ?>"
                  class="nav"
                  id="zapal-primary-nav">
-                <?php
-                wp_nav_menu([
-                    'theme_location' => 'main',
-                    'container' => false,
-                    'menu_class' => 'zapal-menu',
-                    'fallback_cb' => false,
-                    'depth' => 1,
-                    'items_wrap' => '<ul class="%2$s">%3$s</ul>',
-                ]);
-                ?>
+                <?php if ($hasMenu): ?>
+                    <?php
+                    wp_nav_menu([
+                        'theme_location' => 'main',
+                        'container' => false,
+                        'menu_class' => 'zapal-menu',
+                        'fallback_cb' => false,
+                        'depth' => 1,
+                        'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+                    ]);
+                    ?>
+                <?php endif; ?>
+
+                <?php if ($hasCta): ?>
+                    <div class="zapal-header-cta">
+                        <?php
+                        wp_nav_menu([
+                            'theme_location' => 'header_cta',
+                            'container' => false,
+                            'menu_class' => 'zapal-cta-menu',
+                            'fallback_cb' => false,
+                            'depth' => 1,
+                            'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+                        ]);
+                        ?>
+                    </div>
+                <?php endif; ?>
             </nav>
         <?php endif; ?>
 
@@ -140,7 +158,7 @@ $darkmodeEnabled = function_exists('get_field')
             </button>
         <?php endif; ?>
 
-        <?php if ($hasMenu): ?>
+        <?php if ($hasMenu || $hasCta): ?>
             <button aria-label="<?= esc_attr__('Меню', 'zapal') ?>"
                     aria-controls="zapal-primary-nav"
                     aria-expanded="false"
