@@ -33,5 +33,8 @@ add_action('init', function (){
     require_once WBZX_ZAPAL_INC_DIR.'cpt'.DIRECTORY_SEPARATOR.'recipes.php';
 });
 
+//Configure SMTP for wp_mail(). The password is supplied from wp-config.php.
+require_once WBZX_ZAPAL_INC_DIR.'mail.php';
+
 //add ajax handlers
 require_once WBZX_ZAPAL_BACK_DIR. 'ajax.php';

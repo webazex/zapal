@@ -43,7 +43,7 @@ function zapal_ajax_form(): void
         $errors['product'] = __('Оберіть доступний продукт.', 'zapal');
     }
 
-    if ($name === '' || strlen($name) > 240) {
+    if ($name === '' || mb_strlen($name, 'UTF-8') > 120) {
         $errors['name'] = __('Вкажіть ваше ім’я (не більше 120 символів).', 'zapal');
     }
 
@@ -56,7 +56,7 @@ function zapal_ajax_form(): void
         $errors['email'] = __('Вкажіть коректну адресу електронної пошти.', 'zapal');
     }
 
-    if ($message === '' || strlen($message) > 8000) {
+    if ($message === '' || mb_strlen($message, 'UTF-8') > 2000) {
         $errors['message'] = __('Вкажіть питання (не більше 2000 символів).', 'zapal');
     }
 

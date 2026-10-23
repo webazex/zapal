@@ -37,6 +37,10 @@ $products = WBZX_Zapal_get_products([
             <input type="hidden" name="action" value="zapal-form"/>
             <input type="hidden" name="nonce" value="<?= esc_attr(wp_create_nonce('zapal-ajax-nonce')) ?>"/>
 
+            <?php if (function_exists('pll_current_language')): ?>
+                <input type="hidden" name="lang" value="<?= esc_attr(pll_current_language('slug')) ?>"/>
+            <?php endif; ?>
+
             <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
                 <label for="company_site">Website</label>
                 <input id="company_site" name="company_site" type="text" autocomplete="off" tabindex="-1"/>
