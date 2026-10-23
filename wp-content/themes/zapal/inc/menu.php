@@ -5,8 +5,8 @@ add_action('after_setup_theme', 'zapal_register_menus');
 function zapal_register_menus(): void
 {
     register_nav_menus([
-        'main' => 'Головне меню',
-        'header_cta' => 'Кнопка в шапці (один пункт)',
+        'main' => __('Головне меню', 'zapal'),
+        'header_cta' => __('Кнопка в шапці (один пункт)', 'zapal'),
     ]);
 }
 
