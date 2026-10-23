@@ -123,7 +123,7 @@ function WBZX_Zapal_products(array $args = []): array
     $products = WBZX_Zapal_get_products($args);
 
     foreach ($products as $product) {
-        $acfData = get_field('data-product', $product->ID);
+        $acfData = function_exists('get_field') ? get_field('data-product', $product->ID) : [];
         $acfData = is_array($acfData) ? $acfData : [];
 
         $categories = get_the_terms($product->ID, 'cproducts');
@@ -136,13 +136,27 @@ function WBZX_Zapal_products(array $args = []): array
             $tags = [];
         }
 
+        // ACF `receipes` is a multiple post_object field; older records may
+        // still contain one WP_Post or numeric ID. Use the first valid image.
         $recipeImage = '';
-        $recipe = $acfData['receipes'] ?? null;
+        $recipes = $acfData['receipes'] ?? [];
+        if (!is_array($recipes)) {
+            $recipes = [$recipes];
+        }
 
-        if ($recipe instanceof WP_Post) {
-            $recipeImage = get_the_post_thumbnail_url($recipe->ID, 'large') ?: '';
-        } elseif (is_numeric($recipe)) {
-            $recipeImage = get_the_post_thumbnail_url((int)$recipe, 'large') ?: '';
+        foreach ($recipes as $recipe) {
+            $recipeId = $recipe instanceof WP_Post
+                ? (int)$recipe->ID
+                : (is_numeric($recipe) ? (int)$recipe : 0);
+
+            if (!$recipeId || get_post_status($recipeId) !== 'publish') {
+                continue;
+            }
+
+            $recipeImage = get_the_post_thumbnail_url($recipeId, 'large') ?: '';
+            if ($recipeImage !== '') {
+                break;
+            }
         }
 
         $deliveryGroup = is_array($acfData['delivers-group'] ?? null)

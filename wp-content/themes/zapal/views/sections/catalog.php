@@ -73,8 +73,7 @@ if ($isTerm) {
 
 $catalogUrl = $args['catalog_url'] ?? '';
 if (!$catalogUrl) {
-    $catalogPage = get_page_by_path('catalog');
-    $catalogUrl = $catalogPage instanceof WP_Post ? get_permalink($catalogPage->ID) : home_url('/catalog/');
+    $catalogUrl = WBZX_Zapal_catalog_url();
 }
 ?>
 <section class="subhero" data-header="dark">

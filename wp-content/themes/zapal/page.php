@@ -2,7 +2,7 @@
 
 get_header();
 
-$data = get_field('page');
+$data = function_exists('get_field') ? get_field('page') : [];
 
 ?>
 <main>

@@ -25,7 +25,17 @@ $stripPrefix = static function (string $value, string $prefix): string {
         return '';
     }
 
-    $pattern = '/^' . preg_quote($prefix, '/') . '\s*/ui';
+    // Editable specifications may already include labels in UA/RU/EN.
+    // Strip any of these before rendering the localized heading below.
+    $knownPrefixes = [
+        'Склад:' => ['Склад:', 'Состав:', 'Ingredients:'],
+        'Алергени:' => ['Алергени:', 'Аллергены:', 'Allergens:'],
+        'Умови зберігання:' => ['Умови зберігання:', 'Условия хранения:', 'Storage conditions:'],
+        'Термін придатності:' => ['Термін придатності:', 'Срок годности:', 'Shelf life:'],
+    ];
+    $variants = $knownPrefixes[$prefix] ?? [$prefix];
+    $patterns = array_map(static fn(string $variant): string => preg_quote($variant, '/'), $variants);
+    $pattern = '/^(?:' . implode('|', $patterns) . ')\s*/ui';
 
     return trim((string)preg_replace($pattern, '', $value, 1));
 };
@@ -38,7 +48,7 @@ $formatGrams = static function (string $value): string {
     }
 
     if (preg_match('/^\d+(?:[.,]\d+)?$/u', $value)) {
-        return $value . ' г';
+        return $value . ' ' . __('г', 'zapal');
     }
 
     return $value;

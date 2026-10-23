@@ -18,16 +18,20 @@ add_action('wp_default_scripts', function ($scripts) {
 
 function zapal_enqueue_sources()
 {
+    $cssPath = get_stylesheet_directory() . '/style.css';
+    $cssVersion = is_file($cssPath) ? (string)filemtime($cssPath) : null;
+
     $jsPath = WBZX_ZAPAL_ASSET_DIR . 'js' . DIRECTORY_SEPARATOR . 'main.js';
+    $jsVersion = is_file($jsPath) ? (string)filemtime($jsPath) : null;
     $jsUri = WBZX_ZAPAL_ASSET_DIR_URI . 'js/main.js';
 
-    wp_enqueue_style('zapal-css', get_stylesheet_uri());
+    wp_enqueue_style('zapal-css', get_stylesheet_uri(), [], $cssVersion);
 
     wp_enqueue_script(
         'zapal-js',
         $jsUri,
         ['jquery'],
-        filemtime($jsPath),
+        $jsVersion,
         ['in_footer' => true]
     );
 

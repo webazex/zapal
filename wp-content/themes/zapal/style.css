@@ -1,3 +1,15 @@
+/*
+Theme Name: ZAPAL
+Theme URI: https://zapal.latul.website/
+Author: ANTON LATUL
+Author URI: https://latul.website/
+Description: Custom B2B presentation theme for ZAPAL HoReCa sauces.
+Version: 1.0.0
+Text Domain: zapal
+Domain Path: /languages
+Requires PHP: 8.1
+*/
+
 :root {
     --ink: #11100f;
     --paper: #f4f0e7;
@@ -169,16 +181,6 @@ img {
 
 .nav a:hover:after {
     right: 0
-}
-
-.header-cta {
-    border: 1px solid currentColor;
-    border-radius: 999px;
-    padding: 12px 18px !important
-}
-
-.header-cta:after {
-    display: none
 }
 
 .menu-toggle {
@@ -5162,34 +5164,6 @@ img, svg, video {
 }
 
 @media (max-width: 760px) {
-    .nav {
-        display: flex;
-        position: fixed;
-        z-index: 79;
-        inset: 70px 0 0;
-        background: #11100f;
-        color: #f4f0e7;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        gap: 0;
-        padding: 34px 24px 40px;
-        margin: 0;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translateY(-12px);
-        transition: opacity .28s ease, visibility .28s ease, transform .32s var(--ease);
-        overflow-y: auto
-    }
-
-    .nav.is-open {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: none
-    }
-
     .nav a {
         display: flex;
         align-items: center;
@@ -5203,15 +5177,6 @@ img, svg, video {
 
     .nav a:first-child {
         border-top: 1px solid rgba(255, 255, 255, .16)
-    }
-
-    .nav .header-cta {
-        margin-top: 24px;
-        border: 1px solid rgba(255, 255, 255, .65);
-        border-radius: 999px;
-        justify-content: center;
-        min-height: auto;
-        padding: 16px 20px
     }
 
     body.menu-open {
@@ -5436,16 +5401,6 @@ img, svg, video {
 
     .nav a:after {
         display: none !important
-    }
-
-    .nav .header-cta {
-        margin-top: 28px !important;
-        min-height: 54px !important;
-        border: 1px solid rgba(255, 255, 255, .72) !important;
-        border-radius: 999px !important;
-        justify-content: center !important;
-        padding: 16px 20px !important;
-        font-size: 12px !important;
     }
 
     body.menu-open main,

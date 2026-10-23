@@ -1,0 +1,539 @@
+# Russian (Russia) translations for ZAPAL.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the ZAPAL project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ZAPAL 1.0.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-23 08:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru_RU\n"
+"Language-Team: ru_RU <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || "
+"n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#. Source: ZAPAL WordPress theme
+#, python-format
+msgid "%s · рецепт"
+msgstr "%s · рецепт"
+
+#. Source: ZAPAL WordPress theme
+msgid "ZAPAL — головна"
+msgstr "ZAPAL — главная"
+
+#. Source: ZAPAL WordPress theme
+#, python-format
+msgid "ZAPAL: новий запит щодо %s"
+msgstr "ZAPAL: новый запрос по %s"
+
+#. Source: ZAPAL WordPress theme
+msgid "Ім’я"
+msgstr "Имя"
+
+#. Source: ZAPAL WordPress theme
+msgid "Ім’я:"
+msgstr "Имя:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Інтерактивна специфікація"
+msgstr "Интерактивная спецификация"
+
+#. Source: ZAPAL WordPress theme
+msgid "Інформація для цього розділу поки недоступна. Матеріали з’являться після оновлення контенту."
+msgstr "Информация для этого раздела пока недоступна. Материалы появятся после обновления содержимого."
+
+#. Source: ZAPAL WordPress theme
+msgid "Інші соуси"
+msgstr "Другие соусы"
+
+#. Source: ZAPAL WordPress theme
+msgid "Алергени:"
+msgstr "Аллергены:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Батьківька категорія"
+msgstr "Родительская категория"
+
+#. Source: ZAPAL WordPress theme
+msgid "Ваше ім’я"
+msgstr "Ваше имя"
+
+#. Source: ZAPAL WordPress theme
+msgid "Вкажіть ваше ім’я (не більше 120 символів)."
+msgstr "Укажите ваше имя (не более 120 символов)."
+
+#. Source: ZAPAL WordPress theme
+msgid "Вкажіть коректний номер телефону."
+msgstr "Укажите корректный номер телефона."
+
+#. Source: ZAPAL WordPress theme
+msgid "Вкажіть коректну адресу електронної пошти."
+msgstr "Укажите корректный адрес электронной почты."
+
+#. Source: ZAPAL WordPress theme
+msgid "Вкажіть питання (не більше 2000 символів)."
+msgstr "Укажите вопрос (не более 2000 символов)."
+
+#. Source: ZAPAL WordPress theme
+msgid "Всі категорії"
+msgstr "Все категории"
+
+#. Source: ZAPAL WordPress theme
+msgid "Всі мітки"
+msgstr "Все метки"
+
+#. Source: ZAPAL WordPress theme
+msgid "Відкрити продукт ZAPAL"
+msgstr "Открыть продукт ZAPAL"
+
+#. Source: ZAPAL WordPress theme
+msgid "Відредагувати меню"
+msgstr "Редактировать меню"
+
+#. Source: ZAPAL WordPress theme
+msgid "Галерея продукту"
+msgstr "Галерея продукта"
+
+#. Source: ZAPAL WordPress theme
+msgid "Група"
+msgstr "Группа"
+
+#. Source: ZAPAL WordPress theme
+msgid "Додати категорію"
+msgstr "Добавить категорию"
+
+#. Source: ZAPAL WordPress theme
+msgid "Додати мітку"
+msgstr "Добавить метку"
+
+#. Source: ZAPAL WordPress theme
+msgid "Додати рецепт"
+msgstr "Добавить рецепт"
+
+#. Source: ZAPAL WordPress theme
+msgid "Додати товар"
+msgstr "Добавить товар"
+
+#. Source: ZAPAL WordPress theme
+msgid "Дякуємо! Запит отримано."
+msgstr "Спасибо! Запрос получен."
+
+#. Source: ZAPAL WordPress theme
+msgid "Енергетична цінність"
+msgstr "Энергетическая ценность"
+
+#. Source: ZAPAL WordPress theme
+msgid "Задати питання"
+msgstr "Задать вопрос"
+
+#. Source: ZAPAL WordPress theme
+msgid "Закрити"
+msgstr "Закрыть"
+
+#. Source: ZAPAL WordPress theme
+msgid "Зберігання та строк придатності"
+msgstr "Хранение и срок годности"
+
+#. Source: ZAPAL WordPress theme
+msgid "Зворотний зв’язок"
+msgstr "Обратная связь"
+
+#. Source: ZAPAL WordPress theme
+msgid "Знайти категорію"
+msgstr "Найти категорию"
+
+#. Source: ZAPAL WordPress theme
+msgid "Знайти мітку"
+msgstr "Найти метку"
+
+#. Source: ZAPAL WordPress theme
+msgid "Знайти рецепт"
+msgstr "Найти рецепт"
+
+#. Source: ZAPAL WordPress theme
+msgid "Знайти товар"
+msgstr "Найти товар"
+
+#. Source: ZAPAL WordPress theme
+msgid "Категорія"
+msgstr "Категория"
+
+#. Source: ZAPAL WordPress theme
+msgid "Категорії"
+msgstr "Категории"
+
+#. Source: ZAPAL WordPress theme
+msgid "Категорії продукції"
+msgstr "Категории продукции"
+
+#. Source: ZAPAL WordPress theme
+msgid "Категорії соусів"
+msgstr "Категории соусов"
+
+#. Source: ZAPAL WordPress theme
+msgid "Контент ще"
+msgstr "Контент ещё"
+
+#. Source: ZAPAL WordPress theme
+msgid "Меню"
+msgstr "Меню"
+
+#. Source: ZAPAL WordPress theme
+msgid ""
+"Меню кнопки в шапці має містити лише один пункт. На сайті буде показано тільки перший пункт "
+"верхнього рівня."
+msgstr ""
+"Меню кнопки в шапке должно содержать только один пункт. На сайте будет показан первый пункт "
+"верхнего уровня."
+
+#. Source: ZAPAL WordPress theme
+msgid "Метод запиту не підтримується."
+msgstr "Метод запроса не поддерживается."
+
+#. Source: ZAPAL WordPress theme
+msgid "Ми отримали ваше звернення та зв’яжемося з вами."
+msgstr "Мы получили ваше обращение и свяжемся с вами."
+
+#. Source: ZAPAL WordPress theme
+msgid "Мін. замовлення"
+msgstr "Мин. заказ"
+
+#. Source: ZAPAL WordPress theme
+msgid "Мітка"
+msgstr "Метка"
+
+#. Source: ZAPAL WordPress theme
+msgid "Мітки"
+msgstr "Метки"
+
+#. Source: ZAPAL WordPress theme
+msgid "Мітки для соусів"
+msgstr "Метки для соусов"
+
+#. Source: ZAPAL WordPress theme
+#, python-format
+msgid "На %s продукту:"
+msgstr "На %s продукта:"
+
+#. Source: ZAPAL WordPress theme
+#, python-format
+msgid "На %s:"
+msgstr "На %s:"
+
+#. Source: ZAPAL WordPress theme
+msgid "На головну"
+msgstr "На главную"
+
+#. Source: ZAPAL WordPress theme
+msgid "Навігація продуктами"
+msgstr "Навигация по продуктам"
+
+#. Source: ZAPAL WordPress theme
+msgid "Назад до категорій соусів"
+msgstr "Назад к категориям соусов"
+
+#. Source: ZAPAL WordPress theme
+msgid "Назад до міток соусів"
+msgstr "Назад к меткам соусов"
+
+#. Source: ZAPAL WordPress theme
+msgid "Назва нової категорії"
+msgstr "Название новой категории"
+
+#. Source: ZAPAL WordPress theme
+msgid "Назва нової мітки"
+msgstr "Название новой метки"
+
+#. Source: ZAPAL WordPress theme
+msgid "Наступні продукти"
+msgstr "Следующие продукты"
+
+#. Source: ZAPAL WordPress theme
+msgid "Не вдалося відправити запит. Спробуйте пізніше або зв’яжіться з нами напряму."
+msgstr "Не удалось отправить запрос. Попробуйте позже или свяжитесь с нами напрямую."
+
+#. Source: ZAPAL WordPress theme
+msgid "Не вдалося обробити запит."
+msgstr "Не удалось обработать запрос."
+
+#. Source: ZAPAL WordPress theme
+msgid "Немає контенту"
+msgstr "Нет содержимого"
+
+#. Source: ZAPAL WordPress theme
+msgid "Необов’язково"
+msgstr "Необязательно"
+
+#. Source: ZAPAL WordPress theme
+msgid "Нове звернення із сайту ZAPAL"
+msgstr "Новое обращение с сайта ZAPAL"
+
+#. Source: ZAPAL WordPress theme
+msgid "Новий рецепт"
+msgstr "Новый рецепт"
+
+#. Source: ZAPAL WordPress theme
+msgid "Новий товар"
+msgstr "Новый товар"
+
+#. Source: ZAPAL WordPress theme
+msgid "Оберіть доступний продукт."
+msgstr "Выберите доступный продукт."
+
+#. Source: ZAPAL WordPress theme
+msgid "Оновити категорію"
+msgstr "Обновить категорию"
+
+#. Source: ZAPAL WordPress theme
+msgid "Оновити мітку"
+msgstr "Обновить метку"
+
+#. Source: ZAPAL WordPress theme
+msgid "Перевірте адресу або поверніться на головну."
+msgstr "Проверьте адрес или вернитесь на главную."
+
+#. Source: ZAPAL WordPress theme
+msgid "Перевірте, будь ласка, введені дані."
+msgstr "Проверьте введённые данные."
+
+#. Source: ZAPAL WordPress theme
+msgid "Перегляд категорій"
+msgstr "Просмотр категорий"
+
+#. Source: ZAPAL WordPress theme
+msgid "Перегляд міток"
+msgstr "Просмотр меток"
+
+#. Source: ZAPAL WordPress theme
+msgid "Перегляд рецепту"
+msgstr "Просмотр рецепта"
+
+#. Source: ZAPAL WordPress theme
+msgid "Перегляд товар"
+msgstr "Просмотр товара"
+
+#. Source: ZAPAL WordPress theme
+msgid "Переглянути категорію"
+msgstr "Посмотреть категорию"
+
+#. Source: ZAPAL WordPress theme
+msgid "Питання"
+msgstr "Вопрос"
+
+#. Source: ZAPAL WordPress theme
+msgid "Питання:"
+msgstr "Вопрос:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Політика конфіденційності"
+msgstr "Политика конфиденциальности"
+
+#. Source: ZAPAL WordPress theme
+msgid "Помилка відправки форми"
+msgstr "Ошибка отправки формы"
+
+#. Source: ZAPAL WordPress theme
+msgid "Попередні продукти"
+msgstr "Предыдущие продукты"
+
+#. Source: ZAPAL WordPress theme
+msgid "Про компанію"
+msgstr "О компании"
+
+#. Source: ZAPAL WordPress theme
+msgid "Продукт"
+msgstr "Продукт"
+
+#. Source: ZAPAL WordPress theme
+msgid "Продукт:"
+msgstr "Продукт:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Продукти ZAPAL"
+msgstr "Продукты ZAPAL"
+
+#. Source: ZAPAL WordPress theme
+msgid "Продукцію поки не додано."
+msgstr "Продукция пока не добавлена."
+
+#. Source: ZAPAL WordPress theme
+msgid "Продукція"
+msgstr "Продукция"
+
+#. Source: ZAPAL WordPress theme
+msgid "Редагувати категорію"
+msgstr "Редактировать категорию"
+
+#. Source: ZAPAL WordPress theme
+msgid "Редагувати мітку"
+msgstr "Редактировать метку"
+
+#. Source: ZAPAL WordPress theme
+msgid "Редагувати рецепт"
+msgstr "Редактировать рецепт"
+
+#. Source: ZAPAL WordPress theme
+msgid "Редагувати товар"
+msgstr "Редактировать товар"
+
+#. Source: ZAPAL WordPress theme
+msgid "Результат відправки форми"
+msgstr "Результат отправки формы"
+
+#. Source: ZAPAL WordPress theme
+msgid "Рецепт"
+msgstr "Рецепт"
+
+#. Source: ZAPAL WordPress theme
+msgid "Рецепт відсутній"
+msgstr "Рецепт отсутствует"
+
+#. Source: ZAPAL WordPress theme
+msgid "Рецепт відсутній у видалених"
+msgstr "Рецепт отсутствует в корзине"
+
+#. Source: ZAPAL WordPress theme
+msgid "Рецепти"
+msgstr "Рецепты"
+
+#. Source: ZAPAL WordPress theme
+#, python-format
+msgid "Рецепти %s"
+msgstr "Рецепты %s"
+
+#. Source: ZAPAL WordPress theme
+msgid "Розкажіть, що вас цікавить"
+msgstr "Расскажите, что вас интересует"
+
+#. Source: ZAPAL WordPress theme
+msgid "Сайт:"
+msgstr "Сайт:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Склад та алергени"
+msgstr "Состав и аллергены"
+
+#. Source: ZAPAL WordPress theme
+msgid "Склад:"
+msgstr "Состав:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Соуси"
+msgstr "Соусы"
+
+#. Source: ZAPAL WordPress theme
+msgid "Створення рецепту"
+msgstr "Создание рецепта"
+
+#. Source: ZAPAL WordPress theme
+msgid "Створення товару"
+msgstr "Создание товара"
+
+#. Source: ZAPAL WordPress theme
+msgid "Сторінка застаріла. Оновіть її та повторіть спробу."
+msgstr "Страница устарела. Обновите её и повторите попытку."
+
+#. Source: ZAPAL WordPress theme
+msgid "Сторінку не знайдено."
+msgstr "Страница не найдена."
+
+#. Source: ZAPAL WordPress theme
+msgid "Строк придатності:"
+msgstr "Срок годности:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Сфера застосування в HoReCa"
+msgstr "Применение в HoReCa"
+
+#. Source: ZAPAL WordPress theme
+msgid "Тара"
+msgstr "Тара"
+
+#. Source: ZAPAL WordPress theme
+msgid "Телефон"
+msgstr "Телефон"
+
+#. Source: ZAPAL WordPress theme
+msgid "Телефон:"
+msgstr "Телефон:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Темна тема"
+msgstr "Тёмная тема"
+
+#. Source: ZAPAL WordPress theme
+msgid "Тимчасова сторінка"
+msgstr "Временная страница"
+
+#. Source: ZAPAL WordPress theme
+msgid "Товар"
+msgstr "Товар"
+
+#. Source: ZAPAL WordPress theme
+msgid "Товар відсутній"
+msgstr "Товар отсутствует"
+
+#. Source: ZAPAL WordPress theme
+msgid "Товар відсутній у видалених"
+msgstr "Товар отсутствует в корзине"
+
+#. Source: ZAPAL WordPress theme
+msgid "Товари"
+msgstr "Товары"
+
+#. Source: ZAPAL WordPress theme
+msgid "Увімкнути темну тему"
+msgstr "Включить тёмную тему"
+
+#. Source: ZAPAL WordPress theme
+msgid "Умови B2B замовлення"
+msgstr "Условия B2B-заказа"
+
+#. Source: ZAPAL WordPress theme
+msgid "Умови зберігання:"
+msgstr "Условия хранения:"
+
+#. Source: ZAPAL WordPress theme
+msgid "Уся продукція"
+msgstr "Вся продукция"
+
+#. Source: ZAPAL WordPress theme
+msgid "Усі"
+msgstr "Все"
+
+#. Source: ZAPAL WordPress theme
+msgid "Уточнити умови"
+msgstr "Уточнить условия"
+
+#. Source: ZAPAL WordPress theme
+msgid "Фасування"
+msgstr "Фасовка"
+
+#. Source: ZAPAL WordPress theme
+msgid "Фасування та логістика ZAPAL"
+msgstr "Фасовка и логистика ZAPAL"
+
+#. Source: ZAPAL WordPress theme
+msgid "Харчова цінність"
+msgstr "Пищевая ценность"
+
+#. Source: ZAPAL WordPress theme
+msgid "Хлібні крихти"
+msgstr "Хлебные крошки"
+
+#. Source: ZAPAL WordPress theme
+msgid "г"
+msgstr "г"
+
+#. Source: ZAPAL WordPress theme
+msgid "готується."
+msgstr "готовится."
+
