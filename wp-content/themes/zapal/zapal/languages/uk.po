@@ -1,0 +1,678 @@
+# ZAPAL theme translations.
+# Translated from the ZAPAL WordPress theme PHP sources.
+# Text domain: zapal. Source language: Ukrainian.
+# Copyright (C) 2026 ZAPAL
+msgid ""
+msgstr ""
+"Project-Id-Version: ZAPAL 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-23 11:38+0300\n"
+"PO-Revision-Date: 2026-10-23 11:38+0300\n"
+"Last-Translator: ZAPAL\n"
+"Language: uk\n"
+"Language-Team: ZAPAL\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#. ZAPAL theme interface label
+#: views/sections/product-gallery.php:183
+#, python-format
+msgid "%s · рецепт"
+msgstr "%s · рецепт"
+
+#. ZAPAL theme interface label
+#: header.php:83
+msgid "ZAPAL — головна"
+msgstr "ZAPAL — головна"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:88
+#, python-format
+msgid "ZAPAL: новий запит щодо %s"
+msgstr "ZAPAL: новий запит щодо %s"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:58
+msgid "Ім’я"
+msgstr "Ім’я"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:93
+msgid "Ім’я:"
+msgstr "Ім’я:"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:66
+msgid "Інтерактивна специфікація"
+msgstr "Інтерактивна специфікація"
+
+#. ZAPAL theme interface label
+#: views/sections/no-content.php:18
+msgid ""
+"Інформація для цього розділу поки недоступна. Матеріали з’являться після оновлення "
+"контенту."
+msgstr ""
+"Інформація для цього розділу поки недоступна. Матеріали з’являться після оновлення "
+"контенту."
+
+#. ZAPAL theme interface label
+#: views/sections/catalog.php:112 views/sections/catalog.php:128
+msgid "Інші соуси"
+msgstr "Інші соуси"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:124
+msgid "Алергени:"
+msgstr "Алергени:"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:10 inc/taxonomy/product-categories.php:11
+msgid "Батьківька категорія"
+msgstr "Батьківька категорія"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:63
+msgid "Ваше ім’я"
+msgstr "Ваше ім’я"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:47
+msgid "Вкажіть ваше ім’я (не більше 120 символів)."
+msgstr "Вкажіть ваше ім’я (не більше 120 символів)."
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:52
+msgid "Вкажіть коректний номер телефону."
+msgstr "Вкажіть коректний номер телефону."
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:56
+msgid "Вкажіть коректну адресу електронної пошти."
+msgstr "Вкажіть коректну адресу електронної пошти."
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:60
+msgid "Вкажіть питання (не більше 2000 символів)."
+msgstr "Вкажіть питання (не більше 2000 символів)."
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:8
+msgid "Всі категорії"
+msgstr "Всі категорії"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:45
+msgid "Всі мітки"
+msgstr "Всі мітки"
+
+#. ZAPAL theme interface label
+#: views/sections/welcome.php:27
+msgid "Відкрити продукт ZAPAL"
+msgstr "Відкрити продукт ZAPAL"
+
+#. ZAPAL theme interface label
+#: inc/menu.php:69
+msgid "Відредагувати меню"
+msgstr "Відредагувати меню"
+
+#. ZAPAL theme interface label
+#: views/sections/product-gallery.php:43
+msgid "Галерея продукту"
+msgstr "Галерея продукту"
+
+#. ZAPAL theme interface label
+#: inc/menu.php:8
+msgid "Головне меню"
+msgstr "Головне меню"
+
+#. ZAPAL theme interface label
+#: views/sections/b2b.php:46
+msgid "Група"
+msgstr "Група"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:14
+msgid "Додати категорію"
+msgstr "Додати категорію"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:51
+msgid "Додати мітку"
+msgstr "Додати мітку"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:7
+msgid "Додати рецепт"
+msgstr "Додати рецепт"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:7
+msgid "Додати товар"
+msgstr "Додати товар"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:115
+msgid "Дякуємо! Запит отримано."
+msgstr "Дякуємо! Запит отримано."
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:181
+msgid "Енергетична цінність"
+msgstr "Енергетична цінність"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:103
+msgid "Задати питання"
+msgstr "Задати питання"
+
+#. ZAPAL theme interface label
+#: header.php:47 header.php:59
+msgid "Закрити"
+msgstr "Закрити"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:215
+msgid "Зберігання та строк придатності"
+msgstr "Зберігання та строк придатності"
+
+#. ZAPAL theme interface label
+#: header.php:64
+msgid "Зворотний зв’язок"
+msgstr "Зворотний зв’язок"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:7
+msgid "Знайти категорію"
+msgstr "Знайти категорію"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:44
+msgid "Знайти мітку"
+msgstr "Знайти мітку"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:12
+msgid "Знайти рецепт"
+msgstr "Знайти рецепт"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:12
+msgid "Знайти товар"
+msgstr "Знайти товар"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:6
+msgid "Категорія"
+msgstr "Категорія"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:5
+msgid "Категорії"
+msgstr "Категорії"
+
+#. ZAPAL theme interface label
+#: views/sections/catalog.php:106
+msgid "Категорії продукції"
+msgstr "Категорії продукції"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:16
+msgid "Категорії соусів"
+msgstr "Категорії соусів"
+
+#. ZAPAL theme interface label
+#: inc/menu.php:9
+msgid "Кнопка в шапці (один пункт)"
+msgstr "Кнопка в шапці (один пункт)"
+
+#. ZAPAL theme interface label
+#: views/sections/no-content.php:13
+msgid "Контент ще"
+msgstr "Контент ще"
+
+#. ZAPAL theme interface label
+#: header.php:162
+msgid "Меню"
+msgstr "Меню"
+
+#. ZAPAL theme interface label
+#: inc/menu.php:67
+msgid ""
+"Меню кнопки в шапці має містити лише один пункт. На сайті буде показано тільки перший"
+" пункт верхнього рівня."
+msgstr ""
+"Меню кнопки в шапці має містити лише один пункт. На сайті буде показано тільки перший"
+" пункт верхнього рівня."
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:11
+msgid "Метод запиту не підтримується."
+msgstr "Метод запиту не підтримується."
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:116
+msgid "Ми отримали ваше звернення та зв’яжемося з вами."
+msgstr "Ми отримали ваше звернення та зв’яжемося з вами."
+
+#. ZAPAL theme interface label
+#: views/sections/b2b.php:48
+msgid "Мін. замовлення"
+msgstr "Мін. замовлення"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:43
+msgid "Мітка"
+msgstr "Мітка"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:42
+msgid "Мітки"
+msgstr "Мітки"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:53
+msgid "Мітки для соусів"
+msgstr "Мітки для соусів"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:144
+#, python-format
+msgid "На %s продукту:"
+msgstr "На %s продукту:"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:191
+#, python-format
+msgid "На %s:"
+msgstr "На %s:"
+
+#. ZAPAL theme interface label
+#: 404.php:20
+msgid "На головну"
+msgstr "На головну"
+
+#. ZAPAL theme interface label
+#: views/sections/slider-products.php:118
+msgid "Навігація продуктами"
+msgstr "Навігація продуктами"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:17
+msgid "Назад до категорій соусів"
+msgstr "Назад до категорій соусів"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:54
+msgid "Назад до міток соусів"
+msgstr "Назад до міток соусів"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:15
+msgid "Назва нової категорії"
+msgstr "Назва нової категорії"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:52
+msgid "Назва нової мітки"
+msgstr "Назва нової мітки"
+
+#. ZAPAL theme interface label
+#: views/sections/slider-products.php:123
+msgid "Наступні продукти"
+msgstr "Наступні продукти"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:110
+msgid "Не вдалося відправити запит. Спробуйте пізніше або зв’яжіться з нами напряму."
+msgstr "Не вдалося відправити запит. Спробуйте пізніше або зв’яжіться з нами напряму."
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:25
+msgid "Не вдалося обробити запит."
+msgstr "Не вдалося обробити запит."
+
+#. ZAPAL theme interface label
+#: views/sections/no-content.php:6
+msgid "Немає контенту"
+msgstr "Немає контенту"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:84
+msgid "Необов’язково"
+msgstr "Необов’язково"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:90
+msgid "Нове звернення із сайту ZAPAL"
+msgstr "Нове звернення із сайту ZAPAL"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:10
+msgid "Новий рецепт"
+msgstr "Новий рецепт"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:10
+msgid "Новий товар"
+msgstr "Новий товар"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:43
+msgid "Оберіть доступний продукт."
+msgstr "Оберіть доступний продукт."
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:13
+msgid "Оновити категорію"
+msgstr "Оновити категорію"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:50
+msgid "Оновити мітку"
+msgstr "Оновити мітку"
+
+#. ZAPAL theme interface label
+#: 404.php:17
+msgid "Перевірте адресу або поверніться на головну."
+msgstr "Перевірте адресу або поверніться на головну."
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:65
+msgid "Перевірте, будь ласка, введені дані."
+msgstr "Перевірте, будь ласка, введені дані."
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:9
+msgid "Перегляд категорій"
+msgstr "Перегляд категорій"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:46
+msgid "Перегляд міток"
+msgstr "Перегляд міток"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:11
+msgid "Перегляд рецепту"
+msgstr "Перегляд рецепту"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:11
+msgid "Перегляд товар"
+msgstr "Перегляд товар"
+
+#. ZAPAL theme interface label
+#: views/sections/catalog.php:144
+msgid "Переглянути категорію"
+msgstr "Переглянути категорію"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:89
+msgid "Питання"
+msgstr "Питання"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:97
+msgid "Питання:"
+msgstr "Питання:"
+
+#. ZAPAL theme interface label
+#: footer.php:8
+msgid "Політика конфіденційності"
+msgstr "Політика конфіденційності"
+
+#. ZAPAL theme interface label
+#: header.php:37
+msgid "Помилка відправки форми"
+msgstr "Помилка відправки форми"
+
+#. ZAPAL theme interface label
+#: views/sections/slider-products.php:119
+msgid "Попередні продукти"
+msgstr "Попередні продукти"
+
+#. ZAPAL theme interface label
+#: views/sections/about.php:26
+msgid "Про компанію"
+msgstr "Про компанію"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:46 views/sections/product-gallery.php:49
+msgid "Продукт"
+msgstr "Продукт"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:92
+msgid "Продукт:"
+msgstr "Продукт:"
+
+#. ZAPAL theme interface label
+#: views/sections/slider-products.php:57
+msgid "Продукти ZAPAL"
+msgstr "Продукти ZAPAL"
+
+#. ZAPAL theme interface label
+#: views/sections/catalog.php:122
+msgid "Продукцію поки не додано."
+msgstr "Продукцію поки не додано."
+
+#. ZAPAL theme interface label
+#: views/sections/catalog.php:11
+msgid "Продукція"
+msgstr "Продукція"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:12
+msgid "Редагувати категорію"
+msgstr "Редагувати категорію"
+
+#. ZAPAL theme interface label
+#: inc/taxonomy/product-categories.php:49
+msgid "Редагувати мітку"
+msgstr "Редагувати мітку"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:9
+msgid "Редагувати рецепт"
+msgstr "Редагувати рецепт"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:9
+msgid "Редагувати товар"
+msgstr "Редагувати товар"
+
+#. ZAPAL theme interface label
+#: header.php:52
+msgid "Результат відправки форми"
+msgstr "Результат відправки форми"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:6 views/sections/product-gallery.php:184
+msgid "Рецепт"
+msgstr "Рецепт"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:13
+msgid "Рецепт відсутній"
+msgstr "Рецепт відсутній"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:14
+msgid "Рецепт відсутній у видалених"
+msgstr "Рецепт відсутній у видалених"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:5 inc/cpt/recipes.php:16 views/sections/product-gallery.php:56
+msgid "Рецепти"
+msgstr "Рецепти"
+
+#. ZAPAL theme interface label
+#: views/sections/product-gallery.php:60
+#, python-format
+msgid "Рецепти %s"
+msgstr "Рецепти %s"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:93
+msgid "Розкажіть, що вас цікавить"
+msgstr "Розкажіть, що вас цікавить"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:100
+msgid "Сайт:"
+msgstr "Сайт:"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:104
+msgid "Склад та алергени"
+msgstr "Склад та алергени"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:117
+msgid "Склад:"
+msgstr "Склад:"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:16
+msgid "Соуси"
+msgstr "Соуси"
+
+#. ZAPAL theme interface label
+#: inc/cpt/recipes.php:8
+msgid "Створення рецепту"
+msgstr "Створення рецепту"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:8
+msgid "Створення товару"
+msgstr "Створення товару"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:17
+msgid "Сторінка застаріла. Оновіть її та повторіть спробу."
+msgstr "Сторінка застаріла. Оновіть її та повторіть спробу."
+
+#. ZAPAL theme interface label
+#: 404.php:14
+msgid "Сторінку не знайдено."
+msgstr "Сторінку не знайдено."
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:238
+msgid "Строк придатності:"
+msgstr "Строк придатності:"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:204
+msgid "Сфера застосування в HoReCa"
+msgstr "Сфера застосування в HoReCa"
+
+#. ZAPAL theme interface label
+#: views/sections/b2b.php:47
+msgid "Тара"
+msgstr "Тара"
+
+#. ZAPAL theme interface label
+#: views/sections/contact.php:68
+msgid "Телефон"
+msgstr "Телефон"
+
+#. ZAPAL theme interface label
+#: inc/backend/ajax.php:94
+msgid "Телефон:"
+msgstr "Телефон:"
+
+#. ZAPAL theme interface label
+#: header.php:155
+msgid "Темна тема"
+msgstr "Темна тема"
+
+#. ZAPAL theme interface label
+#: views/sections/no-content.php:25
+msgid "Тимчасова сторінка"
+msgstr "Тимчасова сторінка"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:6
+msgid "Товар"
+msgstr "Товар"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:13
+msgid "Товар відсутній"
+msgstr "Товар відсутній"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:14
+msgid "Товар відсутній у видалених"
+msgstr "Товар відсутній у видалених"
+
+#. ZAPAL theme interface label
+#: inc/cpt/products.php:5
+msgid "Товари"
+msgstr "Товари"
+
+#. ZAPAL theme interface label
+#: header.php:151
+msgid "Увімкнути темну тему"
+msgstr "Увімкнути темну тему"
+
+#. ZAPAL theme interface label
+#: views/sections/b2b.php:42
+msgid "Умови B2B замовлення"
+msgstr "Умови B2B замовлення"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:229
+msgid "Умови зберігання:"
+msgstr "Умови зберігання:"
+
+#. ZAPAL theme interface label
+#: views/sections/catalog.php:96
+msgid "Уся продукція"
+msgstr "Уся продукція"
+
+#. ZAPAL theme interface label
+#: views/sections/catalog.php:108
+msgid "Усі"
+msgstr "Усі"
+
+#. ZAPAL theme interface label
+#: views/sections/b2b.php:65
+msgid "Уточнити умови"
+msgstr "Уточнити умови"
+
+#. ZAPAL theme interface label
+#: views/sections/product-gallery.php:84
+msgid "Фасування"
+msgstr "Фасування"
+
+#. ZAPAL theme interface label
+#: views/sections/product-gallery.php:126
+msgid "Фасування та логістика ZAPAL"
+msgstr "Фасування та логістика ZAPAL"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:132
+msgid "Харчова цінність"
+msgstr "Харчова цінність"
+
+#. ZAPAL theme interface label
+#: views/templates/breadcrumbs.php:11
+msgid "Хлібні крихти"
+msgstr "Хлібні крихти"
+
+#. ZAPAL theme interface label
+#: views/sections/product-spec.php:51
+msgid "г"
+msgstr "г"
+
+#. ZAPAL theme interface label
+#: views/sections/no-content.php:14
+msgid "готується."
+msgstr "готується."
+
