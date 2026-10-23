@@ -6499,3 +6499,140 @@ html[data-theme="dark"] .recipe-grid figcaption {
         gap: 7px;
     }
 }
+
+/* ACF legal pages: Privacy Policy and Terms & Conditions. */
+.legal-document {
+    min-height: 62svh;
+    padding: 166px 0 120px;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.legal-document-header {
+    padding-bottom: 38px;
+    border-bottom: 1px solid var(--line);
+}
+
+.legal-document-header h1 {
+    max-width: 1150px;
+    margin: 0;
+    font-size: clamp(48px, 8.5vw, 112px);
+    font-weight: 900;
+    line-height: .96;
+    letter-spacing: -.07em;
+    overflow-wrap: anywhere;
+}
+
+.legal-document-body {
+    max-width: 900px;
+    padding-top: 54px;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.legal-document-body > :first-child {
+    margin-top: 0;
+}
+
+.legal-document-body h2,
+.legal-document-body h3,
+.legal-document-body h4 {
+    line-height: 1.18;
+    letter-spacing: -.035em;
+    margin: 2em 0 .7em;
+}
+
+.legal-document-body h2 {
+    font-size: clamp(27px, 3vw, 40px);
+}
+
+.legal-document-body h3 {
+    font-size: clamp(21px, 2.2vw, 28px);
+}
+
+.legal-document-body h4 {
+    font-size: 19px;
+}
+
+.legal-document-body p,
+.legal-document-body ul,
+.legal-document-body ol,
+.legal-document-body blockquote {
+    margin: 0 0 1.4em;
+}
+
+.legal-document-body ul,
+.legal-document-body ol {
+    padding-left: 1.5em;
+}
+
+.legal-document-body li + li {
+    margin-top: .45em;
+}
+
+.legal-document-body a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.legal-document-body a:hover,
+.legal-document-body a:focus-visible {
+    text-decoration-thickness: 2px;
+}
+
+.legal-document-body blockquote {
+    margin-left: 0;
+    padding-left: 22px;
+    border-left: 2px solid currentColor;
+}
+
+.legal-document-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+.legal-document-body table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+}
+
+.legal-document-body th,
+.legal-document-body td {
+    padding: 10px 14px;
+    border: 1px solid currentColor;
+    text-align: left;
+}
+
+html[data-theme="dark"] .legal-document {
+    background: #171513;
+    color: #f4f0e7;
+}
+
+html[data-theme="dark"] .legal-document-header {
+    border-color: rgba(255, 255, 255, .18);
+}
+
+@media (max-width: 760px) {
+    .legal-document {
+        padding: 128px 0 78px;
+    }
+
+    .legal-document-header {
+        padding-bottom: 26px;
+    }
+
+    .legal-document-header h1 {
+        font-size: clamp(36px, 10vw, 64px);
+        letter-spacing: -.055em;
+    }
+
+    .legal-document-body {
+        padding-top: 34px;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+}
