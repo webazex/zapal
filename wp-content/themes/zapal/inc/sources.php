@@ -35,6 +35,31 @@ function zapal_enqueue_sources()
         ['in_footer' => true]
     );
 
+    // Text for dynamic frontend elements. Polylang selects the active WordPress locale.
+    // Keep wording in gettext catalogues, not in page-specific JS conditions.
+    wp_localize_script('zapal-js', 'zapalI18n', [
+        'successTitle' => __('Дякуємо! Запит отримано.', 'zapal'),
+        'successMessage' => __('Ми отримали ваше звернення та зв’яжемося з вами.', 'zapal'),
+        'errorMessage' => __('Не вдалося відправити запит. Спробуйте пізніше або зв’яжіться з нами напряму.', 'zapal'),
+        'enableLightTheme' => __('Увімкнути світлу тему', 'zapal'),
+        'enableDarkTheme' => __('Увімкнути темну тему', 'zapal'),
+        'lightTheme' => __('Світла тема', 'zapal'),
+        'darkTheme' => __('Темна тема', 'zapal'),
+        'closeMenu' => __('Закрити меню', 'zapal'),
+        'menu' => __('Меню', 'zapal'),
+        'chooseRecipe' => __('Оберіть рецепт', 'zapal'),
+        'product' => __('продукт', 'zapal'),
+        'specificationRequest' => __('Хочу отримати технічну специфікацію для %s.', 'zapal'),
+        'viewImage' => __('Перегляд зображення', 'zapal'),
+        'close' => __('Закрити', 'zapal'),
+        'previousImage' => __('Попереднє зображення', 'zapal'),
+        'nextImage' => __('Наступне зображення', 'zapal'),
+        'image' => __('Зображення', 'zapal'),
+        'openLargeImage' => __('%s — відкрити у великому розмірі', 'zapal'),
+        'sending' => __('Надсилаємо…', 'zapal'),
+        'requiredFields' => __('Заповніть, будь ласка, усі обов’язкові поля.', 'zapal'),
+    ]);
+
     $darkmodeEnabled = function_exists('get_field')
         ? (bool)get_field('darkmode', 'option')
         : false;

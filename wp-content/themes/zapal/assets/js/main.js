@@ -11,16 +11,27 @@
 jQuery(document).ready(function ($) {
     'use strict';
 
-    console.log($.fn.jquery);
-    console.log('Zapal inited');
+    // WordPress PHP supplies every user-facing string for the active locale.
+    // No language recognition, translated text or fallback copy lives in JS.
+    var uiStrings = window.zapalI18n && typeof window.zapalI18n === 'object'
+        ? window.zapalI18n
+        : {};
+
+    function uiText(key) {
+        return typeof uiStrings[key] === 'string' ? uiStrings[key] : '';
+    }
+
+    function formatUiText(pattern, value) {
+        return pattern.replace('%s', function () { return value; });
+    }
 
     var config = {
         mobileBreakpoint: 760,
         preloaderDemoDelay: 0,
         railDragThreshold: 7,
-        defaultSuccessTitle: 'Дякуємо! Запит отримано.',
-        defaultSuccessMessage: 'B2B-менеджер зв’яжеться з вами протягом 1 робочого дня та надасть інформацію щодо зразків і специфікації.',
-        defaultErrorMessage: 'Не вдалося відправити запит. Спробуйте ще раз або зв’яжіться з менеджером.'
+        defaultSuccessTitle: uiText('successTitle'),
+        defaultSuccessMessage: uiText('successMessage'),
+        defaultErrorMessage: uiText('errorMessage')
     };
 
     /**
@@ -105,8 +116,8 @@ jQuery(document).ready(function ($) {
         $('html').attr('data-theme', nextTheme);
         $('[data-theme-toggle]')
             .attr('aria-pressed', dark ? 'true' : 'false')
-            .attr('aria-label', dark ? 'Увімкнути світлу тему' : 'Увімкнути темну тему')
-            .attr('title', dark ? 'Світла тема' : 'Темна тема');
+            .attr('aria-label', dark ? uiText('enableLightTheme') : uiText('enableDarkTheme'))
+            .attr('title', dark ? uiText('lightTheme') : uiText('darkTheme'));
 
         if (persist) {
             try {
@@ -149,7 +160,7 @@ jQuery(document).ready(function ($) {
         $('body').toggleClass('menu-open', open);
         $button
             .attr('aria-expanded', open ? 'true' : 'false')
-            .attr('aria-label', open ? 'Закрити меню' : 'Меню');
+            .attr('aria-label', open ? uiText('closeMenu') : uiText('menu'));
     }
 
     /**
@@ -689,10 +700,10 @@ jQuery(document).ready(function ($) {
             class: 'gallery-recipe-select-wrap',
             hidden: true
         });
-        var $label = $('<label>').text('Оберіть рецепт');
+        var $label = $('<label>').text(uiText('chooseRecipe'));
         var $select = $('<select>', {
             class: 'gallery-recipe-select',
-            'aria-label': 'Оберіть рецепт'
+            'aria-label': uiText('chooseRecipe')
         });
 
         $buttons.each(function () {
@@ -806,11 +817,12 @@ jQuery(document).ready(function ($) {
                 return;
             }
 
-            var product = $.trim($form.find('[name="product"] option:selected').text()) || 'продукт';
+            var product = $.trim($form.find('[name="product"] option:selected').text()) || uiText('product');
             var $message = $form.find('[name="message"]').first();
 
-            if ($message.length && !$.trim($message.val() || '')) {
-                $message.val('Хочу отримати технічну специфікацію для ' + product + '.').trigger('input');
+            var requestTemplate = uiText('specificationRequest');
+            if ($message.length && product && requestTemplate && !$.trim($message.val() || '')) {
+                $message.val(formatUiText(requestTemplate, product)).trigger('input');
             }
 
             // #ask remains a supported legacy anchor for ACF links.
@@ -972,21 +984,27 @@ jQuery(document).ready(function ($) {
         }
 
         var $box = $(
-            '<div class="media-lightbox" role="dialog" aria-modal="true" aria-label="Перегляд зображення">' +
-            '<button class="media-lightbox-close" type="button" aria-label="Закрити">×</button>' +
-            '<button class="media-lightbox-nav media-lightbox-prev" type="button" aria-label="Попереднє зображення">←</button>' +
+            '<div class="media-lightbox" role="dialog" aria-modal="true">' +
+            '<button class="media-lightbox-close" type="button">×</button>' +
+            '<button class="media-lightbox-nav media-lightbox-prev" type="button">←</button>' +
             '<div class="media-lightbox-stage"><img alt=""><div class="media-lightbox-caption"></div></div>' +
-            '<button class="media-lightbox-nav media-lightbox-next" type="button" aria-label="Наступне зображення">→</button>' +
+            '<button class="media-lightbox-nav media-lightbox-next" type="button">→</button>' +
             '</div>'
         ).appendTo('body');
 
+        // Set translated ARIA attributes via jQuery, not raw HTML interpolation.
+        $box.attr('aria-label', uiText('viewImage'));
+        $box.find('.media-lightbox-close').attr('aria-label', uiText('close'));
+        $box.find('.media-lightbox-prev').attr('aria-label', uiText('previousImage'));
+        $box.find('.media-lightbox-next').attr('aria-label', uiText('nextImage'));
+
         $figures.each(function () {
             var $figure = $(this);
-            var caption = $.trim($figure.find('figcaption').text()) || 'Зображення';
+            var caption = $.trim($figure.find('figcaption').text()) || uiText('image');
             $figure.attr({
                 tabindex: 0,
                 role: 'button',
-                'aria-label': caption + ' — відкрити у великому розмірі'
+                'aria-label': formatUiText(uiText('openLargeImage'), caption)
             });
         });
 
@@ -1192,7 +1210,7 @@ jQuery(document).ready(function ($) {
         }
 
         if (sending) {
-            $button.data('originalText', $button.text()).prop('disabled', true).text('Надсилаємо…');
+            $button.data('originalText', $button.text()).prop('disabled', true).text(uiText('sending'));
             return;
         }
 
@@ -1276,7 +1294,7 @@ jQuery(document).ready(function ($) {
             var $form = $(this);
 
             if (!validateRequiredFields($form)) {
-                showResponseError('Заповніть, будь ласка, усі обов’язкові поля.');
+                showResponseError(uiText('requiredFields'));
                 return;
             }
 
