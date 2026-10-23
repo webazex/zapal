@@ -7,6 +7,7 @@ function zapal_register_menus(): void
     register_nav_menus([
         'main' => __('Головне меню', 'zapal'),
         'header_cta' => __('Кнопка в шапці (один пункт)', 'zapal'),
+        'footer' => __('Меню футера', 'zapal'),
     ]);
 }
 

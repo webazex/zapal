@@ -1007,6 +1007,50 @@ img {
     letter-spacing: .14em
 ;}
 
+/* Footer navigation: independent WordPress menu, localized by Polylang. */
+.site-footer-nav {
+    min-width: 0;
+}
+
+.site-footer-menu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-footer-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.site-footer-menu a {
+    display: inline-block;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 1080px) and (min-width: 761px) {
+    .site-footer-inner {
+        flex-wrap: wrap;
+        row-gap: 22px;
+    }
+
+    .site-footer-nav {
+        width: 100%;
+        order: 3;
+    }
+}
+
+@media (max-width: 760px) {
+    .site-footer-menu {
+        gap: 14px 22px;
+    }
+}
+
 /* Catalog */
 .subhero {
     padding: 155px 0 80px;
@@ -2701,7 +2745,7 @@ body {
     color: #5f584f
 ;}
 
-.site-footer-inner > a:not(.site-credit), .catalog-footer-inner > a:not(.site-credit) {
+.site-footer-menu a, .catalog-footer-inner > a:not(.site-credit) {
     color: #aaa39a;
     font-size: 9px;
     text-transform: uppercase;
@@ -2709,7 +2753,7 @@ body {
     transition: color .2s ease
 ;}
 
-.site-footer-inner > a:not(.site-credit):hover, .catalog-footer-inner > a:not(.site-credit):hover {
+.site-footer-menu a:hover, .site-footer-menu a:focus-visible, .catalog-footer-inner > a:not(.site-credit):hover {
     color: #fff
 ;}
 
