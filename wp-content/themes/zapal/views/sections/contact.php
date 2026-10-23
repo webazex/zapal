@@ -1,10 +1,10 @@
 <?php
 
 $title = $args['h2-content'] ?? '';
-$kicker = $args['kicker'] ?? '';
-$description = $args['descr'] ?? '';
-$textUnderForm = $args['text-under-form'] ?? '';
-$submitText = $args['btn-submit-txt'] ?? '';
+$kicker = trim((string)($args['kicker'] ?? ''));
+$description = trim((string)($args['descr'] ?? ''));
+$textUnderForm = trim((string)($args['text-under-form'] ?? ''));
+$submitText = trim((string)($args['btn-submit-txt'] ?? ''));
 $selectedProductId = absint($args['selected_product_id'] ?? 0);
 $products = WBZX_Zapal_get_products([
     'posts_per_page' => -1,
@@ -18,13 +18,13 @@ $products = WBZX_Zapal_get_products([
 <section class="contact" data-header="dark" id="contact">
     <div class="shell contact-grid">
         <div data-reveal="">
-            <?php if ($kicker): ?>
+            <?php if ($kicker !== ''): ?>
                 <div class="kicker"><?= esc_html($kicker) ?></div>
             <?php endif; ?>
 
             <?php WBZX_Zapal_get_blocks('h2', ['content' => $title]); ?>
 
-            <?php if ($description): ?>
+            <?php if ($description !== ''): ?>
                 <p class="contact-note"><?= esc_html($description) ?></p>
             <?php endif; ?>
         </div>
@@ -94,15 +94,19 @@ $products = WBZX_Zapal_get_products([
                           required=""></textarea>
             </div>
 
-            <div class="submit-row">
-                <?php if ($textUnderForm): ?>
-                    <small><?= esc_html($textUnderForm) ?></small>
-                <?php endif; ?>
+            <?php if ($textUnderForm !== '' || $submitText !== ''): ?>
+                <div class="submit-row">
+                    <?php if ($textUnderForm !== ''): ?>
+                        <small><?= esc_html($textUnderForm) ?></small>
+                    <?php endif; ?>
 
-                <button class="btn" type="submit">
-                    <?= esc_html($submitText ?: __('Задати питання', 'zapal')) ?> ↗
-                </button>
-            </div>
+                    <?php if ($submitText !== ''): ?>
+                        <button class="btn" type="submit">
+                            <?= esc_html($submitText) ?> ↗
+                        </button>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
         </form>
     </div>
 </section>

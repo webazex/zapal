@@ -5,6 +5,7 @@ $techInfo = is_array($productData['tech-info'] ?? null)
     ? $productData['tech-info']
     : [];
 
+$kicker = trim((string)($techInfo['kicker'] ?? ''));
 $title = $techInfo['h2-content'] ?? '';
 $description = trim((string)($techInfo['description'] ?? ''));
 $link = is_array($techInfo['link'] ?? null)
@@ -54,7 +55,7 @@ $formatGrams = static function (string $value): string {
     return $value;
 };
 
-if (!$title && $description === '' && !$linkUrl && !$techData) {
+if ($kicker === '' && !$title && $description === '' && !$linkUrl && !$techData) {
     return;
 }
 
@@ -62,9 +63,9 @@ if (!$title && $description === '' && !$linkUrl && !$techData) {
 <section class="product-spec" data-header="dark" id="specification">
     <div class="shell product-spec-grid">
         <div class="product-spec-intro" data-reveal="">
-            <div class="kicker">
-                <?= esc_html__('Інтерактивна специфікація', 'zapal') ?>
-            </div>
+            <?php if ($kicker !== ''): ?>
+                <div class="kicker"><?= esc_html($kicker) ?></div>
+            <?php endif; ?>
 
             <?php WBZX_Zapal_get_blocks('h2', ['content' => $title]); ?>
 
