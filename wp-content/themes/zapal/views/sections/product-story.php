@@ -4,9 +4,21 @@ $productData = is_array($args['data'] ?? null) ? $args['data'] : [];
 $info = is_array($productData['info'] ?? null) ? $productData['info'] : [];
 
 $title = $info['story-title'] ?? '';
-$content = is_string($args['content'] ?? null)
-    ? trim($args['content'])
-    : '';
+$productId = absint($args['id'] ?? 0);
+$hasSavedStory = $productId > 0
+    && metadata_exists('post', $productId, 'data-product_info_story-content');
+
+// ACF WYSIWYG is already formatted by get_field(). Unmigrated posts continue
+// to use their original post_content until the editor saves the new field.
+$acfContent = $info['story-content'] ?? '';
+$legacyContent = is_string($args['content'] ?? null) ? trim($args['content']) : '';
+$content = $hasSavedStory
+    ? (is_string($acfContent) ? trim($acfContent) : '')
+    : $legacyContent;
+
+$renderedContent = $hasSavedStory
+    ? wp_kses_post($content)
+    : ($content !== '' ? wp_kses_post(apply_filters('the_content', $content)) : '');
 
 $tags = is_array($args['tags'] ?? null)
     ? $args['tags']
@@ -27,8 +39,8 @@ if (!$title && $content === '' && !$tags) {
         ?>
 
         <div class="product-story-copy" data-reveal="">
-            <?php if ($content !== ''): ?>
-                <?= wp_kses_post(apply_filters('the_content', $content)) ?>
+            <?php if ($renderedContent !== ''): ?>
+                <?= $renderedContent ?>
             <?php endif; ?>
 
             <?php if ($tags): ?>
