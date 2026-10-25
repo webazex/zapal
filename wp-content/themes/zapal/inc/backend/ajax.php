@@ -1,6 +1,31 @@
 <?php
 
 /**
+ * Best-effort anti-flood for valid public form submissions.
+ * Six attempts per remote IP within a rolling ten-minute cooldown window.
+ * For reverse proxies, configure trusted real_ip at the webserver level.
+ */
+function WBZX_Zapal_form_rate_limited(): bool
+{
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    if (!is_string($ip) || !filter_var($ip, FILTER_VALIDATE_IP)) {
+        return false;
+    }
+
+    // Keep IP addresses out of transient keys; the salt stays server-side.
+    $key = 'zapal_form_' . hash_hmac('sha256', $ip, wp_salt('auth'));
+    $count = (int)get_transient($key);
+
+    if ($count >= 6) {
+        return true;
+    }
+
+    set_transient($key, $count + 1, 10 * MINUTE_IN_SECONDS);
+
+    return false;
+}
+
+/**
  * Accept B2B enquiries from both guests and logged-in users.
  * The email recipient is always resolved server-side, never from POST data.
  */
@@ -65,6 +90,12 @@ function zapal_ajax_form(): void
             'message' => __('Перевірте, будь ласка, введені дані.', 'zapal'),
             'errors' => $errors,
         ], 422);
+    }
+
+    if (WBZX_Zapal_form_rate_limited()) {
+        wp_send_json_error([
+            'message' => __('Забагато запитів. Спробуйте трохи пізніше.', 'zapal'),
+        ], 429);
     }
 
     // WP option contacts is a flexible-content list; only email rows are valid recipients.

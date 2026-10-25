@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: ZAPAL 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-23 11:38+0300\n"
-"PO-Revision-Date: 2026-10-23 11:38+0300\n"
+"PO-Revision-Date: 2026-10-24 19:36+0300\n"
 "Last-Translator: ZAPAL\n"
 "Language: en_US\n"
 "Language-Team: ZAPAL\n"
@@ -22,6 +22,11 @@ msgstr ""
 #, python-format
 msgid "%s · рецепт"
 msgstr "%s · recipe"
+
+#: inc/sources.php:58
+#, php-format, python-format
+msgid "%s — відкрити у великому розмірі"
+msgstr "%s — open full-size image"
 
 #. ZAPAL theme interface label
 #: header.php:83
@@ -163,6 +168,10 @@ msgstr "Thank you! Your inquiry has been received."
 msgid "Енергетична цінність"
 msgstr "Energy value"
 
+#: inc/backend/ajax.php:97
+msgid "Забагато запитів. Спробуйте трохи пізніше."
+msgstr "Too many requests. Please try again later."
+
 #. ZAPAL theme interface label
 #: views/sections/contact.php:103
 msgid "Задати питання"
@@ -172,6 +181,14 @@ msgstr "Ask a question"
 #: header.php:47 header.php:59
 msgid "Закрити"
 msgstr "Close"
+
+#: inc/sources.php:48
+msgid "Закрити меню"
+msgstr "Close menu"
+
+#: inc/sources.php:60
+msgid "Заповніть, будь ласка, усі обов’язкові поля."
+msgstr "Please complete all required fields."
 
 #. ZAPAL theme interface label
 #: views/sections/product-spec.php:215
@@ -202,6 +219,10 @@ msgstr "Find recipe"
 #: inc/cpt/products.php:12
 msgid "Знайти товар"
 msgstr "Find product"
+
+#: inc/sources.php:57
+msgid "Зображення"
+msgstr "Image"
 
 #. ZAPAL theme interface label
 #: inc/taxonomy/product-categories.php:6
@@ -246,6 +267,10 @@ msgid ""
 msgstr ""
 "The header CTA menu must contain only one item. Only the first top-level item will be"
 " displayed."
+
+#: inc/menu.php:10
+msgid "Меню футера"
+msgstr "Footer menu"
 
 #. ZAPAL theme interface label
 #: inc/backend/ajax.php:11
@@ -299,6 +324,14 @@ msgstr "Back to homepage"
 msgid "Навігація продуктами"
 msgstr "Product navigation"
 
+#: footer.php:6
+msgid "Навігація футера"
+msgstr "Footer navigation"
+
+#: inc/sources.php:59
+msgid "Надсилаємо…"
+msgstr "Sending…"
+
 #. ZAPAL theme interface label
 #: inc/taxonomy/product-categories.php:17
 msgid "Назад до категорій соусів"
@@ -318,6 +351,10 @@ msgstr "New category name"
 #: inc/taxonomy/product-categories.php:52
 msgid "Назва нової мітки"
 msgstr "New tag name"
+
+#: inc/sources.php:56
+msgid "Наступне зображення"
+msgstr "Next image"
 
 #. ZAPAL theme interface label
 #: views/sections/slider-products.php:123
@@ -364,6 +401,10 @@ msgstr "New product"
 msgid "Оберіть доступний продукт."
 msgstr "Select an available product."
 
+#: inc/sources.php:50
+msgid "Оберіть рецепт"
+msgstr "Choose a recipe"
+
 #. ZAPAL theme interface label
 #: inc/taxonomy/product-categories.php:13
 msgid "Оновити категорію"
@@ -383,6 +424,10 @@ msgstr "Check the address or return to the homepage."
 #: inc/backend/ajax.php:65
 msgid "Перевірте, будь ласка, введені дані."
 msgstr "Please check your input."
+
+#: inc/sources.php:53
+msgid "Перегляд зображення"
+msgstr "Image viewer"
 
 #. ZAPAL theme interface label
 #: inc/taxonomy/product-categories.php:9
@@ -428,6 +473,10 @@ msgstr "Privacy policy"
 #: header.php:37
 msgid "Помилка відправки форми"
 msgstr "Form submission error"
+
+#: inc/sources.php:55
+msgid "Попереднє зображення"
+msgstr "Previous image"
 
 #. ZAPAL theme interface label
 #: views/sections/slider-products.php:119
@@ -525,6 +574,10 @@ msgstr "Tell us what you're interested in"
 msgid "Сайт:"
 msgstr "Website:"
 
+#: inc/sources.php:46
+msgid "Світла тема"
+msgstr "Light theme"
+
 #. ZAPAL theme interface label
 #: views/sections/product-spec.php:104
 msgid "Склад та алергени"
@@ -615,6 +668,10 @@ msgstr "Product not found in trash"
 msgid "Товари"
 msgstr "Products"
 
+#: inc/sources.php:44
+msgid "Увімкнути світлу тему"
+msgstr "Enable light theme"
+
 #. ZAPAL theme interface label
 #: header.php:151
 msgid "Увімкнути темну тему"
@@ -665,6 +722,11 @@ msgstr "Nutritional information"
 msgid "Хлібні крихти"
 msgstr "Breadcrumbs"
 
+#: inc/sources.php:52
+#, php-format, python-format
+msgid "Хочу отримати технічну специфікацію для %s."
+msgstr "I would like to receive a technical specification for %s."
+
 #. ZAPAL theme interface label
 #: views/sections/product-spec.php:51
 msgid "г"
@@ -674,4 +736,8 @@ msgstr "g"
 #: views/sections/no-content.php:14
 msgid "готується."
 msgstr "being prepared."
+
+#: inc/sources.php:51
+msgid "продукт"
+msgstr "product"
 
