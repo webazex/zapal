@@ -31,7 +31,7 @@
         //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
         //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
         'hierarchical'        => false,
-        'supports'            => ['title', 'thumbnail', 'revision'], // Содержимое product-story редактируется в ACF.
+        'supports'            => ['title', 'thumbnail', 'revisions'], // Содержимое product-story редактируется в ACF.
         'taxonomies'          => ['cproducts', 'ctags'],
         'has_archive'         => false,
         'rewrite'             => true,
