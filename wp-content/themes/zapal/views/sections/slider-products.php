@@ -60,16 +60,9 @@ if ($showSelected) {
             <?php foreach (array_values($products) as $index => $product): ?>
                 <?php
                 $categories = is_array($product['category'] ?? null) ? $product['category'] : [];
-                $categoryName = $categories ? $categories[0]->name : '';
-                $descriptionText = trim((string)($product['description'] ?? ''));
-
-                if ($descriptionText === '') {
-                    $descriptionText = wp_trim_words(
-                        wp_strip_all_tags((string)($product['content'] ?? '')),
-                        18,
-                        '…'
-                    );
-                }
+                $category = $categories[0] ?? null;
+                $categoryName = $category instanceof WP_Term ? trim($category->name) : '';
+                $descriptionText = trim((string)($product['slider_text'] ?? ''));
                 ?>
                 <a class="product-card" href="<?= esc_url($product['permalink'] ?? '') ?>">
                     <?php if (!empty($product['image_url'])): ?>
@@ -85,12 +78,12 @@ if ($showSelected) {
                              src="<?= esc_url($product['recipe_image_url']) ?>"/>
                     <?php endif; ?>
 
-                    <span class="num">
-                        <?= esc_html(sprintf('%02d', $index + 1)) ?>
-                        <?php if ($categoryName): ?>
+                    <?php if ($categoryName !== ''): ?>
+                        <span class="num">
+                            <?= esc_html(sprintf('%02d', $index + 1)) ?>
                             / <?= esc_html(mb_strtoupper($categoryName)) ?>
-                        <?php endif; ?>
-                    </span>
+                        </span>
+                    <?php endif; ?>
 
                     <div class="card-bottom">
                         <h3><?= esc_html($product['name'] ?? '') ?></h3>

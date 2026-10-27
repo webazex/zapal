@@ -10,6 +10,7 @@ function WBZX_Zapal_mapping_product(array $product): array
         'name' => $product['name'],
         'content' => $product['content'],
         'description' => $info['subtitle'] ?? '',
+        'slider_text' => $info['slider-text'] ?? '',
         'permalink' => $product['permalink'] ?? '',
         'image' => $product['thumbnail'],
         'image_url' => $product['thumbnail_url'] ?? '',
