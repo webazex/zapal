@@ -27,6 +27,19 @@ function zapal_enqueue_sources()
 
     wp_enqueue_style('zapal-css', get_stylesheet_uri(), [], $cssVersion);
 
+    // Basic presentation for ordinary posts and CPT singles without a custom layout.
+    if (is_single() && !is_singular('products')) {
+        $singlePath = WBZX_ZAPAL_ASSET_DIR . 'css' . DIRECTORY_SEPARATOR . 'single.css';
+        $singleVersion = is_file($singlePath) ? (string)filemtime($singlePath) : null;
+
+        wp_enqueue_style(
+            'zapal-single',
+            WBZX_ZAPAL_ASSET_DIR_URI . 'css/single.css',
+            ['zapal-css'],
+            $singleVersion
+        );
+    }
+
     // The missing-page layout is isolated from shared site styles.
     if (is_404()) {
         $notFoundPath = WBZX_ZAPAL_ASSET_DIR . 'css' . DIRECTORY_SEPARATOR . '404.css';

@@ -1,35 +1,44 @@
 <?php
 /**
- * Fallback for single posts. WordPress normally selects single-products.php
- * for the products custom post type, but the product is routed explicitly
- * here too, instead of showing the old construction placeholder.
+ * Generic single fallback for posts and CPTs without a specific single template.
+ * WordPress selects single-products.php for sauce pages automatically.
  */
-if (is_singular('products')) {
-    get_template_part('single-products');
-    return;
-}
-
 get_header();
 ?>
 <main>
     <?php if (have_posts()): ?>
         <?php while (have_posts()): the_post(); ?>
-            <article id="post-<?= (int)get_the_ID() ?>">
-                <section class="subhero" data-header="dark">
+            <?php
+            $postType = get_post_type_object(get_post_type());
+            $postTypeName = $postType ? $postType->labels->singular_name : __('Матеріал', 'zapal');
+            ?>
+            <article <?php post_class('zapal-single'); ?> id="post-<?= (int)get_the_ID() ?>">
+                <header class="zapal-single__hero" data-header="dark">
                     <div class="shell">
+                        <div class="kicker">ZAPAL / <?= esc_html($postTypeName) ?></div>
                         <h1><?= esc_html(get_the_title()) ?></h1>
                     </div>
-                </section>
-                <section class="product-story">
-                    <div class="shell product-story-grid">
-                        <div class="product-story-copy">
-                            <?php if (has_post_thumbnail()): ?>
-                                <?= get_the_post_thumbnail(get_the_ID(), 'large', ['loading' => 'lazy']) ?>
-                            <?php endif; ?>
+                </header>
+
+                <div class="zapal-single__body">
+                    <div class="shell">
+                        <?php if (has_post_thumbnail()): ?>
+                            <figure class="zapal-single__image">
+                                <?= get_the_post_thumbnail(get_the_ID(), 'large', ['loading' => 'eager']) ?>
+                            </figure>
+                        <?php endif; ?>
+
+                        <div class="zapal-single__content">
                             <?php the_content(); ?>
+                            <?php
+                            wp_link_pages([
+                                'before' => '<nav class="zapal-single__pagination" aria-label="' . esc_attr__('Сторінки матеріалу', 'zapal') . '">',
+                                'after' => '</nav>',
+                            ]);
+                            ?>
                         </div>
                     </div>
-                </section>
+                </div>
             </article>
         <?php endwhile; ?>
     <?php else: ?>

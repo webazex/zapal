@@ -1,0 +1,137 @@
+/* Universal single post/CPT presentation; no recipe-specific markup. */
+.zapal-single__hero {
+    display: flex;
+    align-items: flex-end;
+    min-height: min(560px, 65svh);
+    padding: 160px 0 88px;
+    background: var(--ink);
+    color: var(--white);
+}
+
+.zapal-single__hero .kicker {
+    margin-bottom: 26px;
+    color: var(--yellow);
+}
+
+.zapal-single__hero h1 {
+    max-width: 1160px;
+    margin: 0;
+    font-size: clamp(48px, 7.5vw, 116px);
+    font-weight: 900;
+    line-height: .94;
+    letter-spacing: -.065em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.zapal-single__body {
+    min-height: 300px;
+    padding: clamp(64px, 8vw, 108px) 0 clamp(94px, 10vw, 150px);
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.zapal-single__image {
+    max-width: 940px;
+    margin: 0 auto clamp(46px, 6vw, 76px);
+}
+
+.zapal-single__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.zapal-single__content {
+    max-width: 860px;
+    margin-inline: auto;
+    font-size: 17px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.zapal-single__content > :first-child {
+    margin-top: 0;
+}
+
+.zapal-single__content :is(p, ul, ol, blockquote) {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+}
+
+.zapal-single__content :is(ul, ol) {
+    padding-left: 1.5em;
+}
+
+.zapal-single__content :is(h2, h3, h4) {
+    margin: 1.9em 0 .65em;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -.04em;
+}
+
+.zapal-single__content h2 {
+    font-size: clamp(30px, 4vw, 52px);
+}
+
+.zapal-single__content h3 {
+    font-size: clamp(24px, 3vw, 34px);
+}
+
+.zapal-single__content a {
+    text-decoration: underline;
+    text-underline-offset: .18em;
+}
+
+.zapal-single__content :is(img, video) {
+    max-width: 100%;
+    height: auto;
+}
+
+.zapal-single__content iframe,
+.zapal-single__content figure {
+    max-width: 100%;
+}
+
+.zapal-single__content blockquote {
+    padding: .2em 0 .2em 1.5em;
+    border-left: 2px solid var(--red);
+}
+
+.zapal-single__content :is(pre, table) {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.zapal-single__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding-top: 24px;
+}
+
+html[data-theme="dark"] .zapal-single__body {
+    background: #171513;
+    color: #f4f0e7;
+}
+
+@media (max-width: 760px) {
+    .zapal-single__hero {
+        min-height: 45svh;
+        padding: 128px 0 60px;
+    }
+
+    .zapal-single__hero .kicker {
+        margin-bottom: 22px;
+    }
+
+    .zapal-single__hero h1 {
+        font-size: clamp(42px, 10vw, 74px);
+        line-height: .98;
+    }
+
+    .zapal-single__content {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+}
