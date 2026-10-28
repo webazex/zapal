@@ -1,0 +1,183 @@
+/* ZAPAL missing-page presentation; loaded only for WordPress 404 requests. */
+body.error404 .no-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: min(760px, 82svh);
+    overflow: hidden;
+    padding: 132px 0 96px;
+    background: var(--ink, #11100f);
+    color: var(--white, #fffdf8);
+}
+
+body.error404 .no-content::before {
+    content: "404";
+    position: absolute;
+    top: 50%;
+    right: -.04em;
+    transform: translateY(-52%);
+    font-size: clamp(220px, 33vw, 600px);
+    line-height: .72;
+    letter-spacing: -.11em;
+    font-weight: 900;
+    color: rgba(255, 255, 255, .035);
+    pointer-events: none;
+    user-select: none;
+}
+
+body.error404 .no-content__inner {
+    position: relative;
+    z-index: 1;
+    width: min(1380px, calc(100% - 56px));
+    margin-inline: auto;
+}
+
+body.error404 .no-content__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-dark, rgba(255, 255, 255, .18));
+    font-size: 9px;
+    line-height: 1.2;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, .46);
+}
+
+body.error404 .no-content__content {
+    display: grid;
+    grid-template-columns: minmax(180px, .38fr) minmax(0, 1fr);
+    column-gap: clamp(40px, 8vw, 140px);
+    row-gap: 26px;
+    align-items: start;
+    padding: clamp(64px, 9vw, 126px) 0 clamp(70px, 10vw, 138px);
+}
+
+body.error404 .no-content__kicker {
+    padding-top: 11px;
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 750;
+    color: rgba(255, 253, 248, .58);
+}
+
+body.error404 .no-content__title {
+    min-width: 0;
+    max-width: 980px;
+    margin: 0;
+    font-size: clamp(54px, 7.4vw, 112px);
+    line-height: .94;
+    letter-spacing: -.067em;
+    text-transform: uppercase;
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+body.error404 .no-content__text {
+    grid-column: 2;
+    width: min(100%, 520px);
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.72;
+    color: rgba(255, 253, 248, .64);
+}
+
+body.error404 .no-content__content > .btn {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 8px;
+    border-color: rgba(255, 253, 248, .5);
+}
+
+body.error404 .no-content__content > .btn:hover,
+body.error404 .no-content__content > .btn:focus-visible {
+    background: var(--yellow, #f4c52b);
+    border-color: var(--yellow, #f4c52b);
+    color: var(--ink, #11100f);
+}
+
+@media (max-width: 1050px) {
+    body.error404 .no-content {
+        min-height: 680px;
+    }
+
+    body.error404 .no-content__content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    body.error404 .no-content__kicker,
+    body.error404 .no-content__title,
+    body.error404 .no-content__text,
+    body.error404 .no-content__content > .btn {
+        grid-column: 1;
+    }
+
+    body.error404 .no-content__kicker {
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 760px) {
+    body.error404 .no-content {
+        min-height: calc(100svh - 70px);
+        padding: 104px 0 54px;
+    }
+
+    body.error404 .no-content::before {
+        top: auto;
+        right: -.06em;
+        bottom: 72px;
+        transform: none;
+        font-size: clamp(190px, 65vw, 360px);
+    }
+
+    body.error404 .no-content__inner {
+        width: min(100% - 32px, 1380px);
+    }
+
+    body.error404 .no-content__meta {
+        padding-bottom: 14px;
+        font-size: 8px;
+    }
+
+    body.error404 .no-content__content {
+        gap: 22px;
+        padding: 54px 0 72px;
+    }
+
+    body.error404 .no-content__kicker {
+        max-width: 270px;
+        font-size: 9px;
+    }
+
+    body.error404 .no-content__title {
+        font-size: clamp(48px, 11vw, 78px);
+        line-height: .95;
+    }
+
+    body.error404 .no-content__text {
+        width: min(100%, 420px);
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    body.error404 .no-content__meta span:last-child {
+        display: none;
+    }
+
+    body.error404 .no-content__title {
+        font-size: clamp(42px, 11.5vw, 58px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.error404 .no-content__content > .btn {
+        transition: none;
+    }
+}

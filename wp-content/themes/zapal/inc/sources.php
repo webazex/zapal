@@ -27,6 +27,19 @@ function zapal_enqueue_sources()
 
     wp_enqueue_style('zapal-css', get_stylesheet_uri(), [], $cssVersion);
 
+    // The missing-page layout is isolated from shared site styles.
+    if (is_404()) {
+        $notFoundPath = WBZX_ZAPAL_ASSET_DIR . 'css' . DIRECTORY_SEPARATOR . '404.css';
+        $notFoundVersion = is_file($notFoundPath) ? (string)filemtime($notFoundPath) : null;
+
+        wp_enqueue_style(
+            'zapal-404',
+            WBZX_ZAPAL_ASSET_DIR_URI . 'css/404.css',
+            ['zapal-css'],
+            $notFoundVersion
+        );
+    }
+
     wp_enqueue_script(
         'zapal-js',
         $jsUri,
