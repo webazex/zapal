@@ -1,2 +1,23 @@
-# zapal
-Wordpress visit-site for zapal sauge
+# ZAPAL — shared slugs, готовый архив без .patch
+
+Этот ZIP распаковывается **в корень WordPress** с сохранением путей.
+
+Он содержит полные файлы:
+- `wp-content/themes/zapal/functions.php` — готовый bootstrap, подключающий два slug-модуля; содержит совместимое подключение уже установленного `inc/admin-access.php`.
+- `wp-content/themes/zapal/inc/transliteration.php` — транслитерация новых slug/имён файлов.
+- `wp-content/themes/zapal/inc/shared-slugs.php` — маршрутизация общих публичных slug, Yoast и redirects.
+- `zapal-slug-migration-staging-2026-11-03.zip` — отдельный одноразовый плагин миграции (устанавливается через WP Admin).
+- `SLUG-MAP.csv`, `SLUG-MAP.md` — карта изменений.
+
+**Важно про functions.php:** полный файл составлен из ранее подготовленного `zapal-admin-access-fix-2026-11-02.zip` и новых подключений. Он НЕ считывался с работающего сервера. Если с 2 ноября ты менял live `functions.php`, простая замена может затереть эти изменения. Тогда сначала сравни с файлом в ZIP, не перезаписывай вслепую. `inc/admin-access.php` данным пакетом не заменяется и подключается при наличии.
+
+## Установка на staging
+
+1. Сделать бэкап БД и текущего `wp-content/themes/zapal/functions.php`.
+2. Распаковать архив в корень WordPress, подтвердив замену `functions.php` только после сравнения с текущим.
+3. Проверить отсутствие PHP ошибок. Два новых модуля должны оказаться в `wp-content/themes/zapal/inc/`.
+4. В админке установить `zapal-slug-migration-staging-2026-11-03.zip` как отдельный плагин.
+5. В разделе **Инструменты → ZAPAL: slug migration** выполнять миграцию по этапам только на staging, сначала preview. Смотри отдельную карту и замечания о конфликтах.
+6. После включения общих URL проверить страницы UK/RU/EN, canonical/hreflang и sitemap Yoast, редиректы, соусы, рецепты, категории.
+
+Модули предназначены для тестирования и **не проверялись интеграционно** на реальном WordPress 7.1.4 + Polylang 3.9.1 + Yoast. Этот архив исправляет формат поставки, не переписывает бизнес-логику предыдущей версии.

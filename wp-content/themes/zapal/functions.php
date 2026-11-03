@@ -20,6 +20,17 @@ require_once WBZX_ZAPAL_INC_DIR.'acf.php';
 //security
 require_once WBZX_ZAPAL_INC_DIR.'security.php';
 
+//Cyrillic to Latin for new slugs and uploaded files.
+require_once WBZX_ZAPAL_INC_DIR.'transliteration.php';
+
+//Language-aware public slugs and SEO URL compatibility.
+require_once WBZX_ZAPAL_INC_DIR.'shared-slugs.php';
+
+//Admin roles and owner-only maintenance (when installed).
+if (is_file(WBZX_ZAPAL_INC_DIR.'admin-access.php')) {
+    require_once WBZX_ZAPAL_INC_DIR.'admin-access.php';
+}
+
 //add css&js
 require_once WBZX_ZAPAL_INC_DIR.'sources.php';
 
