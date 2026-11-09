@@ -107,7 +107,7 @@ function zapal_enqueue_sources()
     if (!$darkmodeEnabled) {
         wp_add_inline_script(
             'zapal-js',
-            "try{window.localStorage.removeItem('zapal-theme');}catch(e){}",
+            "try{window.localStorage.setItem('zapal-theme','dark');}catch(e){}",
             'before'
         );
     }

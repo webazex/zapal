@@ -18,17 +18,53 @@ $darkmodeEnabled = function_exists('get_field')
     : false;
 ?>
 <!DOCTYPE html>
-<html data-theme="light"
+<html data-theme="dark"
       data-darkmode="<?= $darkmodeEnabled ? '1' : '0' ?>"
       <?php language_attributes(); ?>>
 <head>
     <meta charset="<?= esc_attr(get_bloginfo('charset')) ?>"/>
     <meta content="width=device-width,initial-scale=1" name="viewport"/>
-    <meta content="#f4f0e7" name="theme-color"/>
+    <meta content="#0f0e0d" name="theme-color"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
           rel="stylesheet"/>
+    <?php if ($darkmodeEnabled): ?>
+        <script>
+            // Apply an explicit light preference before styles load; otherwise default to dark.
+            (function () {
+                var root = document.documentElement;
+                var themeColor = document.querySelector('meta[name="theme-color"]');
+
+                function syncThemeColor() {
+                    if (themeColor) {
+                        themeColor.content = root.getAttribute('data-theme') === 'dark'
+                            ? '#0f0e0d'
+                            : '#f4f0e7';
+                    }
+                }
+
+                try {
+                    var storedTheme = window.localStorage.getItem('zapal-theme');
+                    if (storedTheme === 'light') {
+                        root.setAttribute('data-theme', 'light');
+                    } else if (storedTheme !== 'dark') {
+                        window.localStorage.setItem('zapal-theme', 'dark');
+                    }
+                } catch (error) {
+                    // A blocked storage API must not interrupt page rendering.
+                }
+
+                syncThemeColor();
+                if ('MutationObserver' in window) {
+                    new MutationObserver(syncThemeColor).observe(root, {
+                        attributes: true,
+                        attributeFilter: ['data-theme']
+                    });
+                }
+            }());
+        </script>
+    <?php endif; ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('is-loading'); ?>>
@@ -148,11 +184,11 @@ $darkmodeEnabled = function_exists('get_field')
         <?php endif; ?>
 
         <?php if ($darkmodeEnabled): ?>
-            <button aria-label="<?= esc_attr__('Увімкнути темну тему', 'zapal') ?>"
-                    aria-pressed="false"
+            <button aria-label="<?= esc_attr__('Увімкнути світлу тему', 'zapal') ?>"
+                    aria-pressed="true"
                     class="theme-toggle"
                     data-theme-toggle=""
-                    title="<?= esc_attr__('Темна тема', 'zapal') ?>"
+                    title="<?= esc_attr__('Світла тема', 'zapal') ?>"
                     type="button">
                 <span aria-hidden="true" class="theme-toggle-icon"></span>
             </button>
