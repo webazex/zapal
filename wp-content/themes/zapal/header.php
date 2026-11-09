@@ -1,26 +1,10 @@
 <?php
-$homeUrl = WBZX_Zapal_home_url();
-$catalogUrl = WBZX_Zapal_catalog_url();
-$navLabels = WBZX_Zapal_nav_labels();
-$hasMenu = has_nav_menu('main');
-$hasCta = has_nav_menu('header_cta');
-$languages = function_exists('pll_the_languages')
-    ? pll_the_languages([
-        'raw' => 1,
-        'hide_if_empty' => 0,
-        'hide_if_no_translation' => 0,
-    ])
-    : [];
-$languages = is_array($languages) ? $languages : [];
-
-$darkmodeEnabled = function_exists('get_field')
-    ? (bool)get_field('darkmode', 'option')
-    : false;
-?>
-<!DOCTYPE html>
-<html data-theme="dark"
-      data-darkmode="<?= $darkmodeEnabled ? '1' : '0' ?>"
-      <?php language_attributes(); ?>>
+$header = WBZX_Zapal_header_context();
+?><!DOCTYPE html>
+<html lang="<?= esc_attr($header['htmlLang']) ?>"
+      dir="<?= is_rtl() ? 'rtl' : 'ltr' ?>"
+      data-theme="dark"
+      data-darkmode="<?= $header['darkmodeEnabled'] ? '1' : '0' ?>">
 <head>
     <meta charset="<?= esc_attr(get_bloginfo('charset')) ?>"/>
     <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -29,7 +13,7 @@ $darkmodeEnabled = function_exists('get_field')
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
           rel="stylesheet"/>
-    <?php if ($darkmodeEnabled): ?>
+    <?php if ($header['darkmodeEnabled']): ?>
         <script>
             // Apply an explicit light preference before styles load; otherwise default to dark.
             (function () {
@@ -118,18 +102,18 @@ $darkmodeEnabled = function_exists('get_field')
     <div class="shell header-inner">
         <a aria-label="<?= esc_attr__('ZAPAL — головна', 'zapal') ?>"
            class="logo-lockup"
-           href="<?= esc_url($homeUrl) ?>">
+           href="<?= esc_url($header['homeUrl']) ?>">
             <img alt=""
                  class="logo-mark"
                  src="<?= esc_url(WBZX_ZAPAL_ASSET_DIR_URI . 'img/logo.svg') ?>"/>
             <span>ZAPAL</span>
         </a>
 
-        <?php if ($hasMenu || $hasCta): ?>
-            <nav aria-label="<?= esc_attr($navLabels['navigation']) ?>"
+        <?php if ($header['hasMenu'] || $header['hasCta']): ?>
+            <nav aria-label="<?= esc_attr($header['navLabels']['navigation']) ?>"
                  class="nav"
                  id="zapal-primary-nav">
-                <?php if ($hasMenu): ?>
+                <?php if ($header['hasMenu']): ?>
                     <?php
                     wp_nav_menu([
                         'theme_location' => 'main',
@@ -142,7 +126,7 @@ $darkmodeEnabled = function_exists('get_field')
                     ?>
                 <?php endif; ?>
 
-                <?php if ($hasCta): ?>
+                <?php if ($header['hasCta']): ?>
                     <div class="zapal-header-cta">
                         <?php
                         wp_nav_menu([
@@ -159,11 +143,11 @@ $darkmodeEnabled = function_exists('get_field')
             </nav>
         <?php endif; ?>
 
-        <?php if (count($languages) > 1): ?>
+        <?php if (count($header['languages']) > 1): ?>
             <div class="zapal-languages"
                  role="group"
-                 aria-label="<?= esc_attr($navLabels['language']) ?>">
-                <?php foreach ($languages as $language): ?>
+                 aria-label="<?= esc_attr($header['navLabels']['language']) ?>">
+                <?php foreach ($header['languages'] as $language): ?>
                     <?php
                     $slug = strtolower((string)($language['slug'] ?? ''));
                     $url = (string)($language['url'] ?? '');
@@ -183,7 +167,7 @@ $darkmodeEnabled = function_exists('get_field')
             </div>
         <?php endif; ?>
 
-        <?php if ($darkmodeEnabled): ?>
+        <?php if ($header['darkmodeEnabled']): ?>
             <button aria-label="<?= esc_attr__('Увімкнути світлу тему', 'zapal') ?>"
                     aria-pressed="true"
                     class="theme-toggle"
@@ -194,7 +178,7 @@ $darkmodeEnabled = function_exists('get_field')
             </button>
         <?php endif; ?>
 
-        <?php if ($hasMenu || $hasCta): ?>
+        <?php if ($header['hasMenu'] || $header['hasCta']): ?>
             <button aria-label="<?= esc_attr__('Меню', 'zapal') ?>"
                     aria-controls="zapal-primary-nav"
                     aria-expanded="false"

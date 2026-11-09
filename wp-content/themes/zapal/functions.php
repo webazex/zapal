@@ -14,6 +14,9 @@ require_once WBZX_ZAPAL_BACK_DIR.'mappers.php';
 //helpers
 require_once WBZX_ZAPAL_INC_DIR.'helpers.php';
 
+//Header presentation data
+require_once WBZX_ZAPAL_INC_DIR.'header-context.php';
+
 //ACF UI/config
 require_once WBZX_ZAPAL_INC_DIR.'acf.php';
 
