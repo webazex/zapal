@@ -27,6 +27,20 @@ function zapal_enqueue_sources()
 
     wp_enqueue_style('zapal-css', get_stylesheet_uri(), [], $cssVersion);
 
+    // Restore the homepage packshot geometry from the approved static layout.
+    // Other pages and their product images do not load this stylesheet.
+    if (is_front_page()) {
+        $heroPath = WBZX_ZAPAL_ASSET_DIR . 'css' . DIRECTORY_SEPARATOR . 'home-hero.css';
+        $heroVersion = is_file($heroPath) ? (string)filemtime($heroPath) : null;
+
+        wp_enqueue_style(
+            'zapal-home-hero',
+            WBZX_ZAPAL_ASSET_DIR_URI . 'css/home-hero.css',
+            ['zapal-css'],
+            $heroVersion
+        );
+    }
+
     // Basic presentation for ordinary posts and CPT singles without a custom layout.
     if (is_single() && !is_singular('products')) {
         $singlePath = WBZX_ZAPAL_ASSET_DIR . 'css' . DIRECTORY_SEPARATOR . 'single.css';
