@@ -63,3 +63,45 @@ function WBZX_Zapal_transliterate_filename(string $filename): string
     return WBZX_Zapal_transliterate($filename);
 }
 add_filter('sanitize_file_name', 'WBZX_Zapal_transliterate_filename', 9, 1);
+
+
+/**
+ * Keep the stored slug when the term editor resubmits an unchanged slug.
+ * WordPress passes the whole edit form through wp_update_term(), including
+ * the old slug; global sanitize_title can transliterate it on that save.
+ * A deliberately changed slug remains editable.
+ */
+function WBZX_Zapal_preserve_term_slug_on_rename(array $data, int $termId, string $taxonomy, array $args): array
+{
+    if (!in_array($taxonomy, ['ctags', 'cproducts', 'category', 'post_tag'], true)
+        || !isset($data['slug']) || !is_string($data['slug'])) {
+        return $data;
+    }
+
+    $existing = get_term($termId, $taxonomy);
+    if (!$existing instanceof WP_Term || $data['slug'] === $existing->slug) {
+        return $data;
+    }
+
+    // The WordPress term edit form submits the slug even when only the label
+    // was edited. Compare the unsanitized input with the actual stored slug.
+    if (isset($_POST['tag_ID'], $_POST['slug'])
+        && (int)$_POST['tag_ID'] === $termId && is_string($_POST['slug'])) {
+        $submitted = (string)wp_unslash($_POST['slug']);
+        if ($submitted === $existing->slug
+            || rawurldecode($submitted) === rawurldecode($existing->slug)) {
+            $data['slug'] = $existing->slug;
+        }
+        // Different explicit slug: leave the user's requested change intact.
+        return $data;
+    }
+
+    // API / programmatic name-only edits can also re-sanitize the original
+    // slug; only undo the exact mechanical transformation of the old value.
+    // An explicit change to any other slug is unaffected.
+    if ($data['slug'] === sanitize_title($existing->slug)) {
+        $data['slug'] = $existing->slug;
+    }
+    return $data;
+}
+add_filter('wp_update_term_data', 'WBZX_Zapal_preserve_term_slug_on_rename', 20, 4);
