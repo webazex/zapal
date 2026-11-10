@@ -104,7 +104,20 @@ function zapal_enqueue_sources()
         ? (bool)get_field('darkmode', 'option')
         : false;
 
-    if (!$darkmodeEnabled) {
+    if ($darkmodeEnabled) {
+        // Execute the saved theme in <head> before the page body is rendered.
+        // No defer/async: applying a stored light preference must not flash dark.
+        $themeInitPath = WBZX_ZAPAL_ASSET_DIR . 'js' . DIRECTORY_SEPARATOR . 'theme-init.js';
+        $themeInitVersion = is_file($themeInitPath) ? (string)filemtime($themeInitPath) : null;
+
+        wp_enqueue_script(
+            'zapal-theme-init',
+            WBZX_ZAPAL_ASSET_DIR_URI . 'js/theme-init.js',
+            [],
+            $themeInitVersion,
+            ['in_footer' => false]
+        );
+    } else {
         wp_add_inline_script(
             'zapal-js',
             "try{window.localStorage.setItem('zapal-theme','dark');}catch(e){}",

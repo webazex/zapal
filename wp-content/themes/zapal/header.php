@@ -13,42 +13,6 @@ $header = WBZX_Zapal_header_context();
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
           rel="stylesheet"/>
-    <?php if ($header['darkmodeEnabled']): ?>
-        <script>
-            // Apply an explicit light preference before styles load; otherwise default to dark.
-            (function () {
-                var root = document.documentElement;
-                var themeColor = document.querySelector('meta[name="theme-color"]');
-
-                function syncThemeColor() {
-                    if (themeColor) {
-                        themeColor.content = root.getAttribute('data-theme') === 'dark'
-                            ? '#0f0e0d'
-                            : '#f4f0e7';
-                    }
-                }
-
-                try {
-                    var storedTheme = window.localStorage.getItem('zapal-theme');
-                    if (storedTheme === 'light') {
-                        root.setAttribute('data-theme', 'light');
-                    } else if (storedTheme !== 'dark') {
-                        window.localStorage.setItem('zapal-theme', 'dark');
-                    }
-                } catch (error) {
-                    // A blocked storage API must not interrupt page rendering.
-                }
-
-                syncThemeColor();
-                if ('MutationObserver' in window) {
-                    new MutationObserver(syncThemeColor).observe(root, {
-                        attributes: true,
-                        attributeFilter: ['data-theme']
-                    });
-                }
-            }());
-        </script>
-    <?php endif; ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('is-loading'); ?>>
