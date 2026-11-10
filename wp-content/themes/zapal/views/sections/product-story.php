@@ -4,6 +4,7 @@ $productData = is_array($args['data'] ?? null) ? $args['data'] : [];
 $info = is_array($productData['info'] ?? null) ? $productData['info'] : [];
 
 $title = $info['story-title'] ?? '';
+$longTitle = mb_strlen(wp_strip_all_tags((string)$title), 'UTF-8') > 16;
 $productId = absint($args['id'] ?? 0);
 $hasSavedStory = $productId > 0
     && metadata_exists('post', $productId, 'data-product_info_story-content');
@@ -34,6 +35,7 @@ if (!$title && $content === '' && !$tags) {
         <?php
         WBZX_Zapal_get_blocks('h2', [
             'content' => $title,
+            'class' => $longTitle ? 'long' : '',
             'reveal' => true,
         ]);
         ?>

@@ -886,7 +886,11 @@ jQuery(document).ready(function ($) {
             }
 
             event.preventDefault();
-            $('html, body').stop(true).animate({ scrollTop: $target.offset().top }, 420);
+
+            // Respect CSS scroll-margin-top for sticky desktop/mobile navigation.
+            var scrollMargin = parseFloat(window.getComputedStyle($target.get(0)).scrollMarginTop) || 0;
+            var scrollTop = Math.max(0, $target.offset().top - scrollMargin);
+            $('html, body').stop(true).animate({ scrollTop: scrollTop }, 420);
         });
     }
 
