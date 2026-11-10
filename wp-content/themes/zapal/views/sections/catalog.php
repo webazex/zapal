@@ -41,6 +41,74 @@ if ($isTerm) {
         'order' => 'ASC',
     ]);
     $terms = is_wp_error($terms) || !is_array($terms) ? [] : $terms;
+
+    // The Ukrainian catalog page owns the shared order of translated categories.
+    // Unlisted categories follow in alphabetical order; Extra Hot stays last.
+    $categoryPositions = [];
+    $catalogPage = WBZX_Zapal_catalog_page();
+
+    if ($catalogPage instanceof WP_Post && function_exists('get_field')) {
+        $sourcePageId = (int)$catalogPage->ID;
+        if (function_exists('pll_get_post')) {
+            $ukPageId = (int)pll_get_post($sourcePageId, 'uk');
+            if ($ukPageId > 0) {
+                $sourcePageId = $ukPageId;
+            }
+        }
+
+        $orderRows = get_field('catalog-category-order', $sourcePageId);
+        $language = function_exists('pll_current_language')
+            ? (string)pll_current_language('slug')
+            : '';
+
+        if (is_array($orderRows)) {
+            foreach ($orderRows as $row) {
+                if (!is_array($row)) {
+                    continue;
+                }
+
+                $selected = $row['category'] ?? 0;
+                $termId = $selected instanceof WP_Term
+                    ? (int)$selected->term_id
+                    : (int)$selected;
+
+                if ($termId <= 0) {
+                    continue;
+                }
+
+                if ($language !== '' && function_exists('pll_get_term')) {
+                    $translatedId = (int)pll_get_term($termId, $language);
+                    if ($translatedId > 0) {
+                        $termId = $translatedId;
+                    }
+                }
+
+                if (!isset($categoryPositions[$termId])) {
+                    $categoryPositions[$termId] = count($categoryPositions);
+                }
+            }
+        }
+    }
+
+    $isExtraHot = static function (WP_Term $category): bool {
+        return get_term_meta($category->term_id, '_zapal_public_slug', true) === 'nadhostri'
+            || in_array($category->slug, ['ultrahot', 'extra-hot', 'sverhostrye'], true);
+    };
+
+    usort($terms, static function (WP_Term $a, WP_Term $b) use ($categoryPositions, $isExtraHot): int {
+        $aExtraHot = $isExtraHot($a);
+        $bExtraHot = $isExtraHot($b);
+        if ($aExtraHot !== $bExtraHot) {
+            return $aExtraHot ? 1 : -1;
+        }
+
+        $aPosition = $categoryPositions[$a->term_id] ?? PHP_INT_MAX;
+        $bPosition = $categoryPositions[$b->term_id] ?? PHP_INT_MAX;
+        return $aPosition !== $bPosition
+            ? $aPosition <=> $bPosition
+            : strnatcasecmp($a->name, $b->name);
+    });
+
     $categorized = [];
 
     foreach ($terms as $category) {
