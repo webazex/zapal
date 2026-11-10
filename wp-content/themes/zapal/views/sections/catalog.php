@@ -132,12 +132,64 @@ if (!$catalogUrl) {
                 : '';
             $termLink = $groupTerm instanceof WP_Term ? get_term_link($groupTerm) : '';
             $termLink = is_wp_error($termLink) ? '' : $termLink;
+
+            $categoryImage = [];
+            $categoryImageUrl = '';
+            $categoryImageId = 0;
+            $categoryImageAlt = '';
+            $categoryNoteTitle = '';
+            $categoryNoteText = '';
+
+            if ($groupTerm instanceof WP_Term && $groupTerm->taxonomy === 'cproducts') {
+                $termAcfId = 'cproducts_' . $groupTerm->term_id;
+
+                if (function_exists('get_field')) {
+                    $imageField = get_field('zapal_category_image', $termAcfId);
+                    $categoryImage = is_array($imageField) ? $imageField : [];
+
+                    // A shared picture may be uploaded only once to the Ukrainian category.
+                    // A localized picture, when selected, always has priority.
+                    if (!$categoryImage && function_exists('pll_get_term')) {
+                        $ukTermId = (int)pll_get_term($groupTerm->term_id, 'uk');
+                        if ($ukTermId && $ukTermId !== (int)$groupTerm->term_id) {
+                            $ukImage = get_field('zapal_category_image', 'cproducts_' . $ukTermId);
+                            $categoryImage = is_array($ukImage) ? $ukImage : [];
+                        }
+                    }
+
+                    $categoryNoteTitle = trim((string)get_field('zapal_category_note_title', $termAcfId));
+                    $categoryNoteText = trim((string)get_field('zapal_category_note_text', $termAcfId));
+                }
+
+                $categoryImageId = (int)($categoryImage['ID'] ?? 0);
+                $categoryImageUrl = (string)($categoryImage['url'] ?? '');
+                $categoryImageAlt = trim((string)($categoryImage['alt'] ?? ''));
+
+                // The original Extra Hot artwork is already bundled with the theme.
+                // Use it until an editable category image is selected in WordPress.
+                if (!$categoryImageUrl && get_term_meta($groupTerm->term_id, '_zapal_public_slug', true) === 'nadhostri') {
+                    $categoryImageUrl = WBZX_ZAPAL_ASSET_DIR_URI . 'img/final/extra-hot-line.webp';
+                }
+                if (!$categoryImageAlt) {
+                    $categoryImageAlt = $groupTitle . ' ZAPAL';
+                }
+            }
             ?>
-            <section class="catalog-group" id="<?= esc_attr($groupId) ?>">
+            <section class="catalog-group<?= $categoryImageUrl ? ' hot-catalog-group' : '' ?>" id="<?= esc_attr($groupId) ?>">
                 <div class="catalog-group-head">
                     <h2><?= esc_html($groupTitle) ?></h2>
                     <?php if (!$isTerm && $groupDescription): ?>
                         <p><?= esc_html($groupDescription) ?></p>
+                    <?php endif; ?>
+                    <?php if ($categoryNoteTitle !== '' || $categoryNoteText !== ''): ?>
+                        <div class="record-note">
+                            <?php if ($categoryNoteTitle !== ''): ?>
+                                <strong><?= esc_html($categoryNoteTitle) ?></strong>
+                            <?php endif; ?>
+                            <?php if ($categoryNoteText !== ''): ?>
+                                <span><?= esc_html($categoryNoteText) ?></span>
+                            <?php endif; ?>
+                        </div>
                     <?php endif; ?>
                     <?php if (!$isTerm && $termLink): ?>
                         <a class="text-link" href="<?= esc_url($termLink) ?>">
@@ -145,7 +197,25 @@ if (!$catalogUrl) {
                         </a>
                     <?php endif; ?>
                 </div>
-                <div class="catalog-list<?= count($group['products']) >= 6 ? ' hot-catalog-list' : '' ?>">
+                <?php if ($categoryImageUrl): ?>
+                    <figure class="hot-line-visual">
+                        <?php if ($categoryImageId): ?>
+                            <?= wp_get_attachment_image($categoryImageId, 'full', false, [
+                                'alt' => $categoryImageAlt,
+                                'loading' => 'lazy',
+                                'decoding' => 'async',
+                            ]) ?>
+                        <?php else: ?>
+                            <img alt="<?= esc_attr($categoryImageAlt) ?>"
+                                 loading="lazy"
+                                 decoding="async"
+                                 width="1600"
+                                 height="900"
+                                 src="<?= esc_url($categoryImageUrl) ?>"/>
+                        <?php endif; ?>
+                    </figure>
+                <?php endif; ?>
+                <div class="catalog-list<?= ($categoryImageUrl || count($group['products']) >= 6) ? ' hot-catalog-list' : '' ?>">
                     <?php foreach ($group['products'] as $product): ?>
                         <?php
                         $name = (string)($product['name'] ?? '');
