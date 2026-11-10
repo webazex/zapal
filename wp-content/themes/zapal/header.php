@@ -3,12 +3,12 @@ $header = WBZX_Zapal_header_context();
 ?><!DOCTYPE html>
 <html lang="<?= esc_attr($header['htmlLang']) ?>"
       dir="<?= is_rtl() ? 'rtl' : 'ltr' ?>"
-      data-theme="dark"
+      data-theme="<?= esc_attr($header['defaultTheme']) ?>"
       data-darkmode="<?= $header['darkmodeEnabled'] ? '1' : '0' ?>">
 <head>
     <meta charset="<?= esc_attr(get_bloginfo('charset')) ?>"/>
     <meta content="width=device-width,initial-scale=1" name="viewport"/>
-    <meta content="#0f0e0d" name="theme-color"/>
+    <meta content="<?= $header['defaultTheme'] === 'dark' ? '#0f0e0d' : '#f4f0e7' ?>" name="theme-color"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
@@ -132,11 +132,15 @@ $header = WBZX_Zapal_header_context();
         <?php endif; ?>
 
         <?php if ($header['darkmodeEnabled']): ?>
-            <button aria-label="<?= esc_attr__('Увімкнути світлу тему', 'zapal') ?>"
-                    aria-pressed="true"
+            <button aria-label="<?= $header['defaultTheme'] === 'dark'
+                        ? esc_attr__('Увімкнути світлу тему', 'zapal')
+                        : esc_attr__('Увімкнути темну тему', 'zapal') ?>"
+                    aria-pressed="<?= $header['defaultTheme'] === 'dark' ? 'true' : 'false' ?>"
                     class="theme-toggle"
                     data-theme-toggle=""
-                    title="<?= esc_attr__('Світла тема', 'zapal') ?>"
+                    title="<?= $header['defaultTheme'] === 'dark'
+                        ? esc_attr__('Світла тема', 'zapal')
+                        : esc_attr__('Темна тема', 'zapal') ?>"
                     type="button">
                 <span aria-hidden="true" class="theme-toggle-icon"></span>
             </button>

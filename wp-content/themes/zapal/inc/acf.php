@@ -51,3 +51,42 @@ add_filter(
     10,
     3
 );
+
+
+// The initial palette can be configured independently of the theme switcher.
+add_action('acf/init', function (): void {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group([
+        'key' => 'group_zapal_theme_default_20261110',
+        'title' => 'Оформлення сайту',
+        'fields' => [
+            [
+                'key' => 'field_zapal_default_theme_20261110',
+                'label' => 'Тема за замовчуванням',
+                'name' => 'default_theme',
+                'type' => 'select',
+                'choices' => [
+                    'dark' => 'Темна',
+                    'light' => 'Світла',
+                ],
+                'default_value' => 'dark',
+                'return_format' => 'value',
+                'ui' => 1,
+                'instructions' => 'Працює лише якщо увімкнено перемикання тем. Якщо вимкнено, сайт завжди темний. Збережений вибір відвідувача має пріоритет.',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param' => 'options_page',
+                    'operator' => '==',
+                    'value' => 'site-settings',
+                ],
+            ],
+        ],
+        'active' => true,
+    ]);
+});

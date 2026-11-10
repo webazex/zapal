@@ -105,23 +105,44 @@ function zapal_enqueue_sources()
         : false;
 
     if ($darkmodeEnabled) {
-        // Execute the saved theme in <head> before the page body is rendered.
-        // No defer/async: applying a stored light preference must not flash dark.
-        $themeInitPath = WBZX_ZAPAL_ASSET_DIR . 'js' . DIRECTORY_SEPARATOR . 'theme-init.js';
-        $themeInitVersion = is_file($themeInitPath) ? (string)filemtime($themeInitPath) : null;
+        // Apply the visitor's explicit preference in <head>, before body rendering.
+        // A handle without src avoids another asset and keeps the template clean.
+        wp_register_script('zapal-theme-init', false, [], null, ['in_footer' => false]);
+        wp_enqueue_script('zapal-theme-init');
+        wp_add_inline_script('zapal-theme-init', <<<'JS'
+(function () {
+    var root = document.documentElement;
+    var theme = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    var themeColor = document.querySelector('meta[name="theme-color"]');
 
-        wp_enqueue_script(
-            'zapal-theme-init',
-            WBZX_ZAPAL_ASSET_DIR_URI . 'js/theme-init.js',
-            [],
-            $themeInitVersion,
-            ['in_footer' => false]
-        );
-    } else {
-        wp_add_inline_script(
-            'zapal-js',
-            "try{window.localStorage.setItem('zapal-theme','dark');}catch(e){}",
-            'before'
+    try {
+        var storedTheme = window.localStorage.getItem('zapal-theme');
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+            theme = storedTheme;
+        }
+    } catch (error) {
+        // Without storage, retain the server-selected default.
+    }
+
+    root.setAttribute('data-theme', theme);
+
+    function syncThemeColor() {
+        if (themeColor) {
+            themeColor.content = root.getAttribute('data-theme') === 'dark'
+                ? '#0f0e0d'
+                : '#f4f0e7';
+        }
+    }
+
+    syncThemeColor();
+    if ('MutationObserver' in window) {
+        new MutationObserver(syncThemeColor).observe(root, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+    }
+}());
+JS
         );
     }
 }

@@ -90,19 +90,6 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Reads the stored theme. Light is the approved/default design.
-     *
-     * @returns {'light'|'dark'}
-     */
-    function getStoredTheme() {
-        try {
-            return window.localStorage.getItem('zapal-theme') === 'dark' ? 'dark' : 'light';
-        } catch (error) {
-            return 'light';
-        }
-    }
-
-    /**
      * Applies theme state only through the data-theme attribute.
      * All actual colors/layout changes are defined in CSS combinations.
      *
@@ -133,7 +120,12 @@ jQuery(document).ready(function ($) {
      * icon and visual palette are entirely CSS-driven.
      */
     function initTheme() {
-        setTheme(getStoredTheme(), false);
+        if (document.documentElement.getAttribute('data-darkmode') !== '1') {
+            return;
+        }
+
+        // The head initializer has already applied the saved preference (if any).
+        setTheme($('html').attr('data-theme') === 'light' ? 'light' : 'dark', false);
 
         $(document).on('click.zapalTheme', '[data-theme-toggle]', function () {
             var current = $('html').attr('data-theme') === 'dark' ? 'dark' : 'light';
