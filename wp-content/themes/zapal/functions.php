@@ -19,7 +19,6 @@ require_once WBZX_ZAPAL_INC_DIR.'header-context.php';
 
 //ACF UI/config
 require_once WBZX_ZAPAL_INC_DIR.'acf.php';
-require_once WBZX_ZAPAL_INC_DIR.'acf-categories.php';
 
 //security
 require_once WBZX_ZAPAL_INC_DIR.'security.php';
