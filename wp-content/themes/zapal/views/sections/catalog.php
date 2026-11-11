@@ -42,50 +42,40 @@ if ($isTerm) {
     ]);
     $terms = is_wp_error($terms) || !is_array($terms) ? [] : $terms;
 
-    // The Ukrainian catalog page owns the shared order of translated categories.
-    // Unlisted categories follow in alphabetical order; Extra Hot stays last.
+    // The category order is configured once in site options for all languages.
+    // Unlisted categories follow alphabetically; Extra Hot stays last.
     $categoryPositions = [];
-    $catalogPage = WBZX_Zapal_catalog_page();
+    $orderRows = function_exists('get_field')
+        ? get_field('catalog-category-order', 'option')
+        : [];
+    $language = function_exists('pll_current_language')
+        ? (string)pll_current_language('slug')
+        : '';
 
-    if ($catalogPage instanceof WP_Post && function_exists('get_field')) {
-        $sourcePageId = (int)$catalogPage->ID;
-        if (function_exists('pll_get_post')) {
-            $ukPageId = (int)pll_get_post($sourcePageId, 'uk');
-            if ($ukPageId > 0) {
-                $sourcePageId = $ukPageId;
+    if (is_array($orderRows)) {
+        foreach ($orderRows as $row) {
+            if (!is_array($row)) {
+                continue;
             }
-        }
 
-        $orderRows = get_field('catalog-category-order', $sourcePageId);
-        $language = function_exists('pll_current_language')
-            ? (string)pll_current_language('slug')
-            : '';
+            $selected = $row['category'] ?? 0;
+            $termId = $selected instanceof WP_Term
+                ? (int)$selected->term_id
+                : (int)$selected;
 
-        if (is_array($orderRows)) {
-            foreach ($orderRows as $row) {
-                if (!is_array($row)) {
-                    continue;
+            if ($termId <= 0) {
+                continue;
+            }
+
+            if ($language !== '' && function_exists('pll_get_term')) {
+                $translatedId = (int)pll_get_term($termId, $language);
+                if ($translatedId > 0) {
+                    $termId = $translatedId;
                 }
+            }
 
-                $selected = $row['category'] ?? 0;
-                $termId = $selected instanceof WP_Term
-                    ? (int)$selected->term_id
-                    : (int)$selected;
-
-                if ($termId <= 0) {
-                    continue;
-                }
-
-                if ($language !== '' && function_exists('pll_get_term')) {
-                    $translatedId = (int)pll_get_term($termId, $language);
-                    if ($translatedId > 0) {
-                        $termId = $translatedId;
-                    }
-                }
-
-                if (!isset($categoryPositions[$termId])) {
-                    $categoryPositions[$termId] = count($categoryPositions);
-                }
+            if (!isset($categoryPositions[$termId])) {
+                $categoryPositions[$termId] = count($categoryPositions);
             }
         }
     }
