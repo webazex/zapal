@@ -646,6 +646,7 @@ jQuery(document).ready(function ($) {
 
         var recipeId = String($recipeButton.data('recipeNav') || '');
         var title = String($recipeButton.data('recipeTitle') || $.trim($recipeButton.text()));
+        var hideTitle = $recipeButton.attr('data-recipe-hide-title') === '1';
         var source = String($recipeButton.data('recipeImage') || '');
         var fallback = String($recipeButton.data('recipeFallback') || '');
         var $recipeImage = $gallery.find('[data-recipe-hero]').first();
@@ -669,7 +670,7 @@ jQuery(document).ready(function ($) {
             }
         }
 
-        $recipeTitle.text(title);
+        $recipeTitle.text(title).closest('figcaption').prop('hidden', hideTitle);
         $gallery.find('.gallery-recipe-select').val(recipeId);
     }
 

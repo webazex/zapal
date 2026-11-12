@@ -1331,8 +1331,11 @@ img {
 .gallery-panel.label img {
     object-fit: contain;
     padding: 60px;
-    background: #191919
-;}
+    background: #191919;
+}
+.gallery-panel-recipe figcaption[hidden] {
+    display: none;
+}
 
 .product-story {
     background: var(--paper);

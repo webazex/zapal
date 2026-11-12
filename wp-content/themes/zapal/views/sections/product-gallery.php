@@ -71,6 +71,7 @@ $firstRecipe = $recipeItems[0] ?? null;
                                         data-recipe-image="<?= esc_url($recipe['image']) ?>"
                                         data-recipe-nav="<?= esc_attr($recipe['id']) ?>"
                                         data-recipe-title="<?= esc_attr($recipe['title']) ?>"
+                                        data-recipe-hide-title="<?= !empty($recipe['hide_title']) ? '1' : '0' ?>"
                                         type="button"
                                 ><?= esc_html($recipe['title']) ?></button>
                             <?php endforeach; ?>
