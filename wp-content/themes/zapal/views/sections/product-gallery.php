@@ -115,13 +115,11 @@ $firstRecipe = $recipeItems[0] ?? null;
                             />
                         <?php endif; ?>
 
-                        <?php if (empty($firstRecipe['hide_title'])): ?>
-                            <figcaption>
-                                <span data-recipe-image-title="">
-                                    <?= esc_html($firstRecipe['title']) ?>
-                                </span>
-                            </figcaption>
-                        <?php endif; ?>
+                        <figcaption <?= !empty($firstRecipe['hide_title']) ? 'hidden' : '' ?>>
+                            <span data-recipe-image-title="">
+                                <?= esc_html($firstRecipe['title']) ?>
+                            </span>
+                        </figcaption>
                     </figure>
                 <?php endif; ?>
 
