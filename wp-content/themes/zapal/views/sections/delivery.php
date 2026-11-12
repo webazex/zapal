@@ -38,6 +38,7 @@ if (array_key_exists('deliveries', $args)) {
                     $imageId = !empty($image['ID']) ? (int)$image['ID'] : 0;
                     $imageUrl = $image['url'] ?? '';
                     $imageAlt = $image['alt'] ?? '';
+                    $forceLogoBackground = (bool)($delivery['force_logo_background'] ?? true);
 
                     if (!$imageId && !$imageUrl && !$text) {
                         continue;
@@ -48,7 +49,7 @@ if (array_key_exists('deliveries', $args)) {
                     <article>
                         <span><?= esc_html($number) ?></span>
 
-                        <div class="logistics-brand">
+                        <div class="logistics-brand<?= $forceLogoBackground ? '' : ' logistics-brand--no-bg' ?>">
                             <?php if ($imageId): ?>
                                 <?= wp_get_attachment_image(
                                     $imageId,

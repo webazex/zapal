@@ -1,0 +1,5 @@
+/* Optional background for delivery logos is controlled per ACF repeater row. */
+html[data-theme="dark"] .logistics-brand--no-bg {
+    background: transparent;
+    padding: 0;
+}

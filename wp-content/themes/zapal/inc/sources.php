@@ -27,6 +27,17 @@ function zapal_enqueue_sources()
 
     wp_enqueue_style('zapal-css', get_stylesheet_uri(), [], $cssVersion);
 
+    // Per-delivery logo background is configured in ACF, without altering the global stylesheet.
+    $deliveryCssPath = WBZX_ZAPAL_ASSET_DIR . 'css' . DIRECTORY_SEPARATOR . 'delivery-logo-background.css';
+    if (is_file($deliveryCssPath)) {
+        wp_enqueue_style(
+            'zapal-delivery-logo-background',
+            WBZX_ZAPAL_ASSET_DIR_URI . 'css/delivery-logo-background.css',
+            ['zapal-css'],
+            (string)filemtime($deliveryCssPath)
+        );
+    }
+
     // Restore the homepage packshot geometry from the approved static layout.
     // Other pages and their product images do not load this stylesheet.
     if (is_front_page()) {
