@@ -130,6 +130,23 @@ $header = WBZX_Zapal_header_context();
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+        <?php if (is_front_page()): ?>
+            <a class="zapal-telegram"
+               href="https://t.me/banker1985"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Telegram"
+               title="Telegram">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"
+                     width="20"
+                     height="20"
+                     fill="currentColor"
+                     aria-hidden="true">
+                    <path d="M23.953 2.57a1.5 1.5 0 0 0-1.82-1.66L1.08 9.07c-1.45.56-1.43 1.35-.24 1.71l5.4 1.69 12.53-7.9c.59-.37 1.13-.17.69.22L9.31 13.97l-.39 5.54c.56 0 .81-.26 1.12-.56l2.68-2.6 5.58 4.12c1.03.56 1.76.27 2.02-.96L23.95 2.57z"/>
+                </svg>
+            </a>
+        <?php endif; ?>
 
         <?php if ($header['darkmodeEnabled']): ?>
             <button aria-label="<?= $header['defaultTheme'] === 'dark'

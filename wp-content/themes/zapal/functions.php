@@ -30,9 +30,9 @@ require_once WBZX_ZAPAL_INC_DIR.'transliteration.php';
 require_once WBZX_ZAPAL_INC_DIR.'shared-slugs.php';
 
 //Admin roles and owner-only maintenance (when installed).
-if (is_file(WBZX_ZAPAL_INC_DIR.'admin-access.php')) {
-    require_once WBZX_ZAPAL_INC_DIR.'admin-access.php';
-}
+// if (is_file(WBZX_ZAPAL_INC_DIR.'admin-access.php')) {
+//     require_once WBZX_ZAPAL_INC_DIR.'admin-access.php';
+// }
 
 //add css&js
 require_once WBZX_ZAPAL_INC_DIR.'sources.php';

@@ -103,8 +103,52 @@ img {
     align-items: center;
     border-bottom: 1px solid transparent;
     transition: background .35s, border-color .35s, color .35s, transform .35s;
-    color: var(--ink)
-;}
+    color: var(--ink);
+}
+
+/* Telegram link: homepage only */
+.site-header .zapal-telegram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    color: inherit;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.site-header .zapal-telegram svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.site-header .zapal-telegram:hover {
+    opacity: .7;
+    transform: translateY(-2px);
+}
+
+.site-header .zapal-telegram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+    .site-header .zapal-telegram {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+    }
+
+    body.menu-open .site-header .zapal-telegram {
+        position: relative;
+        z-index: 1002;
+        color: #f4f0e7;
+    }
+}
 
 .site-header.is-scrolled {
     background: rgba(244, 240, 231, .9);
